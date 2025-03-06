@@ -63,7 +63,7 @@
                 <input matInput placeholder="Zadejte heslo">
               </mat-form-field>
 
-              <button mat-flat-button>Přihlásit</button>
+              <button mat-flat-button (click)="prihlasit()">Přihlásit</button>
         </form>
         <p>Nemáte účet? <a (click)="zmenitForm()">Registrovat</a></p>
         <p>Zpět na hlavní <a routerLink="/home">Hlavní stránku</a></p>
@@ -88,7 +88,7 @@
                     <input matInput placeholder="Zadejte heslo">
                   </mat-form-field>
     
-                  <button mat-flat-button>Registrovat</button>
+                  <button mat-flat-button (click)="registrovat()">Registrovat</button>
             </form>
             <p id="toggleText">Už máte účet? <a (click)="zmenitForm()">Přihlásit</a></p>
             <p id="toggleText">Zpět na hlavní <a routerLink="/app">Hlavní stránku</a></p>
