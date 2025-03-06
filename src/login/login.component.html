@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registrace</title>
+</head>
+<body>
+    <div class="bubbles">
+        <span style="--i:13;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <span style="--i:22;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:29;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:26;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <span style="--i:22;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:21;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:26;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:30;"></span>
+    </div>
+<div class="container">
+    <div class="form-box">
+        <h2>{{ isRegistering ? 'Registrace' : 'Přihlášení' }}</h2>
+        @if (isRegistering == false) {
+            <form>
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="Zadejte e-mail">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Heslo</mat-label>
+                <input matInput placeholder="Zadejte heslo">
+              </mat-form-field>
+
+              <button mat-flat-button>Přihlásit</button>
+        </form>
+        <p>Nemáte účet? <a (click)="zmenitForm()">Registrovat</a></p>
+        <p>Zpět na hlavní <a routerLink="/home">Hlavní stránku</a></p>
+        } @else {
+            <form>
+                <mat-form-field appearance="outline">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput placeholder="Zadejte e-mail">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Pohlaví</mat-label>
+                    <mat-select>
+                      @for (gender of genders; track gender) {
+                        <mat-option [value]="gender.value">{{gender.viewValue}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+    
+                  <mat-form-field appearance="outline">
+                    <mat-label>Heslo</mat-label>
+                    <input matInput placeholder="Zadejte heslo">
+                  </mat-form-field>
+    
+                  <button mat-flat-button>Registrovat</button>
+            </form>
+            <p id="toggleText">Už máte účet? <a (click)="zmenitForm()">Přihlásit</a></p>
+            <p id="toggleText">Zpět na hlavní <a routerLink="/app">Hlavní stránku</a></p>
+        }
+        
+    </div>
+</div>
+</body>
+</html>

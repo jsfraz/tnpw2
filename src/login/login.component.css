@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #0c192c;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 10;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-box {
+    width: 100%;
+    text-align: center;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #0088a9;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+p {
+    margin-top: 15px;
+}
+
+a {
+    color: #0088a9;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bubbles {
+    position: relative;
+    display: flex;
+}
+
+.bubbles span {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #4fc3dc;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44,
+    0 0 50px #4fc3dc,
+    0 0 100px #4fc3dc;
+    animation: animate 20s linear infinite;
+    animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even) {
+    background: #ff2d75;
+    box-shadow: 0 0 0 10px #ff2d7544,
+    0 0 50px #ff2d75,
+    0 0 100px #ff2d75;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+} 
+
+/* Vzhled inputů */
+.field-input {
+    width: 100%;
+    height: 70px;
+}
+
+.button-input {
+    width: 100%;
+    height: 20%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0); /* Bubliny začínají mimo obrazovku dole */
+        opacity: 1;
+    }
+    90% {
+        transform: translateY(-50vh) scale(1); /* Bubliny se dostanou mimo obrazovku nahoru */
+        opacity: 1;  /* Bublina je stále viditelná na konci animace */
+    }
+    100% {
+        transform: translateY(-50vh) scale(1); /* Bublina zmizí mimo obrazovku */
+        opacity: 0; /* Bublina zmizí na posledních 10 % animace */
+    }
+}

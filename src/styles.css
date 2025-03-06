@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Skryje posuvníky, pokud nejsou potřeba */
+    background-color: #f0f0f0; /* Nebo jakoukoliv barvu chceš */
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
