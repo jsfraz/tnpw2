@@ -45,14 +45,20 @@ form {
     text-align: center;
 }
 
-input {
+.jmeno {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/*input {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
+}*/
 
-button {
+/*button {
     background-color: #0088a9;
     color: white;
     padding: 10px;
@@ -61,7 +67,7 @@ button {
     cursor: pointer;
     margin-top: 10px;
     font-size: 16px;
-}
+}*/
 
 p {
     margin-top: 15px;
@@ -100,24 +106,24 @@ a {
     0 0 100px #ff2d75;
 }
 
-.form-input {
+/*.form-input {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-} 
+}*/
 
 /* Vzhled inputů */
-.field-input {
+/*.field-input {
     width: 100%;
     height: 70px;
-}
+}*/
 
-.button-input {
+/*.button-input {
     width: 100%;
     height: 20%;
     padding: 10px;
     font-size: 16px;
-}
+}*/
 
 @keyframes animate {
     0% {

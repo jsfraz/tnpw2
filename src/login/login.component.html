@@ -66,32 +66,35 @@
               <button mat-flat-button (click)="prihlasit()">Přihlásit</button>
         </form>
         <p>Nemáte účet? <a (click)="zmenitForm()">Registrovat</a></p>
-        <p>Zpět na hlavní <a routerLink="/home">Hlavní stránku</a></p>
+        <p>Zpět na <a routerLink="/home">Hlavní stránku</a></p>
         } @else {
             <form>
+              <div class="jmeno">
                 <mat-form-field appearance="outline">
-                    <mat-label>E-mail</mat-label>
-                    <input matInput placeholder="Zadejte e-mail">
-                  </mat-form-field>
+                  <mat-label>Jméno</mat-label>
+                  <input matInput placeholder="Zadejte e-mail">
+                </mat-form-field>
 
-                  <mat-form-field appearance="outline">
-                    <mat-label>Pohlaví</mat-label>
-                    <mat-select>
-                      @for (gender of genders; track gender) {
-                        <mat-option [value]="gender.value">{{gender.viewValue}}</mat-option>
-                      }
-                    </mat-select>
-                  </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Přijmení</mat-label>
+                  <input matInput placeholder="Zadejte e-mail">
+                </mat-form-field>
+              </div>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="Zadejte e-mail">
+              </mat-form-field>
     
-                  <mat-form-field appearance="outline">
-                    <mat-label>Heslo</mat-label>
-                    <input matInput placeholder="Zadejte heslo">
-                  </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Heslo</mat-label>
+                <input matInput placeholder="Zadejte heslo">
+              </mat-form-field>
     
-                  <button mat-flat-button (click)="registrovat()">Registrovat</button>
+              <button mat-flat-button (click)="registrovat()">Registrovat</button>
             </form>
             <p id="toggleText">Už máte účet? <a (click)="zmenitForm()">Přihlásit</a></p>
-            <p id="toggleText">Zpět na hlavní <a routerLink="/app">Hlavní stránku</a></p>
+            <p id="toggleText">Zpět na <a routerLink="/app">Hlavní stránku</a></p>
         }
         
     </div>
