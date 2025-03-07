@@ -21,11 +21,6 @@ interface Gender {
 export class LoginComponent {
     isRegistering = false;
 
-    genders : Gender[] = [
-      {value: "male", viewValue: "Muž"},
-      {value: "female", viewValue: "Žena"}
-    ]  
-
     zmenitForm() {
       this.isRegistering = !this.isRegistering;
     }
