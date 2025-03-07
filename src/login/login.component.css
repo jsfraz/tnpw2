@@ -48,7 +48,7 @@ form {
 .jmeno {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 16px;
 }
 
 /*input {
