@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../app/shared/auth.service';
 import { AuthenticationService } from '../app/api/services/authentication.service';
@@ -47,7 +47,8 @@ export class LoginComponent {
             this.router.navigate(['']);
           },
           error: (e) => {
-            alert(e);
+            console.error(e);
+            alert(e.error.error);
           },
           complete: () => { }
         }
@@ -78,14 +79,16 @@ export class LoginComponent {
                 this.router.navigate(['']);
               },
               error: (e) => {
-                alert(e);
+                console.error(e);
+                alert(e.error.error);
               }
             }
           );
         },
         error: (e) => {
           this.loggingIn = false;
-          alert(e);
+          console.error(e);
+          alert(e.error.error);
         },
         complete: () => {
           this.loggingIn = false;
