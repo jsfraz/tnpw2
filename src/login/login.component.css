@@ -45,30 +45,6 @@ form {
     text-align: center;
 }
 
-.jmeno {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-}
-
-/*input {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}*/
-
-/*button {
-    background-color: #0088a9;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 16px;
-}*/
-
 p {
     margin-top: 15px;
 }
