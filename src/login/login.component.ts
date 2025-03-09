@@ -10,12 +10,14 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../app/shared/auth.service';
 import { AuthenticationService } from '../app/api/services/authentication.service';
 import { UserService } from '../app/api/services/user.service';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   imports: [RouterLink, MatButtonModule, MatDividerModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   // Přihlašovací údaje
@@ -24,7 +26,18 @@ export class LoginComponent {
   // Průběh přihlašování
   loggingIn: boolean = false;
 
-  isRegistering = false;
+    isRegistering = false;
+    hide = signal(true);
+
+    genders : Gender[] = [
+      {value: "male", viewValue: "Muž"},
+      {value: "female", viewValue: "Žena"}
+    ] 
+    
+    clickEvent(event: MouseEvent) {
+      this.hide.set(!this.hide());
+      event.stopPropagation();
+    }
 
   constructor(public router: Router, public authService: AuthService, private authenticationService: AuthenticationService, private userService: UserService) { }
 
