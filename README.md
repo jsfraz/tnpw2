@@ -1,5 +1,24 @@
 # DBS2Frontend
 
+## Aktualizace OpenAPI specifikace
+
+### Instalace a spuštění CLI generátoru ([zdroj1](https://www.npmjs.com/package/ng-openapi-gen), [zdroj2](https://github.com/cyclosproject/ng-openapi-gen/issues/330#issuecomment-2403937683))
+
+<!--
+```bash
+npm install -g ng-openapi-gen
+ng-openapi-gen
+```
+-->
+
+```bash
+npm install -g ng-openapi-gen
+npm run apigen
+```
+
+Použitá konfigurace je uložena v souboru [ng-openapi-gen.json](ng-openapi-gen.json).
+
+<!--
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
 
 ## Development server
@@ -57,3 +76,4 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+-->

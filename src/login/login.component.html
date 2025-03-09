@@ -54,23 +54,25 @@
     <div class="form-box">
       <h2>{{ isRegistering ? 'Registrace' : 'Přihlášení' }}</h2>
       @if (isRegistering == false) {
-      <form>
+      <!-- TODO opravit rozbité divy, NPOPUŽÍVAT <form>!!! -->
+      <div>
         <mat-form-field appearance="outline">
           <mat-label>E-mail</mat-label>
-          <input matInput placeholder="Zadejte e-mail">
+          <input matInput type="email" [formControl]="mailLogin" placeholder="Zadejte e-mail">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Heslo</mat-label>
-          <input matInput placeholder="Zadejte heslo">
+          <input matInput type="password" [formControl]="passwordLogin" placeholder="Zadejte heslo">
         </mat-form-field>
 
         <button mat-flat-button (click)="prihlasit()">Přihlásit</button>
-      </form>
+      </div>
       <p>Nemáte účet? <a (click)="zmenitForm()">Registrovat</a></p>
       <p>Zpět na <a routerLink="/home">Hlavní stránku</a></p>
       } @else {
-      <form>
+      <!-- TODO opravit rozbité divy, NPOPUŽÍVAT <form>!!! -->
+      <div>
         <mat-form-field appearance="outline">
           <mat-label>E-mail</mat-label>
           <input matInput placeholder="Zadejte e-mail">
@@ -93,7 +95,7 @@
         </mat-form-field>
 
         <button mat-flat-button (click)="registrovat()">Registrovat</button>
-      </form>
+      </div>
       <p id="toggleText">Už máte účet? <a (click)="zmenitForm()">Přihlásit</a></p>
       <p id="toggleText">Zpět na <a routerLink="/app">Hlavní stránku</a></p>
       }

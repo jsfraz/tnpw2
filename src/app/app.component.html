@@ -1,11 +1,19 @@
 <header>
+          <!-- TODO přesměrování na hlavní stránku -->
   <div class="logo">Ninja Books</div>
   <nav>
       <ul class="nav__links">
         <li><a routerLink="/">Hlavní stránka</a></li>
+        <!-- TODO vysvětlit jaký je rozdíl mezi '/' a '/knihy' -->
         <li><a routerLink="/knihy">Knihy</a></li>
-        <li><a routerLink="/kosik">Košík</a></li>
-        <li class="login"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Účet</a></li>
+        @if (this.authService.currentUser != null) {
+          <li><a routerLink="/kosik">Košík</a></li>
+          <!-- TODO stylování a tak-->
+          <li>{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
+          <button (click)="this.authService.logout()">Odhlásit se</button>
+        } @else {
+          <li class="login"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit se</a></li>
+        }
       </ul>
   </nav>
 </header>

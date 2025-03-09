@@ -4,8 +4,11 @@ import { LoginComponent } from '../login/login.component';
 import { AppComponent } from './app.component';
 
 export const routes: Routes = [
+    // Přihlášení
     { path: 'login', component: LoginComponent },
+    // TODO popsat
     { path: '**', redirectTo: '', pathMatch: 'full' },
+    // TODO popsat
     { path: 'home', component: AppComponent}
 ];
 
