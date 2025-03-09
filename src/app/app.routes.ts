@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { AppComponent } from './app.component';
+import { BooksComponent } from '../books/books.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: '**', redirectTo: '', pathMatch: 'full' },
-    { path: 'home', component: AppComponent}
+    { path: 'home', component: AppComponent},
+    { path: 'books', component: BooksComponent},
+    { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

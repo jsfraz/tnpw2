@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knihy</title>
+</head>
+<body>
+    <div class="container">
+        <div class="filter-container">
+            <h1>Filtry</h1>
+
+            <div class="price">
+                <div class="price-slider">
+                    <div class="filter-text">Cena:</div>
+                        <div class="slider">
+                            <mat-slider min="100" max="1000" showTickMarks discrete [displayWith]="formatLabel">
+                                <input value="100" matSliderStartThumb>
+                                <input value="1000" matSliderEndThumb>
+                            </mat-slider>
+                        </div>
+
+                    <div class="slider-value">
+                        <div class="value">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Start">
+                            </mat-form-field>
+                        </div>
+                        <div class="value">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="End">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

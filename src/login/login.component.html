@@ -59,14 +59,23 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline">
-                <mat-label>Heslo</mat-label>
-                <input matInput placeholder="Zadejte heslo">
+                <mat-label>Zadejte heslo</mat-label>
+                <input matInput [type]="hide() ? 'password' : 'text'" />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  type="button"
+                  (click)="clickEvent($event)"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide()"
+                >
+                  <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
               </mat-form-field>
 
               <button mat-flat-button (click)="prihlasit()">Přihlásit</button>
         </form>
         <p>Nemáte účet? <a (click)="zmenitForm()">Registrovat</a></p>
-        <p>Zpět na <a routerLink="/home">Hlavní stránku</a></p>
         } @else {
             <form>
               <div class="jmeno">
@@ -87,16 +96,24 @@
               </mat-form-field>
     
               <mat-form-field appearance="outline">
-                <mat-label>Heslo</mat-label>
-                <input matInput placeholder="Zadejte heslo">
+                <mat-label>Zadejte heslo</mat-label>
+                <input matInput [type]="hide() ? 'password' : 'text'" />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  type="button"
+                  (click)="clickEvent($event)"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide()"
+                >
+                  <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
               </mat-form-field>
     
               <button mat-flat-button (click)="registrovat()">Registrovat</button>
             </form>
             <p id="toggleText">Už máte účet? <a (click)="zmenitForm()">Přihlásit</a></p>
-            <p id="toggleText">Zpět na <a routerLink="/app">Hlavní stránku</a></p>
-        }
-        
+        } 
     </div>
 </div>
 </body>

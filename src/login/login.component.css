@@ -23,7 +23,7 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -95,8 +95,8 @@ a {
     box-shadow: 0 0 0 10px #4fc3dc44,
     0 0 50px #4fc3dc,
     0 0 100px #4fc3dc;
-    animation: animate 20s linear infinite;
-    animation-duration: calc(125s / var(--i));
+    animation: animate 40s linear infinite;
+    animation-duration: calc(200s / var(--i));
 }
 
 .bubbles span:nth-child(even) {

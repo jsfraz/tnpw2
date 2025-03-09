@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
@@ -16,15 +16,22 @@ interface Gender {
   selector: 'app-login',
   imports: [RouterLink, MatButtonModule, MatDividerModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
     isRegistering = false;
+    hide = signal(true);
 
     genders : Gender[] = [
       {value: "male", viewValue: "Muž"},
       {value: "female", viewValue: "Žena"}
-    ]  
+    ] 
+    
+    clickEvent(event: MouseEvent) {
+      this.hide.set(!this.hide());
+      event.stopPropagation();
+    }
 
     zmenitForm() {
       this.isRegistering = !this.isRegistering;
