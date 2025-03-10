@@ -9,6 +9,8 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { createUser } from '../fn/user-management/create-user';
+import { CreateUser$Params } from '../fn/user-management/create-user';
 import { getUsersByRoles } from '../fn/user-management/get-users-by-roles';
 import { GetUsersByRoles$Params } from '../fn/user-management/get-users-by-roles';
 import { ModelsUser } from '../models/models-user';
@@ -53,6 +55,39 @@ export class UserManagementService extends BaseService {
   getUsersByRoles(params: GetUsersByRoles$Params, context?: HttpContext): Observable<Array<ModelsUser>> {
     return this.getUsersByRoles$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<ModelsUser>>): Array<ModelsUser> => r.body)
+    );
+  }
+
+  /** Path part for operation `createUser()` */
+  static readonly CreateUserPath = '/api/user/management/user';
+
+  /**
+   * Vytvoření uživatele s rolí databaseManager nebo reviewApprover.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `createUser()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  createUser$Response(params?: CreateUser$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return createUser(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Vytvoření uživatele s rolí databaseManager nebo reviewApprover.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `createUser$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  createUser(params?: CreateUser$Params, context?: HttpContext): Observable<void> {
+    return this.createUser$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
