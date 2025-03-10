@@ -12,6 +12,8 @@ import { StrictHttpResponse } from '../strict-http-response';
 import { login } from '../fn/authentication/login';
 import { Login$Params } from '../fn/authentication/login';
 import { ModelsLoginResponse } from '../models/models-login-response';
+import { register } from '../fn/authentication/register';
+import { Register$Params } from '../fn/authentication/register';
 
 
 /**
@@ -52,6 +54,39 @@ export class AuthenticationService extends BaseService {
    */
   login(params?: Login$Params, context?: HttpContext): Observable<ModelsLoginResponse> {
     return this.login$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ModelsLoginResponse>): ModelsLoginResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `register()` */
+  static readonly RegisterPath = '/api/auth/register';
+
+  /**
+   * Registrace zákazníka.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `register()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  register$Response(params?: Register$Params, context?: HttpContext): Observable<StrictHttpResponse<ModelsLoginResponse>> {
+    return register(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Registrace zákazníka.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `register$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  register(params?: Register$Params, context?: HttpContext): Observable<ModelsLoginResponse> {
+    return this.register$Response(params, context).pipe(
       map((r: StrictHttpResponse<ModelsLoginResponse>): ModelsLoginResponse => r.body)
     );
   }
