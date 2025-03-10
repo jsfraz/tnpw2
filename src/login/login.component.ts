@@ -139,8 +139,10 @@ export class LoginComponent {
       });
     } else {
       // Zobrazení chyb
-      this.mailLogin.markAsTouched();
-      this.passwordLogin.markAsTouched();
+      this.firstNameRegister.markAllAsTouched();
+      this.lastNameRegister.markAllAsTouched();
+      this.mailRegister.markAsTouched();
+      this.passwordRegister.markAsTouched();
     }
   }
 }
