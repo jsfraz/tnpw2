@@ -78,23 +78,23 @@
         <div class="jmeno">
           <mat-form-field appearance="outline">
             <mat-label>Jméno</mat-label>
-            <input matInput placeholder="Zadejte jméno">
+            <input matInput placeholder="Zadejte jméno" [formControl]="firstNameRegister">
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Přijmení</mat-label>
-            <input matInput placeholder="Zadejte přijmení">
+            <input matInput placeholder="Zadejte přijmení" [formControl]="lastNameRegister">
           </mat-form-field>
         </div>
 
         <mat-form-field appearance="outline">
           <mat-label>E-mail</mat-label>
-          <input matInput placeholder="Zadejte e-mail">
+          <input matInput placeholder="Zadejte e-mail" [formControl]="mailRegister">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Zadejte heslo</mat-label>
-          <input matInput [type]="hide() ? 'password' : 'text'" />
+          <input matInput [type]="hide() ? 'password' : 'text'" [formControl]="passwordRegister"/>
           <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)"
             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
             <!-- TODO fix ikony -->

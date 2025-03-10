@@ -22,16 +22,21 @@ export class LoginComponent {
   // Přihlašovací údaje
   mailLogin = new FormControl('', [Validators.required, Validators.email]);
   passwordLogin = new FormControl('', [Validators.required]);
+  // Registrace
+  firstNameRegister = new FormControl('', [Validators.required]);
+  lastNameRegister = new FormControl('', [Validators.required]);
+  mailRegister = new FormControl('', [Validators.required, Validators.email]);
+  passwordRegister = new FormControl('', [Validators.required]);
   // Průběh přihlašování
   loggingIn: boolean = false;
 
-    isRegistering = false;
-    hide = signal(true);
-    
-    clickEvent(event: MouseEvent) {
-      this.hide.set(!this.hide());
-      event.stopPropagation();
-    }
+  isRegistering = false;
+  hide = signal(true);
+
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
 
   constructor(public router: Router, public authService: AuthService, private authenticationService: AuthenticationService, private userService: UserService) { }
 
@@ -39,21 +44,21 @@ export class LoginComponent {
   ngOnInit(): void {
     if (this.authService.tokenValid) {
       // Načtení kdo jsem
-    if (this.authService.currentUser == null && this.authService.tokenValid) {
-      this.userService.whoAmI().subscribe(
-        {
-          next: (v) => {
-            this.authService.currentUser = v;
-            this.router.navigate(['']);
-          },
-          error: (e) => {
-            console.error(e);
-            alert(e.error.error);
-          },
-          complete: () => { }
-        }
-      );
-    }
+      if (this.authService.currentUser == null && this.authService.tokenValid) {
+        this.userService.whoAmI().subscribe(
+          {
+            next: (v) => {
+              this.authService.currentUser = v;
+              this.router.navigate(['']);
+            },
+            error: (e) => {
+              console.error(e);
+              alert(e.error.error);
+            },
+            complete: () => { }
+          }
+        );
+      }
     } else {
       this.authService.deleteToken();
     }
@@ -102,6 +107,40 @@ export class LoginComponent {
   }
 
   registrovat() {
-    //TODO: registrovaci logika
+    if (this.firstNameRegister.valid && this.lastNameRegister.valid && this.mailRegister.valid && this.passwordRegister.valid) {
+      this.loggingIn = true;
+      this.authenticationService.register({ body: { firstName: this.firstNameRegister.value!, lastName: this.lastNameRegister.value!, mail: this.mailRegister.value!, password: this.passwordRegister.value! } }).subscribe({
+        next: (v) => {
+          // Uložení tokenu do storage
+          this.authService.token = v.accessToken;
+          this.userService.whoAmI().subscribe(
+            {
+              next: (v) => {
+                // Nastavení uživatele
+                this.authService.currentUser = v;
+                // Přesměrování
+                this.router.navigate(['']);
+              },
+              error: (e) => {
+                console.error(e);
+                alert(e.error.error);
+              }
+            }
+          );
+        },
+        error: (e) => {
+          this.loggingIn = false;
+          console.error(e);
+          alert(e.error.error);
+        },
+        complete: () => {
+          this.loggingIn = false;
+        }
+      });
+    } else {
+      // Zobrazení chyb
+      this.mailLogin.markAsTouched();
+      this.passwordLogin.markAsTouched();
+    }
   }
 }
