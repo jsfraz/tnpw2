@@ -12,7 +12,8 @@ body {
 .filter-container {
     float: left;
     display: flex;
-    border: 1px solid #0c192c;
+    border: 1px solid #172f52;
+    box-shadow: 0 2px 4px black;
     border-radius: 20px;
     width: 20%;
     height: 700px;
@@ -20,7 +21,8 @@ body {
     margin-top: 100px;
     margin-left: 100px;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: #0e1d33;
+    color: #fafafa;
 } 
 
 .filter-text {
@@ -42,7 +44,8 @@ body {
 }
 
 .price {
-    border: 2px solid #0c192c98;
+    border: #0088a9 1px solid;
+    background-color: #0c192c;
     border-radius: 10px;
     padding: 10px;
     margin-top: 10px;

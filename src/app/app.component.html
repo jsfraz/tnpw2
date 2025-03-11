@@ -7,20 +7,23 @@
   <nav>
       <ul class="nav__links">
         @if (this.authService.currentUser != null) {
+          <div class="navbuttons">
           <li class="links"><a routerLink="/">Hlavní stránka</a></li>
 
           <!-- TODO vysvětlit jaký je rozdíl mezi '/' a '/knihy' -->
 
           <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
           <li class="links"><a routerLink="/kosik">Košík</a></li>
-          
-            <!-- TODO fixnout obrazek vedle usera a pridat podminku ktera rozlisi admina od usera-->
+          </div>
 
+            <!-- TODO fixnout obrazek vedle usera a pridat podminku ktera rozlisi admina od usera-->
+            <div>
             <li class="user-name"><i class="fas fa-user" style="margin-right: 10px;"></i>{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
             @if (this.authService.currentUser.role == 'admin') {
               <button (click)="this.router.navigate(['users'])" class="user-list">User management</button>
             }
             <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
+            </div>
         } @else {
           <li class="links-pre"><a routerLink="/">Hlavní stránka</a></li>
           <li class="links-pre"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
