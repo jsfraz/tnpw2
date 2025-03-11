@@ -1,3 +1,7 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
 <header>
   <div class="logo">Ninja Books</div>
   <nav>
@@ -10,13 +14,11 @@
           <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
           <li class="links"><a routerLink="/kosik">Košík</a></li>
           
-          <div class="user">
             <!-- TODO fixnout obrazek vedle usera a pridat podminku ktera rozlisi admina od usera-->
-            <img src="assets/images/admin.png" width="50" height="50">
-            <li class="user-name">{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
+
+            <li class="user-name"><i class="fas fa-user" style="margin-right: 10px;"></i>{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
             <button (click)="goToUsers()" class="user-list">User List</button>
-            <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>   
-          </div>
+            <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
         } @else {
           <li class="links-pre"><a routerLink="/">Hlavní stránka</a></li>
           <li class="links-pre"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>

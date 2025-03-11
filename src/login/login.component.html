@@ -54,7 +54,7 @@
     <div class="form-box">
       <h2>{{ isRegistering ? 'Registrace' : 'Přihlášení' }}</h2>
       @if (isRegistering == false) {
-      <div>
+      <div class="nevim">
         <mat-form-field appearance="outline" class="input">
           <mat-label>E-mail</mat-label>
           <input matInput placeholder="Zadejte e-mail" [formControl]="mailLogin">

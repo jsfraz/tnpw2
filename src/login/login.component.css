@@ -23,12 +23,19 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    background-color: rgb(255, 255, 255);
+    color: #fafafa;
+    background-color: #fafafa15;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 4px rgb(18, 18, 18);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
     z-index: 10;
+}
+
+.nevim {
+    color: #fafafa;
 }
 
 h2 {

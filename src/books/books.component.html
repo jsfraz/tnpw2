@@ -14,23 +14,18 @@
                 <div class="price-slider">
                     <div class="filter-text">Cena:</div>
                         <div class="slider">
-                            <mat-slider min="100" max="1000" showTickMarks discrete [displayWith]="formatLabel">
-                                <input value="100" matSliderStartThumb>
-                                <input value="1000" matSliderEndThumb>
-                            </mat-slider>
+                            <mat-slider
+                                class="example-margin"
+                                [max]="1000"
+                                [min]="100"
+                                [step]="1">
+                                <input value="100" matSliderStartThumb [(ngModel)]="startvalue" #slider>
+                                <input value="1000" matSliderEndThumb [(ngModel)]="endvalue" #slider>
+                                </mat-slider>
                         </div>
-
-                    <div class="slider-value">
-                        <div class="value">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Start">
-                            </mat-form-field>
-                        </div>
-                        <div class="value">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="End">
-                            </mat-form-field>
-                        </div>
+                        <div class="slider-value">
+                        <label>{{startvalue}}</label>
+                        <label>{{endvalue}}</label>
                     </div>
                 </div>
             </div>
