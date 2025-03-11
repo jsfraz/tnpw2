@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 import { AuthService } from './shared/auth.service';
 import { UserService } from './api/services/user.service';
@@ -17,7 +18,11 @@ import {MatButtonModule} from '@angular/material/button';
 export class AppComponent implements OnInit {
   title = 'DBS2_Frontend';
 
-  constructor(public authService: AuthService, private userService: UserService) {}
+  constructor(public authService: AuthService, private userService: UserService, private router: Router) {}
+
+  goToUsers() {
+    this.router.navigate(['/users']);
+  }
 
   ngOnInit(): void {
     // Načtení kdo jsem

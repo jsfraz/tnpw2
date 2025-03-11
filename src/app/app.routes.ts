@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { AppComponent } from './app.component';
 import { BooksComponent } from '../books/books.component';
+import { UsersComponent } from './users/users.component';
 
 export const routes: Routes = [
     // Přihlášení
@@ -10,6 +11,7 @@ export const routes: Routes = [
     // TODO popsat
     { path: 'home', component: AppComponent},
     { path: 'books', component: BooksComponent},
+    { path: 'users', component: UsersComponent},
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

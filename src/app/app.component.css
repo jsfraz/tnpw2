@@ -51,6 +51,14 @@ header {
     position: relative;
 } 
 
+.user-list {
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #0088a9;
+    margin-left: 20px;
+    
+} 
+
 .links {
     margin-top: 50px;
 }
@@ -81,7 +89,6 @@ header {
 }
 
 .nav__links a:hover {
-    color: #0088a9;
     background-color: rgba(63, 205, 248, 0.185);
     box-shadow: 
         0 0 20px #4fc3dc;
@@ -105,7 +112,6 @@ button {
 button:hover {
     background-color: rgba(63, 205, 248, 0.185);
     transition: 0.3s;
-    color: #0088a9;
     cursor: pointer;
     box-shadow: 
         0 0 10px #4fc3dc;
