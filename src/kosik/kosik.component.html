@@ -1,0 +1,43 @@
+<p>kosik works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knihy</title>
+</head>
+<body>
+    <div class="stred">
+        <div class="kniha">
+            <div class="obrazekDiv">
+            <div class="obrazek"></div>
+            </div>
+            <div class="nazevKnihy">
+                <h2>Arila: Stříbrné město</h2>
+                <br>
+                <h4 style="color:gray;">Radek "Sterakdary" Starý</h4>
+            </div>
+            <div class="pocetDiv">
+                <h3>Počet:</h3>
+                <button class="pocetButton">-</button>
+                <input type="number" name="booksCount" oninput="this.value = Math.max(0, Math.min(999, this.value))" />
+                <button class="pocetButton">+</button>
+            </div>
+            <div class="cenaDiv">
+                <h2 class="cena">Cena: </h2>
+                <h2 style="color: #00ccff;">500,-</h2>
+                <button class="smazatButton">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>  
+        <div class="kniha">Tady bude kniha</div>
+        <hr>
+        <button class="dokoncitObjednavku">Dokončit objednávku</button>
+        <div></div>
+
+
+    </div>
+    
+</body>
+</html>
