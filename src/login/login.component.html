@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login / Registrace</title>
 </head>
-
 <body>
   <div class="bubbles">
     <span style="--i:13;"></span>
@@ -50,24 +49,20 @@
     <span style="--i:13;"></span>
     <span style="--i:30;"></span>
   </div>
+
   <div class="container">
     <div class="form-box">
       <h2>{{ isRegistering ? 'Registrace' : 'Přihlášení' }}</h2>
       @if (isRegistering == false) {
-      <!-- TODO opravit rozbité divy, NPOPUŽÍVAT <form>!!! -->
       <div>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="input">
           <mat-label>E-mail</mat-label>
           <input matInput placeholder="Zadejte e-mail" [formControl]="mailLogin">
         </mat-form-field>
-        <mat-form-field appearance="outline">
+
+        <mat-form-field appearance="outline" class="input">
           <mat-label>Zadejte heslo</mat-label>
           <input matInput [type]="hide() ? 'password' : 'text'" [formControl]="passwordLogin" />
-          <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)"
-            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
-            <!-- TODO fix ikony -->
-            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
         </mat-form-field>
 
         <button mat-flat-button (click)="prihlasit()">Přihlásit</button>
@@ -75,31 +70,27 @@
       <p>Nemáte účet? <a (click)="zmenitForm()">Registrovat</a></p>
       } @else {
       <div>
-        <div class="jmeno">
-          <mat-form-field appearance="outline">
+        <div class="register-input">
+          <mat-form-field appearance="outline" class="input">
             <mat-label>Jméno</mat-label>
             <input matInput placeholder="Zadejte jméno" [formControl]="firstNameRegister">
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="input">
             <mat-label>Přijmení</mat-label>
             <input matInput placeholder="Zadejte přijmení" [formControl]="lastNameRegister">
           </mat-form-field>
         </div>
+          
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="input">
           <mat-label>E-mail</mat-label>
           <input matInput placeholder="Zadejte e-mail" [formControl]="mailRegister">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="input">
           <mat-label>Zadejte heslo</mat-label>
           <input matInput [type]="hide() ? 'password' : 'text'" [formControl]="passwordRegister"/>
-          <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)"
-            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
-            <!-- TODO fix ikony -->
-            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
         </mat-form-field>
 
         <button mat-flat-button (click)="registrovat()">Registrovat</button>

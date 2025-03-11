@@ -10,10 +10,11 @@ import { AuthService } from '../app/shared/auth.service';
 import { AuthenticationService } from '../app/api/services/authentication.service';
 import { UserService } from '../app/api/services/user.service';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { AppComponent } from "../app/app.component";
 
 @Component({
   selector: 'app-login',
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, AppComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

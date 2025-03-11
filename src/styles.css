@@ -7,8 +7,13 @@
 html, body {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Skryje posuvníky, pokud nejsou potřeba */
-    background-color: #f0f0f0; /* Nebo jakoukoliv barvu chceš */
+    background-color: #0c192c; /* Nebo jakoukoliv barvu chceš */
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+header {
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 0 20px #4fc3dc, 0 0 40px #4fc3dc !important;
+}

@@ -1,22 +1,28 @@
 <header>
-          <!-- TODO přesměrování na hlavní stránku -->
   <div class="logo">Ninja Books</div>
   <nav>
       <ul class="nav__links">
-        <li><a routerLink="/">Hlavní stránka</a></li>
-        <!-- TODO vysvětlit jaký je rozdíl mezi '/' a '/knihy' -->
-        <li><a routerLink="/knihy">Knihy</a></li>
         @if (this.authService.currentUser != null) {
-          <li><a routerLink="/kosik">Košík</a></li>
-          <!-- TODO stylování a tak-->
-          <li>{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
-          <button (click)="this.authService.logout()">Odhlásit se</button>
+          <li class="links"><a routerLink="/">Hlavní stránka</a></li>
+
+          <!-- TODO vysvětlit jaký je rozdíl mezi '/' a '/knihy' -->
+
+          <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
+          <li class="links"><a routerLink="/kosik">Košík</a></li>
+          
+          <div class="user">
+            <!-- TODO fixnout obrazek vedle usera a pridat podminku ktera rozlisi admina od usera-->
+            <img src="assets/images/admin.png" width="50" height="50">
+            <li>{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
+            <button mat-button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
+          </div>
         } @else {
-          <li class="login"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit se</a></li>
+          <li class="links-pre"><a routerLink="/">Hlavní stránka</a></li>
+          <li class="links-pre"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
+          <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit se</a></li>
         }
       </ul>
   </nav>
 </header>
-
 
 <router-outlet />
