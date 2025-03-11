@@ -1,8 +1,18 @@
 # DBS2Frontend
 
-## Aktualizace OpenAPI specifikace
+Tento projekt byl vytvořen pomocí [Angular CLI](https://github.com/angular/angular-cli) verze 19.2.0.
 
-### Instalace a spuštění CLI generátoru ([zdroj1](https://www.npmjs.com/package/ng-openapi-gen), [zdroj2](https://github.com/cyclosproject/ng-openapi-gen/issues/330#issuecomment-2403937683))
+## Vývojový server
+
+Chcete-li spustit místní vývojový server, spusťte:
+
+```bash
+ng serve
+```
+
+Po spuštění serveru otevřete prohlížeč a přejděte na adresu `http://localhost:4200/`. Aplikace se automaticky znovu načte, kdykoli změníte některý ze zdrojových souborů.
+
+## Instalace a spuštění OpenAPI CLI generátoru ([zdroj1](https://www.npmjs.com/package/ng-openapi-gen), [zdroj2](https://github.com/cyclosproject/ng-openapi-gen/issues/330#issuecomment-2403937683))
 
 <!--
 ```bash
