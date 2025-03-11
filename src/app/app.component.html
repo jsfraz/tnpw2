@@ -13,8 +13,8 @@
           <div class="user">
             <!-- TODO fixnout obrazek vedle usera a pridat podminku ktera rozlisi admina od usera-->
             <img src="assets/images/admin.png" width="50" height="50">
-            <li>{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
-            <button mat-button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
+            <li class="user-name">{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
+            <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>       
           </div>
         } @else {
           <li class="links-pre"><a routerLink="/">Hlavní stránka</a></li>

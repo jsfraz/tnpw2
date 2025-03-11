@@ -82,7 +82,7 @@ header {
 
 .nav__links a:hover {
     color: #0088a9;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(63, 205, 248, 0.185);
     box-shadow: 
         0 0 20px #4fc3dc;
     transition: 0.3s;
@@ -90,4 +90,27 @@ header {
 
 .login {
     margin-left: 50px;
+}
+
+button {
+    color: white;
+    border-radius: 5px;
+    background-color:#0c192c;
+    border: 1px solid #0088a9;
+    margin-left: 20px;
+    transition: 0.3s;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: rgba(63, 205, 248, 0.185);
+    transition: 0.3s;
+    color: #0088a9;
+    cursor: pointer;
+    box-shadow: 
+        0 0 10px #4fc3dc;
+} 
+
+.user-name {
+    margin-top: 5px;
 }
