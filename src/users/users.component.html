@@ -6,24 +6,67 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
+    <button class="add-user-btn" (click)="showForm = true">Přidat uživatele</button>
+    
+     <!-- Formulář v div -->
+      @if (showForm) {
+        <div class="form-container">
+            <div class="form-group"> 
+              <label>Jméno:</label>
+              <input type="text" [(ngModel)]="newUser.firstName">
+            </div>
+            <div class="form-group">
+              <label>Příjmení:</label>
+              <input type="text" [(ngModel)]="newUser.lastName">
+            </div>
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="email" [(ngModel)]="newUser.mail">
+            </div>
+            <div class="form-group">
+              <label>Heslo:</label>
+              <input type="password" [(ngModel)]="newUser.password">
+            </div>
+            <div class="form-group">
+              <label>Role:</label>
+              <select [(ngModel)]="newUser.role">
+                <option value="databaseManager">Správce databáze</option>
+                <option value="reviewApprover">Moderátor recenzí</option>
+              </select>
+            </div>
+            <div class="form-buttons">
+              <button class="submit-btn" (click)="createUser()">Přidat</button>
+              <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
+            </div>
+          </div>
+      }
+
+    
+    
+    
+    <div class="center">
+        <table>
+            <thead>
+              <tr>
                 <th>Jméno</th>
+                <th>Přijmení</th>
                 <th>Email</th>
                 <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.role }}</td>
-            </tr>
-        </tbody>
-    </table>
+              </tr>
+            </thead>
+            <tbody>
+                @for (user of users; track users) {
+                <tr>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>{{ user.role }}</td>
+                  </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
     
 </body>
 </html>

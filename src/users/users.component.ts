@@ -1,17 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { UserManagementService } from '../app/api/services/user-management.service';
 import { ModelsUser } from '../app/api/models/models-user';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
-// TODO přidat tento komponent do routeru
+
 export class UsersComponent implements OnInit {
   // Uživatelé s rolemi databaseManager a reviewApprover
   users: ModelsUser[] = [];
+  showForm = false;
+  newUser = {
+    firstName: '',
+    lastName: '',
+    mail: '',
+    password: '',
+    role: ''
+  };
 
   constructor(private userManagementService: UserManagementService) { }
 
@@ -40,16 +49,18 @@ export class UsersComponent implements OnInit {
     this.userManagementService.createUser({
       body: {
         // TODO doplnit
-        firstName: '',
-        lastName: '',
-        mail: '',
-        password: '',
-        role: ''
+        firstName: this.newUser.firstName,
+        lastName: this.newUser.lastName,
+        mail: this.newUser.mail,
+        password: this.newUser.password,
+        role: this.newUser.role
       }
     }).subscribe({
       next: (v) => {
         // Znovunačtení (refresh) uživatelů
         this.loadUsers();
+        this.showForm = false;
+        this.newUser
       },
       error: (e) => {
         console.error(e);
@@ -58,6 +69,8 @@ export class UsersComponent implements OnInit {
       complete: () => { }
     });
   }
+
+  //TODO: metoda vrati 'databaseManager', 'reviewApprover' family friendly textem
 
   // TODO stejným způsobem aktualizace a mazání uživatelů je-li to třeba
 }
