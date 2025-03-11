@@ -10,33 +10,35 @@
     
      <!-- Formulář v div -->
       @if (showForm) {
-        <div class="form-container">
-            <div class="form-group"> 
-              <label>Jméno:</label>
-              <input type="text" [(ngModel)]="newUser.firstName">
-            </div>
-            <div class="form-group">
-              <label>Příjmení:</label>
-              <input type="text" [(ngModel)]="newUser.lastName">
-            </div>
-            <div class="form-group">
-              <label>Email:</label>
-              <input type="email" [(ngModel)]="newUser.mail">
-            </div>
-            <div class="form-group">
-              <label>Heslo:</label>
-              <input type="password" [(ngModel)]="newUser.password">
-            </div>
-            <div class="form-group">
-              <label>Role:</label>
-              <select [(ngModel)]="newUser.role">
-                <option value="databaseManager">Správce databáze</option>
-                <option value="reviewApprover">Moderátor recenzí</option>
-              </select>
-            </div>
-            <div class="form-buttons">
-              <button class="submit-btn" (click)="createUser()">Přidat</button>
-              <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
+        <div class="overlay">
+            <div class="form-container">
+              <div class="form-group">
+                <label>Jméno:</label>
+                <input type="text" [(ngModel)]="newUser.firstName">
+              </div>
+              <div class="form-group">
+                <label>Příjmení:</label>
+                <input type="text" [(ngModel)]="newUser.lastName">
+              </div>
+              <div class="form-group">
+                <label>Email:</label>
+                <input type="email" [(ngModel)]="newUser.mail">
+              </div>
+              <div class="form-group">
+                <label>Heslo:</label>
+                <input type="password" [(ngModel)]="newUser.password">
+              </div>
+              <div class="form-group">
+                <label>Role:</label>
+                <select [(ngModel)]="newUser.role">
+                  <option value="databaseManager">Database Manager</option>
+                  <option value="reviewApprover">Review Approver</option>
+                </select>
+              </div>
+              <div class="form-buttons">
+                <button class="submit-btn" (click)="createUser()">Přidat</button>
+                <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
+              </div>
             </div>
           </div>
       }
