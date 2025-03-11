@@ -8,27 +8,26 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { LoginInput } from '../../models/login-input';
-import { ModelsLoginResponse } from '../../models/models-login-response';
+import { UpdateUserInput } from '../../models/update-user-input';
 
-export interface Login$Params {
-      body?: LoginInput
+export interface UpdateUser$Params {
+      body?: UpdateUserInput
 }
 
-export function login(http: HttpClient, rootUrl: string, params?: Login$Params, context?: HttpContext): Observable<StrictHttpResponse<ModelsLoginResponse>> {
-  const rb = new RequestBuilder(rootUrl, login.PATH, 'post');
+export function updateUser(http: HttpClient, rootUrl: string, params?: UpdateUser$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, updateUser.PATH, 'patch');
   if (params) {
     rb.body(params.body, 'application/json');
   }
 
   return http.request(
-    rb.build({ responseType: 'json', accept: 'application/json', context })
+    rb.build({ responseType: 'text', accept: '*/*', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ModelsLoginResponse>;
+      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
     })
   );
 }
 
-login.PATH = '/api/auth';
+updateUser.PATH = '/api/user/management/user';
