@@ -17,7 +17,9 @@
             <!-- TODO fixnout obrazek vedle usera a pridat podminku ktera rozlisi admina od usera-->
 
             <li class="user-name"><i class="fas fa-user" style="margin-right: 10px;"></i>{{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}</li>
-            <button (click)="goToUsers()" class="user-list">User List</button>
+            @if (this.authService.currentUser.role == 'admin') {
+              <button (click)="this.router.navigate(['users'])" class="user-list">User management</button>
+            }
             <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
         } @else {
           <li class="links-pre"><a routerLink="/">Hlavní stránka</a></li>

@@ -18,11 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 export class AppComponent implements OnInit {
   title = 'DBS2_Frontend';
 
-  constructor(public authService: AuthService, private userService: UserService, private router: Router) {}
-
-  goToUsers() {
-    this.router.navigate(['/users']);
-  }
+  constructor(public authService: AuthService, private userService: UserService, public router: Router) {}
 
   ngOnInit(): void {
     // Načtení kdo jsem
@@ -31,7 +27,6 @@ export class AppComponent implements OnInit {
         {
           next: (v) => {
             this.authService.currentUser = v;
-            console.log(v);
           },
           error: (e) => {
             this.authService.logout();
