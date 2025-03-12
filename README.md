@@ -1,5 +1,9 @@
 # DBS2Frontend
 
+Frontend pro projekt pro KIKM/DBS2 a KIT/TNPW2.
+
+- [backend projektu](https://github.com/jsfraz/dbs2)
+
 Tento projekt byl vytvořen pomocí [Angular CLI](https://github.com/angular/angular-cli) verze 19.2.0.
 
 ## Vývojový server

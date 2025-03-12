@@ -6,17 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ModelsLoginResponse } from '../../models/models-login-response';
-import { RegisterInput } from '../../models/register-input';
+import { ModelsAuthor } from '../../models/models-author';
 
-export interface Register$Params {
-      body?: RegisterInput
+export interface GetAllAuthors$Params {
 }
 
-export function register(http: HttpClient, rootUrl: string, params?: Register$Params, context?: HttpContext): Observable<StrictHttpResponse<ModelsLoginResponse>> {
-  const rb = new RequestBuilder(rootUrl, register.PATH, 'post');
+export function getAllAuthors(http: HttpClient, rootUrl: string, params?: GetAllAuthors$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ModelsAuthor>>> {
+  const rb = new RequestBuilder(rootUrl, getAllAuthors.PATH, 'post');
   if (params) {
-    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -24,9 +21,9 @@ export function register(http: HttpClient, rootUrl: string, params?: Register$Pa
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ModelsLoginResponse>;
+      return r as StrictHttpResponse<Array<ModelsAuthor>>;
     })
   );
 }
 
-register.PATH = '/api/auth/register';
+getAllAuthors.PATH = '/api/author/all';
