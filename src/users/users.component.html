@@ -12,29 +12,35 @@
       @if (showForm) {
         <div class="overlay">
             <div class="form-container">
-              <div class="form-group">
-                <label>Jméno:</label>
-                <input type="text" [(ngModel)]="newUser.firstName">
-              </div>
-              <div class="form-group">
-                <label>Příjmení:</label>
-                <input type="text" [(ngModel)]="newUser.lastName">
-              </div>
-              <div class="form-group">
-                <label>Email:</label>
-                <input type="email" [(ngModel)]="newUser.mail">
-              </div>
-              <div class="form-group">
-                <label>Heslo:</label>
-                <input type="password" [(ngModel)]="newUser.password">
-              </div>
-              <div class="form-group">
-                <label>Role:</label>
-                <select [(ngModel)]="newUser.role">
-                  <option value="databaseManager">Database Manager</option>
-                  <option value="reviewApprover">Review Approver</option>
-                </select>
-              </div>
+                <mat-form-field class="form-group">
+                  <mat-label>Jméno</mat-label>
+                  <input matInput placeholder="Zadejte jméno" [formControl]="firstName">
+                </mat-form-field>
+              
+                <mat-form-field  class="form-group">
+                  <mat-label>Přijmení</mat-label>
+                  <input matInput placeholder="Zadejte přijmení" [formControl]="lastName">
+                </mat-form-field>
+                         
+                <mat-form-field class="form-group">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput placeholder="Zadejte e-mail" [formControl]="mail">
+                </mat-form-field>
+                       
+                <mat-form-field  class="form-group">
+                  <mat-label>Zadejte heslo</mat-label>
+                  <input matInput [type]="hide() ? 'password' : 'text'" [formControl]="password" />
+                </mat-form-field>
+                           
+                <mat-form-field>
+                  <mat-label>Select</mat-label>
+                  <mat-select [formControl]="role">
+                    @for (option of roleOptions; track option) {
+                      <mat-option [value]="option.value">{{option.viewValue}}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              
               <div class="form-buttons">
                 <button class="submit-btn" (click)="createUser()">Přidat</button>
                 <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
@@ -43,9 +49,6 @@
           </div>
       }
 
-    
-    
-    
     <div class="center">
         <table>
             <thead>
@@ -62,13 +65,11 @@
                     <td>{{ user.firstName }}</td>
                     <td>{{ user.lastName }}</td>
                     <td>{{ user.mail }}</td>
-                    <td>{{ user.role }}</td>
+                    <td>{{ getRoleDisplayName(user.role) }}</td>
                   </tr>
                 }
             </tbody>
         </table>
     </div>
-    
-    
 </body>
 </html>

@@ -66,17 +66,17 @@ tr:hover {
   }
   
   .form-container {
-    background-color: #0c192c;
-    color: #fafafa;
-    padding: 15px;
+    background-color: white;
+    padding: 25px;
     width: 500px;
-    height: 400px;
+    height: 550px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
   .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    width: 100%;
   }
   
   .form-group label {
@@ -85,7 +85,7 @@ tr:hover {
     font-weight: bold;
   }
   
-  .form-group input,
+  /*.form-group input,
   .form-group select {
     width: 100%;
     padding: 8px;
@@ -93,7 +93,7 @@ tr:hover {
     background-color: #0e1d33;
     border: 1px solid #172f52;
     border-radius: 4px;
-  }
+  }*/
   
   .form-buttons {
     margin-top: 15px;
