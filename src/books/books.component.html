@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knihy</title>
 </head>
+
 <body>
     <div class="container">
         <div class="filter-container">
@@ -14,17 +16,13 @@
             <div class="price">
                 <div class="price-slider">
                     <div class="filter-text">Cena:</div>
-                        <div class="slider">
-                            <mat-slider
-                                class="example-margin"
-                                [max]="1000"
-                                [min]="100"
-                                [step]="1">
-                                <input value="100" matSliderStartThumb [(ngModel)]="startvalue" #slider>
-                                <input value="1000" matSliderEndThumb [(ngModel)]="endvalue" #slider>
-                                </mat-slider>
-                        </div>
-                        <div class="slider-value">
+                    <div class="slider">
+                        <mat-slider class="example-margin" [max]="1000" [min]="100" [step]="1">
+                            <input value="100" matSliderStartThumb [(ngModel)]="startvalue" #slider>
+                            <input value="1000" matSliderEndThumb [(ngModel)]="endvalue" #slider>
+                        </mat-slider>
+                    </div>
+                    <div class="slider-value">
                         <label>{{startvalue}}</label>
                         <label>{{endvalue}}</label>
                     </div>
@@ -32,26 +30,48 @@
             </div>
 
             <hr>
-            <div class="price">
-                Autor:
-                <div class="checkbox">
-                    <input class="autorCheck" type="checkbox" id="autor1" name="autor1" value="Frajer1">
-                    <label for="autor1" class="checklabel">Frajer 1</label>
-                </div>
-                <div class="checkbox">
-                    <input class="autorCheck" type="checkbox" id="autor2" name="autor2" value="Frajer2">
-                    <label for="autor2" class="checklabel">Frajer 2</label>
-                </div>
-                <div class="checkbox">
-                    <input class="autorCheck" type="checkbox" id="autor3" name="autor3" value="Frajer3">
-                    <label for="autor3" class="checklabel">Frajer 3</label>
-                </div>
-                <div class="checkbox">
-                    <input class="autorCheck" type="checkbox" id="autor4" name="autor4" value="Frajer4">
-                    <label for="autor4" class="checklabel">Frajer 4</label>
+            <div class="filtr">
+                <div class="scroller">
+                    <div class="nazevFiltru">
+                        Autor:
+                        <textarea class="vyhledavaniFiltru"></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor1" name="autor1" value="Frajer1">
+                        <label for="autor1" class="checklabel">Frajer 1</label>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor2" name="autor2" value="Frajer2">
+                        <label for="autor2" class="checklabel">Frajer 2</label>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor3" name="autor3" value="Frajer3">
+                        <label for="autor3" class="checklabel">Frajer 3</label>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor4" name="autor4" value="Frajer4">
+                        <label for="autor4" class="checklabel">Frajer 4</label>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor5" name="autor5" value="Frajer5">
+                        <label for="autor5" class="checklabel">Frajer 5</label>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor6" name="autor6" value="Frajer6">
+                        <label for="autor6" class="checklabel">Frajer 6</label>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor7" name="autor7" value="Frajer7">
+                        <label for="autor7" class="checklabel">Frajer 7</label>
+                    </div>
+                    <div class="checkbox">
+                        <input class="autorCheck" type="checkbox" id="autor8" name="autor8" value="Frajer8">
+                        <label for="autor8" class="checklabel">Frajer 8</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
