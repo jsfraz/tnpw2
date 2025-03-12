@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface RegisterInput {
+export interface ModelsAuthor {
+  birth: string;
   firstName: string;
+  id: number;
   lastName: string;
-  mail: string;
-  password: string;
 }

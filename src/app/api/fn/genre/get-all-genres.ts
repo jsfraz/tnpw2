@@ -6,17 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ModelsLoginResponse } from '../../models/models-login-response';
-import { RegisterInput } from '../../models/register-input';
+import { ModelsGenre } from '../../models/models-genre';
 
-export interface Register$Params {
-      body?: RegisterInput
+export interface GetAllGenres$Params {
 }
 
-export function register(http: HttpClient, rootUrl: string, params?: Register$Params, context?: HttpContext): Observable<StrictHttpResponse<ModelsLoginResponse>> {
-  const rb = new RequestBuilder(rootUrl, register.PATH, 'post');
+export function getAllGenres(http: HttpClient, rootUrl: string, params?: GetAllGenres$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ModelsGenre>>> {
+  const rb = new RequestBuilder(rootUrl, getAllGenres.PATH, 'post');
   if (params) {
-    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -24,9 +21,9 @@ export function register(http: HttpClient, rootUrl: string, params?: Register$Pa
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ModelsLoginResponse>;
+      return r as StrictHttpResponse<Array<ModelsGenre>>;
     })
   );
 }
 
-register.PATH = '/api/auth/register';
+getAllGenres.PATH = '/api/genre/all';
