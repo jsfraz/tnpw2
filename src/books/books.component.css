@@ -16,10 +16,10 @@ body {
     border: 1px solid #172f52;
     box-shadow: 0 2px 4px black;
     border-radius: 20px;
-    width: 20%;
-    height: 700px;
+    width: 18%;
     padding: 30px;
     margin-left: 7%;
+    padding-top: 20px;
     flex-direction: column;
     background-color: #0e1d33;
     color: #fafafa;
@@ -81,15 +81,73 @@ body {
     margin-top: 20px;
 }
 
+.checkbox {
+    margin-top: 10px;
+}
+
+.autorCheck {
+    margin-right: 3%;
+}
+
+
+.checklabel {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 15px;
+  }
+  
+.checklabel:before {
+    content: "";
+    display: inline-block;
+  
+  
+    width: 16px;
+    height: 16px;
+  
+  
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #0c192c;
+    border: 1px solid #4fc3dc;
+}
+  
+.autorCheck[type=checkbox] {
+    display: none;
+}
+
+.checkbox .checklabel:before {
+    border-radius: 3px;
+}
+
+.autorCheck[type=checkbox]:hover + .checklabel:before {
+    box-shadow: 0 0 6px #4fc3dc;
+}
+  
+.autorCheck[type=checkbox]:checked + .checklabel:before {
+    content: "✔";
+    font-size: 16px;
+    color: #4fc3dc;
+    text-align: center;
+    line-height: 17px;
+    line-break: auto;
+}
+
 mat-form-field {
     width: 100%; /* Zajistí, že formátování bude vyplňovat celou šířku .value */
 }
 
-input {
-    width: 100%; /* Ujistěte se, že input vyplní šířku obdélníku */
-    padding: 0 5px; /* Zajišťuje malé odsazení pro inputy */
-}
-
 mat-slider {
     width: 100%; /* Ensure the slider spans full width */
+}
+
+hr {
+    background-color: #0087a93a;
+    height: 1px;
+    border: 0;
+    margin-top: 10px;
 }
