@@ -5,42 +5,46 @@
 <header>
   <div class="logo">Ninja Books</div>
   <nav>
-      <ul class="nav__links">
-        @if (this.authService.currentUser != null) {
+    <ul class="nav__links">
+      @if (this.authService.currentUser != null) {
+      @if (this.authService.currentUser.role != 'admin') {
+      <div class="navbuttons">
+        <li class="links"><a routerLink="/">Hlavní stránka</a></li>
+
+        <!-- TODO vysvětlit jaký je rozdíl mezi '/' a '/knihy' -->
+
+        <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
+        <li class="links"><a routerLink="/kosik">Košík</a></li>
+      </div>
+      }
+
+      @else {
+      <li class="links"><a routerLink="/users">User management</a></li>
+      <li class="links"><a routerLink="/authors" routerLinkActive="active" ariaCurrentWhenActive="page">Authors Management</a></li>
+      <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Genres Management</a></li>
+      <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
+      <li class="links"><a routerLink="/kosik">Košík</a></li>
+      }
+      <div>
+        <li class="user-name">
           @if (this.authService.currentUser.role != 'admin') {
-          <div class="navbuttons">
-          <li class="links"><a routerLink="/">Hlavní stránka</a></li>
-
-          <!-- TODO vysvětlit jaký je rozdíl mezi '/' a '/knihy' -->
-
-          <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
-          <li class="links"><a routerLink="/kosik">Košík</a></li>
-          </div>
-        }
-
-        @else {
-          <li class="links"><a routerLink="/users">User management</a></li>
-          <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
-          <li class="links"><a routerLink="/kosik">Košík</a></li>
-        }
-            <div>
-            <li class="user-name">
-              @if (this.authService.currentUser.role != 'admin') {
-              <i class="fas fa-user" style="margin-right: 10px;"></i>
-              }
-              @else {
-              <i class="fas fa-cog" style="margin-right: 10px;"></i>
-              }
-              {{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' + this.authService.currentUser.lastName }}
-            </li>
-            <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
-            </div>
-        } @else {
-          <li class="links-pre"><a routerLink="/">Hlavní stránka</a></li>
-          <li class="links-pre"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
-          <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit se</a></li>
-        }
-      </ul>
+          <i class="fas fa-user" style="margin-right: 10px;"></i>
+          }
+          @else {
+          <i class="fas fa-cog" style="margin-right: 10px;"></i>
+          }
+          {{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' +
+          this.authService.currentUser.lastName }}
+        </li>
+        <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
+      </div>
+      } @else {
+      <li class="links-pre"><a routerLink="/">Hlavní stránka</a></li>
+      <li class="links-pre"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
+      <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit
+          se</a></li>
+      }
+    </ul>
   </nav>
 </header>
 

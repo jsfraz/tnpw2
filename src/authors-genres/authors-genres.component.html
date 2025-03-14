@@ -1,0 +1,92 @@
+<!-- Tlačítko pro přidání autora -->
+<button class="add-author-btn" (click)="showAuthorForm = true">Přidat autora</button>
+
+<!-- Formulář pro autory -->
+ @if (showAuthorForm) {
+  <div class="overlay">
+    <div class="form-container">
+        <mat-form-field class="form-group">
+          <mat-label>Jméno</mat-label>
+          <input matInput placeholder="Zadejte jméno" [formControl]="firstName">
+        </mat-form-field>
+      
+        <mat-form-field  class="form-group">
+          <mat-label>Přijmení</mat-label>
+          <input matInput placeholder="Zadejte přijmení" [formControl]="lastName">
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+            <mat-label>Datum narození</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="birth">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      
+      <div class="form-buttons">
+        <button class="submit-btn" (click)="createAuthor()">Přidat</button>
+        <button class="cancel-btn" (click)="showAuthorForm = false">Zrušit</button>
+      </div>
+    </div>
+</div>
+ }
+
+
+<!-- Tabulka pro autory -->
+<div class="center">
+    <table>
+        <thead>
+          <tr>
+            <th>Jméno</th>
+            <th>Přijmení</th>
+            <th>Narození</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (author of authors; track authors) {
+            <tr>
+              <td>{{ author.firstName }}</td>
+              <td>{{ author.lastName }}</td>
+              <td>{{ author.birth }}</td>
+            </tr>
+          }   
+        </tbody>
+    </table>
+</div>
+
+<!-- Tlačítko pro přidání žánru -->
+<button class="add-genre-btn" (click)="showGenreForm = true">Přidat žánr</button>
+
+<!-- Formulář pro žánry -->
+ @if (showGenreForm) {
+  <div class="overlay">
+    <div class="form-container">
+        <mat-form-field class="form-group">
+          <mat-label>Název žánru</mat-label>
+          <input matInput placeholder="Zadejte název žánru" [formControl]="genreName">
+        </mat-form-field>
+      
+      <div class="form-buttons">
+        <button class="submit-btn" (click)="createGenre()">Přidat</button>
+        <button class="cancel-btn" (click)="showGenreForm = false">Zrušit</button>
+      </div>
+    </div>
+</div>
+ } 
+
+<!-- Tabulka pro žánry -->
+<div class="center">
+    <table>
+        <thead>
+          <tr>
+            <th>Název žánru</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (genre of genres; track genres) {
+            <tr>
+              <td>{{ genre.name }}</td>
+            </tr>
+          } 
+        </tbody>
+    </table>
+</div>

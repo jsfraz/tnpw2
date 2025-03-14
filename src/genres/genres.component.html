@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="add-user-btn" (click)="showGenreForm = true">Přidat uživatele</button>
+    
+     <!-- Formulář v div -->
+      @if (showGenreForm) {
+        <div class="overlay">
+            <div class="form-container">
+                <mat-form-field class="form-group">
+                  <mat-label>Jméno</mat-label>
+                  <input matInput placeholder="Zadejte jméno" [formControl]="genreName">
+                </mat-form-field>                    
+              
+              <div class="form-buttons">
+                <button class="submit-btn" (click)="createGenre()">Přidat</button>
+                <button class="cancel-btn" (click)="showGenreForm = false">Zrušit</button>
+              </div>
+            </div>
+          </div>
+      }
+
+    <div class="center">
+        <table>
+            <thead>
+              <tr>
+                <th>Jméno</th>
+              </tr>
+            </thead>
+            <tbody>
+                @for (genre of genres; track genres) {
+                <tr>
+                    <td>{{ genre.name }}</td>
+                  </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

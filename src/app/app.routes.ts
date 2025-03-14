@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BooksComponent } from '../books/books.component';
 import { KosikComponent } from '../kosik/kosik.component';
 import { UsersComponent } from '../users/users.component';
+import { AuthorsComponent } from '../authors/authors.component';
+import { GenresComponent } from '../genres/genres.component';
 
 export const routes: Routes = [
     // Přihlášení
@@ -14,6 +16,8 @@ export const routes: Routes = [
     { path: 'books', component: BooksComponent },
     { path: 'users', component: UsersComponent },
     { path: 'kosik', component: KosikComponent },
+    { path: 'authors', component: AuthorsComponent},
+    { path: 'genres', component: GenresComponent},
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
