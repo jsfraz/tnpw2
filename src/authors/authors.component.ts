@@ -31,6 +31,8 @@ export class AuthorsComponent {
   
   constructor(private authorManagementSerice: AuthorManagementService, private genreManagementService: GenreManagementService, private authorService: AuthorService, private genreService: GenreService) { }
 
+  // TODO: Opravit nacitani autoru
+
   resetForm() {
     this.firstName.reset();
     this.lastName.reset();
