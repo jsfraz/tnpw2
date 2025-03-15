@@ -7,6 +7,7 @@
 </head>
 <body>
     <button class="add-user-btn" (click)="showAuthorForm = true">Přidat uživatele</button>
+    <button class="add-user-btn" (click)="loadData()">Načíst data</button>
     
      <!-- Formulář v div -->
       @if (showAuthorForm) {
@@ -43,7 +44,7 @@
               <tr>
                 <th>Jméno</th>
                 <th>Přijmení</th>
-                <th>Email</th>
+                <th>Datum Narození</th>
               </tr>
             </thead>
             <tbody>

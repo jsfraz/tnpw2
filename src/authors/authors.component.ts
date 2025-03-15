@@ -43,6 +43,10 @@ export class AuthorsComponent {
     this.loadAuthors();
   }
 
+  loadData() {
+    this.loadAuthors();
+  }
+
   // Načtení uživatelů
   loadAuthors() {
     this.authorService.getAllAuthors({  }).subscribe({

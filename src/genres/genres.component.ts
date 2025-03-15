@@ -25,24 +25,29 @@ export class GenresComponent {
   genres: ModelsGenre[] = [];
   showGenreForm = false;
 
+  // TODO: Opravit nacitani zarnu
+
   //input pro žánr
   genreName = new FormControl('', [Validators.required]);
 
-  constructor(private authorManagementSerice: AuthorManagementService, private genreManagementService: GenreManagementService, private authorService: AuthorService, private genreService: GenreService) { }
-
-  resetForm() {
-    this.genreName.reset();
-  }
+  constructor(private genreManagementService: GenreManagementService, private genreService: GenreService) { }
 
   ngOnInit(): void {
     this.loadGenres();
   }
 
-  // Načtení uživatelů
+  loadData() {
+    this.loadGenres();
+  }
+
+  resetForm() {
+    this.genreName.reset();
+  }
+
+  // Načtení
   loadGenres() {
-    this.genreService.getAllGenres({  }).subscribe({
+    this.genreService.getAllGenres({ }).subscribe({
       next: (v) => {
-        // Přiřazení uživatelů do proměnné
         this.genres = v;
       },
       error: (e) => {
@@ -54,11 +59,16 @@ export class GenresComponent {
   }
 
   createGenre() {
-    this.genreManagementService.createGenre({ body: {
-      name: this.genreName.value!
-    } }).subscribe({
+    if (this.genreName.valid) {
+      this.genreManagementService.createGenre({ 
+      body: {
+        name: this.genreName.value!
+    } 
+  }).subscribe({
       next: (v) => {
-        // Přiřazení uživatelů do proměnné
+        this.loadGenres();
+        this.showGenreForm = false;
+        this.resetForm();
       },
       error: (e) => {
         console.error(e);
@@ -66,5 +76,9 @@ export class GenresComponent {
       },
       complete: () => { }
     });
+  } else {
+    this.genreName.markAsTouched();
   }
+ } 
+    
 }

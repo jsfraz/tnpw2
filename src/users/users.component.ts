@@ -107,7 +107,5 @@ export class UsersComponent implements OnInit {
     } 
   }
 
-  //TODO: metoda vrati 'databaseManager', 'reviewApprover' family friendly textem
-
   // TODO stejným způsobem aktualizace a mazání uživatelů je-li to třeba
 }
