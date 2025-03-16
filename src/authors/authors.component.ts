@@ -1,16 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { ModelsAuthor } from '../app/api/models';
-import { AuthorManagementService } from '../app/api/services/author-management.service';
-import { GenreManagementService } from '../app/api/services/genre-management.service';
-import { AuthorService } from '../app/api/services/author.service';
-import { GenreService } from '../app/api/services/genre.service';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AuthorManagementService } from '../app/api/services/author-management.service';
+import { AuthorService } from '../app/api/services/author.service';
 
 @Component({
   selector: 'app-authors',
@@ -18,9 +16,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.css',
   providers: [provideNativeDateAdapter()],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush, // Co to je? Proč to tady je? Když to tam je ak nefunguje ngOnInit
 })
-export class AuthorsComponent {
+export class AuthorsComponent implements OnInit {
   authors: ModelsAuthor[] = [];
   showAuthorForm = false;
 
@@ -29,7 +27,11 @@ export class AuthorsComponent {
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
   
-  constructor(private authorManagementSerice: AuthorManagementService, private genreManagementService: GenreManagementService, private authorService: AuthorService, private genreService: GenreService) { }
+  constructor(private authorManagementSerice: AuthorManagementService, private authorService: AuthorService) { }
+  
+  ngOnInit(): void {
+    this.loadAuthors();
+  }
 
   // TODO: Opravit nacitani autoru
 
@@ -39,17 +41,9 @@ export class AuthorsComponent {
     this.lastName.reset();
   }
 
-  ngOnInit(): void {
-    this.loadAuthors();
-  }
-
-  loadData() {
-    this.loadAuthors();
-  }
-
   // Načtení uživatelů
   loadAuthors() {
-    this.authorService.getAllAuthors({  }).subscribe({
+    this.authorService.getAllAuthors().subscribe({
       next: (v) => {
         // Přiřazení uživatelů do proměnné
         this.authors = v;
@@ -64,6 +58,7 @@ export class AuthorsComponent {
 
   // Načtení uživatelů
   createAuthor() {
+    // TODO opravit
     this.authorManagementSerice.createAuthor({ body: {
       birth: this.birth.value!,
       firstName: this.firstName.value!,

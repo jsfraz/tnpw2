@@ -19,7 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   providers: [provideNativeDateAdapter()],
   templateUrl: './genres.component.html',
   styleUrl: './genres.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush, // Co to je? Proč to tady je? Když to tam je ak nefunguje ngOnInit
 })
 export class GenresComponent {
   genres: ModelsGenre[] = [];
@@ -46,6 +46,7 @@ export class GenresComponent {
 
   // Načtení
   loadGenres() {
+    // TODO opravit
     this.genreService.getAllGenres({ }).subscribe({
       next: (v) => {
         this.genres = v;
