@@ -14,7 +14,7 @@ import { AppComponent } from "../app/app.component";
 
 @Component({
   selector: 'app-login',
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, AppComponent],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,7 +54,7 @@ export class LoginComponent {
             },
             error: (e) => {
               console.error(e);
-              alert(e.error.error);
+              alert(JSON.stringify(e));
             },
             complete: () => { }
           }
@@ -86,7 +86,7 @@ export class LoginComponent {
               },
               error: (e) => {
                 console.error(e);
-                alert(e.error.error);
+                alert(JSON.stringify(e));
               }
             }
           );
@@ -94,7 +94,7 @@ export class LoginComponent {
         error: (e) => {
           this.loggingIn = false;
           console.error(e);
-          alert(e.error.error);
+          alert(JSON.stringify(e));
         },
         complete: () => {
           this.loggingIn = false;
@@ -124,7 +124,7 @@ export class LoginComponent {
               },
               error: (e) => {
                 console.error(e);
-                alert(e.error.error);
+                alert(JSON.stringify(e));
               }
             }
           );
@@ -132,7 +132,7 @@ export class LoginComponent {
         error: (e) => {
           this.loggingIn = false;
           console.error(e);
-          alert(e.error.error);
+          alert(JSON.stringify(e));
         },
         complete: () => {
           this.loggingIn = false;

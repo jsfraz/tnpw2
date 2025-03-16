@@ -70,7 +70,7 @@ export class UsersComponent implements OnInit {
       },
       error: (e) => {
         console.error(e);
-        alert(e.error.error);
+        alert(JSON.stringify(e));
       },
       complete: () => { }
     });
@@ -96,7 +96,7 @@ export class UsersComponent implements OnInit {
       },
       error: (e) => {
         console.error(e);
-        alert(e.error.error);
+        alert(JSON.stringify(e));
       },
       complete: () => { }
     });

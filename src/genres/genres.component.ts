@@ -19,13 +19,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   providers: [provideNativeDateAdapter()],
   templateUrl: './genres.component.html',
   styleUrl: './genres.component.css',
-  // changeDetection: ChangeDetectionStrategy.OnPush, // Co to je? Proč to tady je? Když to tam je ak nefunguje ngOnInit
 })
 export class GenresComponent {
   genres: ModelsGenre[] = [];
   showGenreForm = false;
-
-  // TODO: Opravit nacitani zarnu
 
   //input pro žánr
   genreName = new FormControl('', [Validators.required]);
@@ -36,24 +33,19 @@ export class GenresComponent {
     this.loadGenres();
   }
 
-  loadData() {
-    this.loadGenres();
-  }
-
   resetForm() {
     this.genreName.reset();
   }
 
   // Načtení
   loadGenres() {
-    // TODO opravit
     this.genreService.getAllGenres({ }).subscribe({
       next: (v) => {
         this.genres = v;
       },
       error: (e) => {
         console.error(e);
-        alert(e.error.error);
+        alert(JSON.stringify(e));
       },
       complete: () => { }
     });
@@ -73,7 +65,7 @@ export class GenresComponent {
       },
       error: (e) => {
         console.error(e);
-        alert(e.error.error);
+        alert(JSON.stringify(e));
       },
       complete: () => { }
     });

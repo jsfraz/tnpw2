@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
@@ -10,7 +9,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   selector: 'app-books',
   imports: [
     MatCheckboxModule,
-    RouterLink, 
     MatSliderModule, 
     MatFormFieldModule, 
     MatInputModule,

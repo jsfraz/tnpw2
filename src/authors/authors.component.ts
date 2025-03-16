@@ -16,7 +16,6 @@ import { AuthorService } from '../app/api/services/author.service';
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.css',
   providers: [provideNativeDateAdapter()],
-  // changeDetection: ChangeDetectionStrategy.OnPush, // Co to je? Proč to tady je? Když to tam je ak nefunguje ngOnInit
 })
 export class AuthorsComponent implements OnInit {
   authors: ModelsAuthor[] = [];
@@ -33,8 +32,6 @@ export class AuthorsComponent implements OnInit {
     this.loadAuthors();
   }
 
-  // TODO: Opravit nacitani autoru
-
   resetForm() {
     this.firstName.reset();
     this.lastName.reset();
@@ -50,7 +47,7 @@ export class AuthorsComponent implements OnInit {
       },
       error: (e) => {
         console.error(e);
-        alert(e.error.error);
+        alert(JSON.stringify(e));
       },
       complete: () => { }
     });
@@ -58,20 +55,22 @@ export class AuthorsComponent implements OnInit {
 
   // Načtení uživatelů
   createAuthor() {
-    // TODO opravit
     this.authorManagementSerice.createAuthor({ body: {
       birth: this.birth.value!,
       firstName: this.firstName.value!,
       lastName: this.lastName.value!
     } }).subscribe({
       next: (v) => {
-        // Přiřazení uživatelů do proměnné
+        this.loadAuthors();
       },
       error: (e) => {
         console.error(e);
-        alert(e.error.error);
+        alert(JSON.stringify(e));
+        this.showAuthorForm = false;
       },
-      complete: () => { }
+      complete: () => {
+        this.showAuthorForm = false;
+      }
     });
   }
 }
