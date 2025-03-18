@@ -39,7 +39,7 @@ export class GenresComponent {
 
   // Načtení
   loadGenres() {
-    this.genreService.getAllGenres({ }).subscribe({
+    this.genreService.getAllGenres().subscribe({
       next: (v) => {
         this.genres = v;
       },

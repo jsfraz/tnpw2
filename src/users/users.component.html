@@ -35,7 +35,7 @@
                 <mat-form-field>
                   <mat-label>Select</mat-label>
                   <mat-select [formControl]="role">
-                    @for (option of roleOptions; track option) {
+                    @for (option of roleOptions; track option.value) {
                       <mat-option [value]="option.value">{{option.viewValue}}</mat-option>
                     }
                   </mat-select>
@@ -60,7 +60,7 @@
               </tr>
             </thead>
             <tbody>
-                @for (user of users; track users) {
+                @for (user of users; track user.id) {
                 <tr>
                     <td>{{ user.firstName }}</td>
                     <td>{{ user.lastName }}</td>

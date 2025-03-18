@@ -47,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-                @for (author of authors; track authors) {
+                @for (author of authors; track author.id) {
                 <tr>
                     <td>{{ author.firstName }}</td>
                     <td>{{ author.lastName }}</td>
