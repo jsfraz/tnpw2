@@ -1,16 +1,34 @@
 import { Component } from '@angular/core';
 import { BookManagementService } from '../app/api/services/book-management.service';
 import { HttpClient } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input'; 
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ModelsBook } from '../app/api/models';
 
 @Component({
   selector: 'app-books',
-  imports: [],
+  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })
 export class BooksComponent {
   image: File | null = null;
   imageUrl: string | null = null;
+  showForm = false;
+  books: ModelsBook[] = [];
+
+  bookName = new FormControl('', [Validators.required]);
+  authorName = new FormControl('', [Validators.required]);
+  genreName = new FormControl('', [Validators.required]);
+  price = new FormControl(0, [Validators.required]);
+  published = new FormControl<Date | null>(null, [Validators.required]);
+  summary = new FormControl('', [Validators.required]);
+  isBn = new FormControl('', [Validators.required]);
 
   constructor(private bookManagementService: BookManagementService, private httpClient: HttpClient) {}
 
@@ -43,11 +61,11 @@ export class BooksComponent {
       // TODO změnit
       authorId: 1,
       genreIds: [],
-      isbn: 'TEST',
-      name: 'TEST',
-      price: 152,
-      published: new Date().toISOString(),
-      summary: 'TEST'
+      isbn: this.isBn.value!,
+      name: this.bookName.value!,
+      price: Number(this.price.value!),
+      published: this.published.value!.toISOString(),
+      summary: this.summary.value!
     }}).subscribe({
       next: (v) => {
         // TODO odstranit alert

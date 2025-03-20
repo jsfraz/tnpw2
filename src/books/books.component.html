@@ -1,17 +1,95 @@
-<div style="margin-left: 200px; margin-top: 250px;">
-    <!-- Náhled -->
-    @if (imageUrl) {
-        <img [src]="imageUrl">
-    }
-    <!-- Skryté "ošklivé" tlačítko pro uplaod souboru -->
-    <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept=".jpg" />
-    <!-- Tlačítko pro upload volající skryté "ošklivé" tlačítko -->
-    <button mat-raised-button (click)="fileInput.click()">Vybrat obrázek</button>
-    <!-- Odvybrání obrázku -->
-    <button mat-raised-button (click)="removeImage()">
-        Odebrat
-    </button>
-    <!-- Vytvoření knihy -->
-    <button (click)="createBook()">Test</button>
-    <div style="color: white;">TLAČÍTKO 'Test' VYTVOŘÍ NOVOU TEST KNIHU</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="add-user-btn" (click)="showForm = true">Přidat žánr</button>
+
+     <!-- Formulář v div -->
+      @if (showForm) {
+        <div class="overlay">
+            <div class="form-container">
+                    <mat-label>Obrázek</mat-label>
+                    <button class="submit-btn" (click)="fileInput.click()">Vybrat obrázek</button>
+                    <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" accept=".jpg" />
+                    <!-- Náhled -->
+                    @if (imageUrl) {
+                        <img [src]="imageUrl" style="width: 100px; height: 100px; margin-top: 10px;">
+                    }
+                    <!-- Odvybrání obrázku -->
+                    <button class="cancel-btn" (click)="removeImage()">Odebrat</button>
+                
+                <mat-form-field class="form-group">
+                    <mat-label>Jméno knihy</mat-label>
+                    <input matInput placeholder="Zadejte jméno knihy" [formControl]="bookName">
+                </mat-form-field> 
+
+                <!--TODO: udelat dropdown list s ID autoru-->
+                <mat-form-field class="form-group">
+                    <mat-label>Autor</mat-label>
+                    <input matInput placeholder="Zadejte jméno autora" [formControl]="authorName">
+                </mat-form-field>
+
+                <!--TODO: udelat dropdown list s ID zarnu-->
+                <mat-form-field class="form-group">
+                    <mat-label>Žánr</mat-label>
+                    <input matInput placeholder="Zadejte jméno žánru" [formControl]="genreName">
+                </mat-form-field>
+
+                <!--TODO: udelat isBn (text)-->
+
+                <mat-form-field class="form-group">
+                    <mat-label>Cena</mat-label>
+                    <input matInput placeholder="Zadejte cenu" [formControl]="price">
+                </mat-form-field>
+
+                <!--TODO: udelat date material-->
+                <mat-form-field class="form-group">
+                    <mat-label>Datum vydání</mat-label>
+                    <input matInput placeholder="Zadejte datum vydání" [formControl]="published">
+                </mat-form-field>
+
+                <mat-form-field class="form-group">
+                    <mat-label>Obsah</mat-label>
+                    <input matInput placeholder="Zadejte krátký obsah" [formControl]="summary">
+                </mat-form-field>
+              
+              <div class="form-buttons">
+                <button class="submit-btn" (click)="createBook()">Přidat</button>
+                <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
+              </div>
+            </div>
+          </div>
+      }
+
+    <div class="center">
+        <table>
+            <thead>
+              <tr>
+                <th>Jméno</th>
+                <th>Autor</th>
+                <th>Žánr</th>
+                <th>Cena</th>
+                <th>Datum vydání</th>
+                <th>obsah</th>
+              </tr>
+            </thead>
+            <tbody>
+                @for (book of books; track book.id) {
+                <tr>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.authors }}</td>
+                    <td>{{ book.genres }}</td>
+                    <td>{{ book.price }}</td>
+                    <td>{{ book.published }}</td>
+                    <td>{{ book.summary }}</td>
+                  </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
