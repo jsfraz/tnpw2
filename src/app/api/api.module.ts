@@ -7,6 +7,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthorService } from './services/author.service';
 import { AuthorManagementService } from './services/author-management.service';
+import { BookManagementService } from './services/book-management.service';
 import { GenreService } from './services/genre.service';
 import { GenreManagementService } from './services/genre-management.service';
 import { UserManagementService } from './services/user-management.service';
@@ -23,6 +24,7 @@ import { UserService } from './services/user.service';
     AuthenticationService,
     AuthorService,
     AuthorManagementService,
+    BookManagementService,
     GenreService,
     GenreManagementService,
     UserManagementService,

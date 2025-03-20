@@ -30,6 +30,7 @@ header {
     cursor: pointer;
     margin-bottom: 17px;
     margin-top: 17px;
+    text-decoration: none;
 }
 
 .user {

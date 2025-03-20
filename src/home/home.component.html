@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knihy</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="filter-container">
+            <h1>Filtry</h1>
+
+            <hr>
+            <div class="price">
+                <div class="price-slider">
+                    <div class="filter-text">Cena:</div>
+                    <div class="slider">
+                        <mat-slider class="example-margin" [max]="1000" [min]="100" [step]="1">
+                            <input value="100" matSliderStartThumb [(ngModel)]="startvalue" #slider>
+                            <input value="1000" matSliderEndThumb [(ngModel)]="endvalue" #slider>
+                        </mat-slider>
+                    </div>
+                    <div class="slider-value">
+                        <label>{{startvalue}}</label>
+                        <label>{{endvalue}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <div class="filtr">
+                <div class="scroller">
+                    <div class="nazevFiltru">
+                        Autor:
+                        <textarea class="vyhledavaniFiltru"></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="filtr">
+                <div class="scroller">
+                    <div class="nazevFiltru">
+                        Žánr:
+                        <textarea class="vyhledavaniFiltru"></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                    <div class="checkbox">
+                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
