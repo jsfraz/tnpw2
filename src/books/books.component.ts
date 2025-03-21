@@ -26,13 +26,13 @@ export class BooksComponent {
   authors: ModelsAuthor[] = [];
   genres: ModelsGenre[] = [];
 
-  bookName = new FormControl('', [Validators.required]);
+  bookName = new FormControl<string>('', [Validators.required]);
   authorId = new FormControl<number | null>(null, [Validators.required]);
   genreId = new FormControl<number[]>([], [Validators.required]);
-  price = new FormControl(0, [Validators.required]);
+  price = new FormControl<number>(0, [Validators.required]);
   published = new FormControl<Date | null>(null, [Validators.required]);
-  summary = new FormControl('', [Validators.required]);
-  isBn = new FormControl('', [Validators.required]);
+  summary = new FormControl<string>('', [Validators.required]);
+  isBn = new FormControl<string>('', [Validators.required]);
 
   constructor(private bookManagementService: BookManagementService, private authorService: AuthorService, private genreService: GenreService, private httpClient: HttpClient) {}
 
@@ -106,8 +106,7 @@ export class BooksComponent {
       summary: this.summary.value!
     }}).subscribe({
       next: (v) => {
-        // TODO odstranit alert
-        alert("Kniha vytvořena");
+        // TODO reset formuláře
         // Pokud je nahrán obrázek
         if (this.image != null) {
           this.uploadImage(v.id);
@@ -127,8 +126,9 @@ export class BooksComponent {
     formData.append('image', this.image!);
     this.httpClient.post(this.bookManagementService.rootUrl + '/api/book/management/bookImage', formData).subscribe({
       next: (_) => {
-        // TODO odstranit alert
-        alert("Obrázek nahrán");
+        // Reset obrázku
+        this.image = null;
+    this.imageUrl = null;
       },
       error: (e) => {
         alert(JSON.stringify(e));
