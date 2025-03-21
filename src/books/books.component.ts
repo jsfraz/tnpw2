@@ -7,7 +7,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ModelsBook } from '../app/api/models';
+import { ModelsBook, ModelsAuthor, ModelsGenre } from '../app/api/models';
+import { AuthorService } from '../app/api/services/author.service';
+import { GenreService } from '../app/api/services/genre.service';
 
 @Component({
   selector: 'app-books',
@@ -21,16 +23,52 @@ export class BooksComponent {
   imageUrl: string | null = null;
   showForm = false;
   books: ModelsBook[] = [];
+  authors: ModelsAuthor[] = [];
+  genres: ModelsGenre[] = [];
 
   bookName = new FormControl('', [Validators.required]);
-  authorName = new FormControl('', [Validators.required]);
-  genreName = new FormControl('', [Validators.required]);
+  authorId = new FormControl<number | null>(null, [Validators.required]);
+  genreId = new FormControl<number[]>([], [Validators.required]);
   price = new FormControl(0, [Validators.required]);
   published = new FormControl<Date | null>(null, [Validators.required]);
   summary = new FormControl('', [Validators.required]);
   isBn = new FormControl('', [Validators.required]);
 
-  constructor(private bookManagementService: BookManagementService, private httpClient: HttpClient) {}
+  constructor(private bookManagementService: BookManagementService, private authorService: AuthorService, private genreService: GenreService, private httpClient: HttpClient) {}
+
+  ngOnInit(): void {
+    this.loadAuthors();
+    this.loadGenres();
+  }
+
+  // Načtení autorů
+  loadAuthors() {
+    this.authorService.getAllAuthors().subscribe({
+      next: (v) => {
+        // Přiřazení uživatelů do proměnné
+        this.authors = v;
+      },
+      error: (e) => {
+        console.error(e);
+        alert(JSON.stringify(e));
+      },
+      complete: () => { }
+    });
+  }
+
+  // Načtení žánrů
+  loadGenres() {
+    this.genreService.getAllGenres().subscribe({
+      next: (v) => {
+        this.genres = v;
+      },
+      error: (e) => {
+        console.error(e);
+        alert(JSON.stringify(e));
+      },
+      complete: () => { }
+    });
+  }
 
   // Při výběru souboru tlačítkem
   onFileSelected(event: any): void {
@@ -59,11 +97,11 @@ export class BooksComponent {
   createBook(): void {
     this.bookManagementService.createBook({body: {
       // TODO změnit
-      authorId: 1,
-      genreIds: [],
+      authorId: this.authorId.value!,
+      genreIds: this.genreId.value!,
       isbn: this.isBn.value!,
       name: this.bookName.value!,
-      price: Number(this.price.value!),
+      price: this.price.value!,
       published: this.published.value!.toISOString(),
       summary: this.summary.value!
     }}).subscribe({

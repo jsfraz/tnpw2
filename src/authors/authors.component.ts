@@ -38,7 +38,7 @@ export class AuthorsComponent implements OnInit {
     this.lastName.reset();
   }
 
-  // Načtení uživatelů
+  // Načtení autorů
   loadAuthors() {
     this.authorService.getAllAuthors().subscribe({
       next: (v) => {
@@ -53,7 +53,7 @@ export class AuthorsComponent implements OnInit {
     });
   }
 
-  // Načtení uživatelů
+  // Vytvoření autora
   createAuthor() {
     this.authorManagementSerice.createAuthor({ body: {
       birth: this.birth.value!,

@@ -6,64 +6,80 @@
     <title>Document</title>
 </head>
 <body>
-    <button class="add-user-btn" (click)="showForm = true">Přidat žánr</button>
+    <button class="add-user-btn" (click)="showForm = true">Přidat knihu</button>
 
-     <!-- Formulář v div -->
-      @if (showForm) {
-        <div class="overlay">
-            <div class="form-container">
-                    <mat-label>Obrázek</mat-label>
-                    <button class="submit-btn" (click)="fileInput.click()">Vybrat obrázek</button>
-                    <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" accept=".jpg" />
-                    <!-- Náhled -->
-                    @if (imageUrl) {
-                        <img [src]="imageUrl" style="width: 100px; height: 100px; margin-top: 10px;">
-                    }
-                    <!-- Odvybrání obrázku -->
-                    <button class="cancel-btn" (click)="removeImage()">Odebrat</button>
-                
-                <mat-form-field class="form-group">
-                    <mat-label>Jméno knihy</mat-label>
-                    <input matInput placeholder="Zadejte jméno knihy" [formControl]="bookName">
-                </mat-form-field> 
-
-                <!--TODO: udelat dropdown list s ID autoru-->
-                <mat-form-field class="form-group">
-                    <mat-label>Autor</mat-label>
-                    <input matInput placeholder="Zadejte jméno autora" [formControl]="authorName">
-                </mat-form-field>
-
-                <!--TODO: udelat dropdown list s ID zarnu-->
-                <mat-form-field class="form-group">
-                    <mat-label>Žánr</mat-label>
-                    <input matInput placeholder="Zadejte jméno žánru" [formControl]="genreName">
-                </mat-form-field>
-
-                <!--TODO: udelat isBn (text)-->
-
-                <mat-form-field class="form-group">
-                    <mat-label>Cena</mat-label>
-                    <input matInput placeholder="Zadejte cenu" [formControl]="price">
-                </mat-form-field>
-
-                <!--TODO: udelat date material-->
-                <mat-form-field class="form-group">
-                    <mat-label>Datum vydání</mat-label>
-                    <input matInput placeholder="Zadejte datum vydání" [formControl]="published">
-                </mat-form-field>
-
-                <mat-form-field class="form-group">
-                    <mat-label>Obsah</mat-label>
-                    <input matInput placeholder="Zadejte krátký obsah" [formControl]="summary">
-                </mat-form-field>
-              
-              <div class="form-buttons">
-                <button class="submit-btn" (click)="createBook()">Přidat</button>
-                <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
+@if (showForm) {
+    <div class="overlay">
+      <div class="form-container-full">
+        <div class="form-container-left">
+          <div class="image-uploader">
+            <!-- Náhled -->
+            @if (imageUrl) {
+              <div class="image">
+                <img [src]="imageUrl" style="width: 100px; height: 100px; margin-left: 20px;">
               </div>
-            </div>
+            }
+            <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept=".jpg" />
+            <button mat-raised-button class="upload-btn" (click)="fileInput.click()">Vybrat obrázek</button>
+            <!-- Odvybrání obrázku -->
+            <button mat-raised-button class="upload-btn" (click)="removeImage()">Odebrat</button>
           </div>
-      }
+        </div>
+  
+        <div class="form-container-right">
+          <mat-form-field class="form-group">
+            <mat-label>Jméno knihy</mat-label>
+            <input matInput placeholder="Zadejte jméno knihy" [formControl]="bookName">
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-label>Autor</mat-label>
+            <mat-select [formControl]="authorId" placeholder="Vyberte autora">
+              @for (author of authors; track author.id) {
+                <mat-option [value]="author.id">{{ author.firstName }} {{ author.lastName }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-label>Žánr</mat-label>
+            <mat-select [formControl]="genreId" multiple placeholder="Vyberte žánr">
+              @for (genre of genres; track genre.id) {
+                <mat-option [value]="genre.id">{{ genre.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field class="form-group">
+            <mat-label>isBn číslo</mat-label>
+            <input matInput placeholder="Zadejte číslo knihy" [formControl]="isBn">
+          </mat-form-field>
+  
+          <mat-form-field class="form-group">
+            <mat-label>Cena</mat-label>
+            <input matInput placeholder="Zadejte cenu" [formControl]="price">
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-label>Datum vydání</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="published" class="form-group">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field> 
+  
+          <mat-form-field class="form-group">
+            <mat-label>Obsah</mat-label>
+            <input matInput placeholder="Zadejte krátký obsah" [formControl]="summary">
+          </mat-form-field>
+  
+          <div class="form-buttons">
+            <button class="submit-btn" (click)="createBook()">Přidat</button>
+            <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 
     <div class="center">
         <table>
