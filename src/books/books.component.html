@@ -1,111 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <button class="add-user-btn" (click)="showForm = true">Přidat knihu</button>
 
-@if (showForm) {
-    <div class="overlay">
-      <div class="form-container-full">
-        <div class="form-container-left">
-          <div class="image-uploader">
-            <!-- Náhled -->
-            @if (imageUrl) {
-              <div class="image">
-                <img [src]="imageUrl" style="width: 100px; height: 100px; margin-left: 20px;">
-              </div>
-            }
-            <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept=".jpg" />
-            <button mat-raised-button class="upload-btn" (click)="fileInput.click()">Vybrat obrázek</button>
-            <!-- Odvybrání obrázku -->
-            <button mat-raised-button class="upload-btn" (click)="removeImage()">Odebrat</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="add-user-btn" (click)="showForm = true">Přidat knihu</button>
+
+  @if (showForm) {
+  <div class="overlay">
+    <div class="form-container-full">
+      <div class="form-container-left">
+        <div class="image-uploader">
+          <!-- Náhled -->
+          @if (imageUrl) {
+          <div class="image">
+            <img [src]="imageUrl" style="width: 100px; height: 100px; margin-left: 20px;">
           </div>
+          }
+          <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept=".jpg" />
+          <button mat-raised-button class="upload-btn" (click)="fileInput.click()">Vybrat obrázek</button>
+          <!-- Odvybrání obrázku -->
+          <button mat-raised-button class="upload-btn" (click)="removeImage()">Odebrat</button>
         </div>
-  
-        <div class="form-container-right">
-          <mat-form-field class="form-group">
-            <mat-label>Jméno knihy</mat-label>
-            <input matInput placeholder="Zadejte jméno knihy" [formControl]="bookName">
-          </mat-form-field>
-  
-          <mat-form-field>
-            <mat-label>Autor</mat-label>
-            <mat-select [formControl]="authorId" placeholder="Vyberte autora">
-              @for (author of authors; track author.id) {
-                <mat-option [value]="author.id">{{ author.firstName }} {{ author.lastName }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-  
-          <mat-form-field>
-            <mat-label>Žánr</mat-label>
-            <mat-select [formControl]="genreId" multiple placeholder="Vyberte žánr">
-              @for (genre of genres; track genre.id) {
-                <mat-option [value]="genre.id">{{ genre.name }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-  
-          <mat-form-field class="form-group">
-            <mat-label>ISBN číslo</mat-label>
-            <input matInput placeholder="Zadejte číslo knihy" [formControl]="isBn">
-          </mat-form-field>
-  
-          <mat-form-field class="form-group">
-            <mat-label>Cena</mat-label>
-            <input matInput placeholder="Zadejte cenu" [formControl]="price" type="number">
-          </mat-form-field>
-  
-          <mat-form-field>
-            <mat-label>Datum vydání</mat-label>
-            <input matInput [matDatepicker]="picker" [formControl]="published" class="form-group">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field> 
-  
-          <mat-form-field class="form-group">
-            <mat-label>Obsah</mat-label>
-            <input matInput placeholder="Zadejte krátký obsah" [formControl]="summary">
-          </mat-form-field>
-  
-          <div class="form-buttons">
-            <button class="submit-btn" (click)="createBook()">Přidat</button>
-            <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
-          </div>
+      </div>
+
+      <div class="form-container-right">
+        <mat-form-field class="form-group">
+          <mat-label>Jméno knihy</mat-label>
+          <input matInput placeholder="Zadejte jméno knihy" [formControl]="bookName">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Autor</mat-label>
+          <mat-select [formControl]="authorId" placeholder="Vyberte autora">
+            @for (author of authors; track author.id) {
+            <mat-option [value]="author.id">{{ author.firstName }} {{ author.lastName }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Žánr</mat-label>
+          <mat-select [formControl]="genreId" multiple placeholder="Vyberte žánr">
+            @for (genre of genres; track genre.id) {
+            <mat-option [value]="genre.id">{{ genre.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+          <mat-label>ISBN číslo</mat-label>
+          <input matInput placeholder="Zadejte číslo knihy" [formControl]="isbn">
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+          <mat-label>Cena</mat-label>
+          <input matInput placeholder="Zadejte cenu" [formControl]="price" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Datum vydání</mat-label>
+          <input matInput [matDatepicker]="picker" [formControl]="published" class="form-group">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+          <mat-label>Obsah</mat-label>
+          <input matInput placeholder="Zadejte krátký obsah" [formControl]="summary">
+        </mat-form-field>
+
+        <div class="form-buttons">
+          <button class="submit-btn" (click)="createBook()">Přidat</button>
+          <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
         </div>
       </div>
     </div>
+  </div>
   }
 
-    <div class="center">
-        <table>
-            <thead>
-              <tr>
-                <th>Jméno</th>
-                <th>Autor</th>
-                <th>Žánr</th>
-                <th>Cena</th>
-                <th>Datum vydání</th>
-                <th>obsah</th>
-              </tr>
-            </thead>
-            <tbody>
-                @for (book of books; track book.id) {
-                <tr>
-                    <td>{{ book.name }}</td>
-                    <td>{{ book.authors }}</td>
-                    <td>{{ book.genres }}</td>
-                    <td>{{ book.price }}</td>
-                    <td>{{ book.published }}</td>
-                    <td>{{ book.summary }}</td>
-                  </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+  <div class="center">
+    <!-- TODO fix tabulky -->
+    <table>
+      <thead>
+        <tr>
+          <th>Obrázek</th>
+          <th>Jméno</th>
+          <th>Autor</th>
+          <th>Žánr</th>
+          <th>Cena</th>
+          <th>Datum vydání</th>
+          <th>obsah</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (book of books; track book.id) {
+        <tr>
+          <td>
+            @if (book.hasImage) {
+            <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" style="width: 100px; height: 100px; margin-left: 20px;">
+            }
+          </td>
+          <td>{{ book.name }}</td>
+          <td>
+            {{ book.author.firstName }} {{ book.author.lastName }}
+          </td>
+          <td>
+            @for (genre of book.genres; track genre.id) {
+            {{ genre.name }}{{ $last ? '' : ', ' }}
+            }
+          </td>
+          <td>{{ book.price }} Kč</td>
+          <td>{{ book.published }}</td>
+          <td>{{ book.summary }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </body>
+
 </html>

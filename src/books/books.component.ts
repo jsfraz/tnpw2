@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { BookManagementService } from '../app/api/services/book-management.service';
 import { HttpClient } from '@angular/common/http';
-import { MatInputModule } from '@angular/material/input'; 
+import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
-import {provideNativeDateAdapter} from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModelsBook, ModelsAuthor, ModelsGenre } from '../app/api/models';
 import { AuthorService } from '../app/api/services/author.service';
 import { GenreService } from '../app/api/services/genre.service';
+import { BookService } from '../app/api/services/book.service';
 
 @Component({
   selector: 'app-books',
@@ -32,13 +33,14 @@ export class BooksComponent {
   price = new FormControl<number>(0, [Validators.required]);
   published = new FormControl<Date | null>(null, [Validators.required]);
   summary = new FormControl<string>('', [Validators.required]);
-  isBn = new FormControl<string>('', [Validators.required]);
+  isbn = new FormControl<string>('', [Validators.required]);
 
-  constructor(private bookManagementService: BookManagementService, private authorService: AuthorService, private genreService: GenreService, private httpClient: HttpClient) {}
+  constructor(private bookManagementService: BookManagementService, private authorService: AuthorService, private genreService: GenreService, private httpClient: HttpClient, public bookService: BookService) { }
 
   ngOnInit(): void {
     this.loadAuthors();
     this.loadGenres();
+    this.loadBooks();
   }
 
   // Načtení autorů
@@ -61,6 +63,20 @@ export class BooksComponent {
     this.genreService.getAllGenres().subscribe({
       next: (v) => {
         this.genres = v;
+      },
+      error: (e) => {
+        console.error(e);
+        alert(JSON.stringify(e));
+      },
+      complete: () => { }
+    });
+  }
+
+  // Načtení knih
+  loadBooks() {
+    this.bookService.getAllBooks().subscribe({
+      next: (v) => {
+        this.books = v;
       },
       error: (e) => {
         console.error(e);
@@ -95,21 +111,32 @@ export class BooksComponent {
 
   // Vytvoření knihy
   createBook(): void {
-    this.bookManagementService.createBook({body: {
-      // TODO změnit
-      authorId: this.authorId.value!,
-      genreIds: this.genreId.value!,
-      isbn: this.isBn.value!,
-      name: this.bookName.value!,
-      price: this.price.value!,
-      published: this.published.value!.toISOString(),
-      summary: this.summary.value!
-    }}).subscribe({
+    this.bookManagementService.createBook({
+      body: {
+        // TODO změnit
+        authorId: this.authorId.value!,
+        genreIds: this.genreId.value!,
+        isbn: this.isbn.value!,
+        name: this.bookName.value!,
+        price: this.price.value!,
+        published: this.published.value!.toISOString(),
+        summary: this.summary.value!
+      }
+    }).subscribe({
       next: (v) => {
-        // TODO reset formuláře
+        // Reset formuláře
+        this.bookName.reset();
+        this.authorId.reset();
+        this.genreId.reset();
+        this.price.reset();
+        this.published.reset();
+        this.summary.reset();
+        this.isbn.reset();
         // Pokud je nahrán obrázek
         if (this.image != null) {
           this.uploadImage(v.id);
+        } else {
+          this.loadBooks();
         }
       },
       error: (e) => {
@@ -128,7 +155,8 @@ export class BooksComponent {
       next: (_) => {
         // Reset obrázku
         this.image = null;
-    this.imageUrl = null;
+        this.imageUrl = null;
+        this.loadBooks();
       },
       error: (e) => {
         alert(JSON.stringify(e));
