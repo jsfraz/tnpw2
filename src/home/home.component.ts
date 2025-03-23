@@ -8,6 +8,7 @@ import { BookService } from '../app/api/services/book.service';
 import { GenreService } from '../app/api/services/genre.service';
 import { AuthorService } from '../app/api/services/author.service';
 import { ModelsAuthor, ModelsGenre, ModelsBook } from '../app/api/models';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-home',
   imports: [
@@ -16,6 +17,7 @@ import { ModelsAuthor, ModelsGenre, ModelsBook } from '../app/api/models';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -24,6 +26,7 @@ export class HomeComponent {
   // Cena
   minPrice: number = 100;
   maxPrice: number = 1000;
+  priceStep: number = 10;
   minSelectedPrice: number = this.minPrice;
   maxSelectedPrice: number = this.maxPrice;
   // Autoři
@@ -37,7 +40,7 @@ export class HomeComponent {
   // Knihy
   bookSearch: string = '';
   books: ModelsBook[] = [];
-
+  loading: boolean = false;
   constructor(public bookService: BookService, private genreService: GenreService, private authorService: AuthorService) { }
 
   ngOnInit(): void {
@@ -62,15 +65,7 @@ export class HomeComponent {
       complete: () => { }
     });
     // Načtení knih
-    this.bookService.getAllBooks().subscribe({
-      next: (v) => {
-        this.books = v;
-      },
-      error: (e) => {
-        alert(JSON.stringify(e));
-      },
-      complete: () => { }
-    });
+    this.searchBooks();
   }
 
   // Filtrace autorů
@@ -113,5 +108,29 @@ export class HomeComponent {
   // Klik na knihu
   bookCardClicked(bookId: number): void {
     alert('TODO přesměrovat');
+  }
+
+  // Vyhledání knih
+  searchBooks(): void {
+    this.loading = true;
+    this.books = [];
+    this.bookService.searchBooks({
+      authorIds: this.selectedAuthors,
+      genreIds: this.selectedGenres,
+      maxPrice: this.maxSelectedPrice,
+      minPrice: this.minSelectedPrice,
+      name: this.bookSearch
+    }).subscribe({
+      next: (v) => {
+        this.books = v;
+      },
+      error: (e) => {
+        this.loading = false;
+        alert(JSON.stringify(e));
+      },
+      complete: () => {
+        this.loading = false;
+      }
+    });
   }
 }

@@ -303,3 +303,14 @@ hr {
     margin: 0;
     font-size: 16px;
 }
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Zajistí, že spinner bude uprostřed celé výšky */
+    width: 100%; /* Zajistí, že spinner bude uprostřed celé šířky */
+    position: absolute; /* Umožní umístit spinner do středu */
+    top: 0; /* Umístí spinner na vrchol kontejneru */
+    left: 0; /* Umístí spinner na začátek kontejneru */
+}
