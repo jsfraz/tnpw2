@@ -144,7 +144,6 @@ body {
     border: 1px solid #0088a9;
     border-radius: 5px;
     resize: none;
-    margin-left: 5px;
 }
 
 
@@ -155,7 +154,7 @@ body {
     margin-top: 10px;
     position: relative;
     overflow-y: hidden;
-    height: 150px;
+    height: 200px;
     scrollbar-color: #4fc3dc #0c192c;
 }
 
@@ -215,6 +214,7 @@ hr {
 .books-grid-container {
     flex: 1;
     padding: 20px;
+    padding-left: 350px !important; 
 }
 
 .books-grid {
@@ -224,7 +224,8 @@ hr {
 }
 
 .book-card {
-    background: #162e52;
+    background: #0e1d33;
+    border: 1px solid #172f52;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -271,13 +272,14 @@ hr {
 }
 
 .book-info h3 {
+    color: #fafafa;
     margin: 0 0 8px 0;
     font-size: 16px;
     font-weight: 500;
 }
 
 .author {
-    color: #666;
+    color: darkgray;
     margin: 0 0 8px 0;
     font-size: 14px;
 }
@@ -290,11 +292,12 @@ hr {
 }
 
 .genre-tag {
-    background: #f0f0f0;
+    background: #0e1d33;
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 12px;
-    color: #666;
+    border: #0088a9 1px solid;
+    color: darkgray;
 }
 
 .price {
@@ -302,6 +305,7 @@ hr {
     color: #2196F3;
     margin: 0;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 .spinner-container {
