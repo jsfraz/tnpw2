@@ -12,7 +12,7 @@ export interface GetAllAuthors$Params {
 }
 
 export function getAllAuthors(http: HttpClient, rootUrl: string, params?: GetAllAuthors$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ModelsAuthor>>> {
-  const rb = new RequestBuilder(rootUrl, getAllAuthors.PATH, 'post');
+  const rb = new RequestBuilder(rootUrl, getAllAuthors.PATH, 'get');
   if (params) {
   }
 

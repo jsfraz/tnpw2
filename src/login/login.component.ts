@@ -82,7 +82,11 @@ export class LoginComponent {
                 // Nastavení uživatele
                 this.authService.currentUser = v;
                 // Přesměrování
-                this.router.navigate(['']);
+                if (this.authService.currentUser!.role != 'customer') {
+                  this.router.navigate(['/internal-greeting']);
+                } else {
+                  this.router.navigate(['']);
+                }
               },
               error: (e) => {
                 console.error(e);

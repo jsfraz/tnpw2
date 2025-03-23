@@ -3,33 +3,34 @@
 </head>
 
 <header>
-  <a class="logo" routerLink="/home">Ninja Books</a>
+  <!-- Logo -->
+  <a class="logo" routerLink="/home">Ninja
+    Books</a>
+
+  <!-- Navigace -->
   <nav>
     <ul class="nav__links">
+      <!-- Zobrazit pokud je uživatel přihlášen -->
       @if (this.authService.currentUser != null) {
-      @if (this.authService.currentUser.role != 'admin') {
+
+      <!-- Zobrazovat košík pokud je uživatel zákazník -->
+      @if (this.authService.currentUser.role == 'customer') {
       <div class="navbuttons">
         <li class="links"><a routerLink="/kosik">Košík</a></li>
       </div>
       }
-
+      <!-- Zobrazit pokud je uživatel není zákazník -->
       @else {
-      <li class="links"><a routerLink="/users">User management</a></li>
-      <li class="links"><a routerLink="/authors" routerLinkActive="active" ariaCurrentWhenActive="page">Authors
-          Management</a></li>
-      <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Genres
-          Management</a></li>
-      <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Books Management</a></li>
-      <li class="links"><a routerLink="/kosik">Košík</a></li>
+      <!-- TODO zobrazování dalším rolím -->
+      <li class="links"><a routerLink="/users">Uživatelé</a></li>
+      <li class="links"><a routerLink="/authors" routerLinkActive="active" ariaCurrentWhenActive="page">Autoři</a></li>
+      <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Žánry</a></li>
+      <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
       }
       <div>
         <li class="user-name">
-          @if (this.authService.currentUser.role != 'admin') {
-          <i class="fas fa-user" style="margin-right: 10px;"></i>
-          }
-          @else {
-          <i class="fas fa-cog" style="margin-right: 10px;"></i>
-          }
+          <i class="fas {{this.authService.currentUser.role == 'admin' ? 'fa-cog' : 'fa-user'}}"
+            style="margin-right: 10px;"></i>
           {{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' +
           this.authService.currentUser.lastName }}
         </li>

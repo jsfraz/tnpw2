@@ -7,24 +7,27 @@
     <title>Knihy</title>
 </head>
 
+<!-- TODO upravit vizuál -->
 <body>
     <div class="container">
+        <!-- Levá část s filtry -->
         <div class="filter-container">
             <h1>Filtry</h1>
 
             <hr>
+            <textarea class="vyhledavaniKnih" [(ngModel)]="bookSearch"></textarea>
             <div class="price">
                 <div class="price-slider">
                     <div class="filter-text">Cena:</div>
                     <div class="slider">
                         <mat-slider class="example-margin" [max]="1000" [min]="100" [step]="1">
-                            <input value="100" matSliderStartThumb [(ngModel)]="startvalue" #slider>
-                            <input value="1000" matSliderEndThumb [(ngModel)]="endvalue" #slider>
+                            <input value="100" matSliderStartThumb [(ngModel)]="minPrice" #slider>
+                            <input value="1000" matSliderEndThumb [(ngModel)]="maxPrice" #slider>
                         </mat-slider>
                     </div>
                     <div class="slider-value">
-                        <label>{{startvalue}}</label>
-                        <label>{{endvalue}}</label>
+                        <label>{{minPrice}}</label>
+                        <label>{{maxPrice}}</label>
                     </div>
                 </div>
             </div>
@@ -34,32 +37,14 @@
                 <div class="scroller">
                     <div class="nazevFiltru">
                         Autor:
-                        <textarea class="vyhledavaniFiltru"></textarea>
+                        <textarea class="vyhledavaniFiltru" [(ngModel)]="authorSearch"></textarea>
                     </div>
+                    @for (author of getFilteredAuthors(); track author.id) {
                     <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                        <mat-checkbox class="angularcheck" (click)="authorClicked(author.id)">{{author.firstName}}
+                            {{author.lastName}}</mat-checkbox>
                     </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
+                    }
                 </div>
             </div>
             <hr>
@@ -67,33 +52,46 @@
                 <div class="scroller">
                     <div class="nazevFiltru">
                         Žánr:
-                        <textarea class="vyhledavaniFiltru"></textarea>
+                        <textarea class="vyhledavaniFiltru" [(ngModel)]="genreSearch"></textarea>
                     </div>
+                    @for (genre of getFilteredGenres(); track genre.id) {
                     <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                        <mat-checkbox class="angularcheck"
+                            (click)="genreClicked(genre.id)">{{genre.name}}</mat-checkbox>
                     </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    }
+                </div>
+            </div>
+            <!--Tlačítko pro vyhledání-->
+            <button class="search-btn">Vyhledat</button>
+        </div>
+
+        <!-- Pravá část s mřížkou knih -->
+        <div class="books-grid-container">
+            <div class="books-grid">
+                @for (book of books; track book.id) {
+                <div class="book-card" (click)="bookCardClicked(book.id)">
+                    <div class="book-image">
+                        @if (book.hasImage) {
+                        <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" alt="{{ book.name }}">
+                        } @else {
+                        <div class="no-image">
+                            <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
+                        </div>
+                        }
                     </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
-                    </div>
-                    <div class="checkbox">
-                        <mat-checkbox class="angularcheck">Check me!</mat-checkbox>
+                    <div class="book-info">
+                        <h3>{{ book.name }}</h3>
+                        <p class="author">{{ book.author.firstName }} {{ book.author.lastName }}</p>
+                        <div class="genres">
+                            @for (genre of book.genres; track genre.id) {
+                            <span class="genre-tag">{{ genre.name }}</span>
+                            }
+                        </div>
+                        <p class="price">{{ book.price }} Kč</p>
                     </div>
                 </div>
+                }
             </div>
         </div>
     </div>
