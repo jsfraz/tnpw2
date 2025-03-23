@@ -12,7 +12,7 @@ export interface GetAllGenres$Params {
 }
 
 export function getAllGenres(http: HttpClient, rootUrl: string, params?: GetAllGenres$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ModelsGenre>>> {
-  const rb = new RequestBuilder(rootUrl, getAllGenres.PATH, 'post');
+  const rb = new RequestBuilder(rootUrl, getAllGenres.PATH, 'get');
   if (params) {
   }
 
