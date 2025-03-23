@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: 'kosik', component: KosikComponent, canActivate: [AuthGuard] },
     { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
     { path: 'genres', component: GenresComponent, canActivate: [AuthGuard] },
-    { path: '**', redirectTo: '', pathMatch: 'full' }
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
