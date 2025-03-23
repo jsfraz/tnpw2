@@ -84,7 +84,7 @@ export class LoginComponent {
                 this.route.queryParams.subscribe((params) => {
                   var redirect: string | null = params['redirect'];
                   if (redirect != null) {
-                    this.router.navigate([redirect]);
+                    this.redirectTo(redirect);
                   } else {
                     this.router.navigate(['/home']);
                   }
@@ -126,7 +126,14 @@ export class LoginComponent {
                 // Nastavení uživatele
                 this.authService.currentUser = v;
                 // Přesměrování
-                this.router.navigate(['']);
+                this.route.queryParams.subscribe((params) => {
+                  var redirect: string | null = params['redirect'];
+                  if (redirect != null) {
+                    this.redirectTo(redirect);
+                  } else {
+                    this.router.navigate(['/home']);
+                  }
+                });
               },
               error: (e) => {
                 console.error(e);
@@ -151,5 +158,16 @@ export class LoginComponent {
       this.mailRegister.markAsTouched();
       this.passwordRegister.markAsTouched();
     }
+  }
+
+  // Redirect podle url parametru
+  redirectTo(redirect: string) {
+    // "book-detail?id=1"
+    var parts = redirect.split('?');
+    var route = parts[0];
+    var queryParams = parts[1];
+    var paramName = queryParams.split('=')[0];
+    var paramValue = queryParams.split('=')[1];
+    this.router.navigate(['/' + route], { queryParams: { [paramName]: paramValue } });
   }
 }
