@@ -19,7 +19,7 @@ export class AuthService {
     logout(): void {
         this.currentUser = null;
         this.deleteToken();
-        this.router.navigate(['']);
+        // this.router.navigate(['']);
     }
 
     // Vrátí token

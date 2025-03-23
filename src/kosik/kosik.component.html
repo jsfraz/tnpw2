@@ -1,178 +1,56 @@
 <p style="color: #070f1a;">kosik works!</p>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knihy</title>
 </head>
+
 <body>
     <div class="stred">
+        @for (book of books; track book.id) {
         <div class="kniha">
-            <div class="obrazekDiv">
-            <div class="obrazek">
-                <img src="https://www.knihydobrovsky.cz/thumbs/book-cart/mod_eshop/produkty/a/arila-stribrne-mesto-9788076617070_11.jpg" class="obrazek">
+            <div class="obrazekDiv" (click)="bookCardClicked(book.id)">
+                <div class="obrazek">
+                    @if (book.hasImage) {
+                    <img [src]="cartService.rootUrl + '/api/book/image/' + book.id" class="obrazek">
+                    } @else {
+                    <!-- TODO Fix ikony -->
+                    <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
+                    }
+                </div>
             </div>
-            </div>
-            <div class="nazevKnihy">
-                <h2>Arila: Stříbrné město</h2>
+            <div class="nazevKnihy" (click)="bookCardClicked(book.id)">
+                <h2>{{ book.name }}</h2>
                 <br>
-                <h4 style="color:gray;">Radek "Sterakdary" Starý</h4>
+                <h4 style="color:gray;">{{ book.author.firstName }} {{ book.author.lastName }}</h4>
             </div>
-            
+
             <div class="cenaDiv">
                 <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">399,-</h2>
-                <button class="smazatButton">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        </div>  
-
-
-
-        <div class="kniha">
-            <div class="obrazekDiv">
-            <div class="obrazek">
-                <img src="https://www.knihydobrovsky.cz/thumbs/book-cart/mod_eshop/produkty/a/arila-pad-temnoty-9788076618732_3.jpg" class="obrazek">
-            </div>
-            </div>
-            <div class="nazevKnihy">
-                <h2>Arila: Pád temnoty</h2>
-                <br>
-                <h4 style="color:gray;">Radek "Sterakdary" Starý</h4>
-            </div>
-            
-            <div class="cenaDiv">
-                <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">339,-</h2>
-                <button class="smazatButton">
+                <h2 class="cenaCislo">{{ book.price }},-</h2>
+                <button class="smazatButton" (click)="removeBook(book.id)">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
         </div>
-
-
-
-        <div class="kniha">
-            <div class="obrazekDiv">
-            <div class="obrazek">
-                <img src="https://www.knihydobrovsky.cz/thumbs/book-cart/mod_eshop/produkty/a/arila-hranice-casu-9788074987731.jpg" class="obrazek">
-            </div>
-            </div>
-            <div class="nazevKnihy">
-                <h2>Arila: Hranice času</h2>
-                <br>
-                <h4 style="color:gray;">Radek "Sterakdary" Starý</h4>
-            </div>
-            
-            <div class="cenaDiv">
-                <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">499,-</h2>
-                <button class="smazatButton">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
+        } @empty {
+        @if (loading) {
+        <div class="spinner-container">
+            <mat-spinner></mat-spinner>
         </div>
-
-
-
-        <div class="kniha">
-            <div class="obrazekDiv">
-            <div class="obrazek">
-                <img src="https://www.knihydobrovsky.cz/thumbs/book-cart/mod_eshop/produkty/o/one-piece-7-dedek-plesnivej-9788076797314.jpg" class="obrazek">
-            </div>
-            </div>
-            <div class="nazevKnihy">
-                <h2>One Piece 7: Dědek plesnivej</h2>
-                <br>
-                <h4 style="color:gray;">Eiičiró Oda</h4>
-            </div>
-            <div class="cenaDiv">
-                <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">223,-</h2>
-                <button class="smazatButton">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        </div>
-
-
-
-        <div class="kniha">
-            <div class="obrazekDiv">
-            <div class="obrazek">
-                <img src="https://www.knihydobrovsky.cz/thumbs/book-cart/mod_eshop/produkty/a/arila-pad-temnoty-9788076618732_3.jpg" class="obrazek">
-            </div>
-            </div>
-            <div class="nazevKnihy">
-                <h2>Deníky apatykářky 1</h2>
-                <br>
-                <h4 style="color:gray;">Icuki Nanao, Nacu Hjúga</h4>
-            </div>
-            
-            <div class="cenaDiv">
-                <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">179,-</h2>
-                <button class="smazatButton">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        </div>
-
-
-
-        <div class="kniha">
-            <div class="obrazekDiv">
-            <div class="obrazek">
-                <img src="https://www.knihydobrovsky.cz/thumbs/book-cart/mod_eshop/produkty/767233002/jujutsu-kaisen-proklete-valky-14-spravne-se-rozhodnout.jpg" class="obrazek">
-            </div>
-            </div>
-            <div class="nazevKnihy">
-                <h2>Jujutsu Kaisen - Prokleté války 14: Správně se rozhodnout</h2>
-                <br>
-                <h4 style="color:gray;">Gege Akutami</h4>
-            </div>
-            <div class="cenaDiv">
-                <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">223,-</h2>
-                <button class="smazatButton">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        </div>
-
-
-
-        <div class="kniha">
-            <div class="obrazekDiv">
-            <div class="obrazek">
-                <img src="https://www.knihydobrovsky.cz/thumbs/book-cart/mod_eshop/produkty/p/piknik-u-cesty-9788075538840_1.jpg" class="obrazek">
-            </div>
-            </div>
-            <div class="nazevKnihy">
-                <h2>Piknik u cesty</h2>
-                <br>
-                <h4 style="color:gray;">Boris Natanovič Strugackij, Arkadij Natanovič Strugackij</h4>
-            </div>
-            <div class="cenaDiv">
-                <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">294,-</h2>
-                <button class="smazatButton">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        </div>
-
-        
-
+        }
+        }
         <hr>
         <div class="dokoncitDiv">
-        <h2 class="celkovaCenaText">Celková cena: </h2>
-        <h2 class="celkovaCenaCislo">294,-</h2>
-        <button class="dokoncitObjednavku">Dokončit objednávku</button>
+            <h3 class="celkovaCenaText">Celková cena: </h3>
+            <h3 class="celkovaCenaCislo">{{ totalPrice }},-</h3>
+            <!-- TODO změnšit tlačítko -->
+            <button class="dokoncitObjednavku">Dokončit objednávku</button>
         </div>
     </div>
-    
 </body>
+
 </html>

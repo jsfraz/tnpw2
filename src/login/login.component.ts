@@ -4,13 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../app/shared/auth.service';
 import { AuthenticationService } from '../app/api/services/authentication.service';
 import { UserService } from '../app/api/services/user.service';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { AppComponent } from "../app/app.component";
 
 @Component({
   selector: 'app-login',
@@ -39,7 +38,7 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
-  constructor(public router: Router, public authService: AuthService, private authenticationService: AuthenticationService, private userService: UserService) { }
+  constructor(public router: Router, public authService: AuthService, private authenticationService: AuthenticationService, private userService: UserService, private route: ActivatedRoute) { }
 
   // Přesměrování pokud je už přihlášen
   ngOnInit(): void {
@@ -82,7 +81,14 @@ export class LoginComponent {
                 // Nastavení uživatele
                 this.authService.currentUser = v;
                 // Přesměrování
-                this.router.navigate(['/home']);
+                this.route.queryParams.subscribe((params) => {
+                  var redirect: string | null = params['redirect'];
+                  if (redirect != null) {
+                    this.router.navigate([redirect]);
+                  } else {
+                    this.router.navigate(['/home']);
+                  }
+                });
               },
               error: (e) => {
                 console.error(e);

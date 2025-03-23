@@ -9,6 +9,7 @@ export type { ModelsAuthor } from './models/models-author';
 export type { ModelsBook } from './models/models-book';
 export type { ModelsGenre } from './models/models-genre';
 export type { ModelsLoginResponse } from './models/models-login-response';
+export type { ModelsTrueFalse } from './models/models-true-false';
 export type { ModelsUser } from './models/models-user';
 export type { RegisterInput } from './models/register-input';
 export type { UpdateUserInput } from './models/update-user-input';

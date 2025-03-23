@@ -9,6 +9,7 @@ import { GenreService } from '../app/api/services/genre.service';
 import { AuthorService } from '../app/api/services/author.service';
 import { ModelsAuthor, ModelsGenre, ModelsBook } from '../app/api/models';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   imports: [
@@ -41,7 +42,7 @@ export class HomeComponent {
   bookSearch: string = '';
   books: ModelsBook[] = [];
   loading: boolean = false;
-  constructor(public bookService: BookService, private genreService: GenreService, private authorService: AuthorService) { }
+  constructor(public bookService: BookService, private genreService: GenreService, private authorService: AuthorService, private router: Router) { }
 
   ngOnInit(): void {
     // Načtení autorů
@@ -107,7 +108,7 @@ export class HomeComponent {
 
   // Klik na knihu
   bookCardClicked(bookId: number): void {
-    alert('TODO přesměrovat');
+    this.router.navigate(['/book-detail'], { queryParams: { id: bookId } });
   }
 
   // Vyhledání knih

@@ -49,10 +49,10 @@ header {
 
 .user-logout {
     color: darkgray;
-    background-color: #0c192c;
-    border: 1px #0c192c solid;
+    background-color: #ffffff00;
     margin-top: -3%;
     margin-left: auto;
+    border: none;
     display: flex;
 } 
 

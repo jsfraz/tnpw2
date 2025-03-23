@@ -125,6 +125,7 @@ button:active {
     padding: 1%;
     box-shadow: 0 2px 4px rgb(5, 5, 5);
     display: flex;
+    cursor: pointer;
 }
 
 .obrazek {

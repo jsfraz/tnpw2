@@ -9,6 +9,7 @@ import { AuthorService } from './services/author.service';
 import { AuthorManagementService } from './services/author-management.service';
 import { BookService } from './services/book.service';
 import { BookManagementService } from './services/book-management.service';
+import { CartService } from './services/cart.service';
 import { GenreService } from './services/genre.service';
 import { GenreManagementService } from './services/genre-management.service';
 import { UserManagementService } from './services/user-management.service';
@@ -27,6 +28,7 @@ import { UserService } from './services/user.service';
     AuthorManagementService,
     BookService,
     BookManagementService,
+    CartService,
     GenreService,
     GenreManagementService,
     UserManagementService,
