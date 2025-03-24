@@ -1,4 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
   <button class="add-user-btn" (click)="showForm = true">Přidat knihu</button>
 
   @if (showForm) {
@@ -75,8 +84,6 @@
   }
 
   <div class="center">
-    <!-- TODO fix tabulky -->
-    <!-- TODO úprava knihy -->
     <table>
       <thead>
         <tr>
@@ -86,7 +93,7 @@
           <th>Žánr</th>
           <th>Cena</th>
           <th>Datum vydání</th>
-          <th>obsah</th>
+          <th>Obsah</th>
         </tr>
       </thead>
       <tbody>
@@ -94,23 +101,24 @@
         <tr>
           <td>
             @if (book.hasImage) {
-            <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" style="width: 100px; height: 100px; margin-left: 20px;">
+            <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" alt="Obrázek knihy" style="width: 100px; height: auto;">
             }
           </td>
           <td>{{ book.name }}</td>
-          <td>
-            {{ book.author.firstName }} {{ book.author.lastName }}
-          </td>
+          <td>{{ book.author.firstName }} {{ book.author.lastName }}</td>
           <td>
             @for (genre of book.genres; track genre.id) {
             {{ genre.name }}{{ $last ? '' : ', ' }}
             }
           </td>
           <td>{{ book.price }} Kč</td>
-          <td>{{ book.published }}</td>
+          <td>{{ book.published | date:'dd.MM.yyyy' }}</td>
           <td>{{ book.summary }}</td>
         </tr>
         }
       </tbody>
     </table>
   </div>
+</body>
+
+</html>
