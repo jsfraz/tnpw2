@@ -1,21 +1,22 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-@if (book) {
-    <!-- TODO detail knihy jako na https://www.knihydobrovsky.cz/kniha/na-vlnach-lasky-723528364 -->
-<div>
-    <h1>{{ book.name }}</h1>
-</div>
-<!-- Obrázek -->
-@if (book.hasImage) {
-    <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" alt="{{ book.name }}">
-    } @else {
-    <div class="no-image">
-        <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
+<div class="container">
+    <div class="ohraniceni">
+        @if (book) {
+        <div class="obrazek">
+            @if (book.hasImage) {
+            <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" alt="{{ book.name }}">
+            } @else {
+            <div class="no-image">
+                <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
+            </div>
+            }
+        </div>
+        <div class="zbytek">
+            <h1>{{ book.name }}</h1>
+            <button class="pridatCudl"
+                (click)="authService.currentUser != null ? (isInCart ? removeFromCart() : addToCart()) : cartButtonRedirect()"
+                [disabled]="isCartButtonDisabled()">{{ isInCart ? 'Odebrat z košíku' : 'Přidat do košíku' }}</button>
+            <!-- TODO zelené tlačítko pro přechod do košíku-->
+        </div>
+        }
     </div>
-    }
-<button (click)="authService.currentUser != null ? (isInCart ? removeFromCart() : addToCart()) : cartButtonRedirect()" [disabled]="isCartButtonDisabled()">{{ isInCart ? 'Odebrat z košíku' : 'Přidat do košíku' }}</button>
-<!-- TODO zelené tlačítko pro přechod do košíku-->
-}
+</div>

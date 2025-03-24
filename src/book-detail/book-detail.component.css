@@ -1,0 +1,51 @@
+.container {
+   padding-top: 90px;
+   padding-bottom: 90px;
+   padding-left: 10%;
+   padding-right: 10%;
+   align-items: center;
+   display: flex;
+}
+
+.obrazek {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    border: 1px solid #1f4174;
+    background-color: #0c192c;
+    border-radius: 10px;
+}
+
+.zbytek {
+    width: auto;
+    height: auto;
+    padding: 70px;
+    color: #fafafa;
+    justify-content: center;
+    display: table-column;
+}
+
+.ohraniceni {
+    width: 100%;
+    border: 1px solid #172f52;
+    background-color: #0e1d33;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    padding: 70px;
+}
+
+.pridatCudl {
+    border: #0088a9 1px solid;
+    border-radius: 5px;
+    padding: 7px;
+    background-color: #0088a9;
+    color: #fafafa;
+}
+
+.pridatCudl:hover {
+    background-color: #006e86;
+    border: #006e86 1px solid;
+    transition: 0.2s;
+    cursor: pointer;
+}
