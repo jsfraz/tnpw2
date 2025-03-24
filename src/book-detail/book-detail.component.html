@@ -1,3 +1,17 @@
+@if (showForm) {
+    <div class="pozadi">
+        <div class="overlay">
+            <div class="text">
+                <p>Chcete přesunout do košíku nebo pokračovat v nákupu?</p>
+            </div>
+            <hr>
+            <div class="buttons">
+                <button class="pokracovat" (click)="showForm = false">Pokračovat v nákupu</button>
+                <button class="presunout"routerLink="/kosik">Přesunout do košíku</button>
+            </div>
+        </div>
+    </div>
+}
 <div class="container">
     <div class="ohraniceni">
         @if (book) {
@@ -11,11 +25,43 @@
             }
         </div>
         <div class="zbytek">
-            <h1>{{ book.name }}</h1>
-            <button class="pridatCudl"
-                (click)="authService.currentUser != null ? (isInCart ? removeFromCart() : addToCart()) : cartButtonRedirect()"
-                [disabled]="isCartButtonDisabled()">{{ isInCart ? 'Odebrat z košíku' : 'Přidat do košíku' }}</button>
-            <!-- TODO zelené tlačítko pro přechod do košíku-->
+            <div class="nadpis">
+                <h1> {{ book.name }}</h1>
+            </div>
+            <div class="autor">
+                <h2>{{ book.author.firstName }} {{book.author.lastName}}</h2>
+            </div>
+            <hr>
+            <h4>Popis Knihy: </h4>
+            <div class="genres">
+                @for (genre of book.genres; track genre.id) {
+                <span class="genre-tag">{{ genre.name }}</span>
+                }
+            </div>
+            <div class="popis">
+                <p> {{ book.summary }} </p>
+            </div>
+            <hr>
+            <h4>Dodatečné Informace: </h4>
+            <div class="isbn">
+                <h4> ISBN: {{ book.isbn }} </h4>
+            </div>
+            <div class="datum">
+                <h4> Datum vydání: {{book.published}}</h4>
+            </div>
+            <hr>
+            <div class="cena">
+                <h4>Cena: </h4>
+                <h3 class="cenaCislo">{{book.price}},-</h3>
+            </div>
+            <hr>
+            <button class="pridatCartCudl"
+            (click)="handleCartButton()"
+            [disabled]="isCartButtonDisabled()">{{ isInCart ? 'Odebrat z košíku' : 'Přidat do košíku' }}</button>
+
+            <button class="pridatWishCudl"
+            (click)="handleWishButton()"
+            [disabled]="isWishButtonDisabled()">{{ isInWish ? 'Odebrat ze seznamu přání' : 'Přidat do Seznamu přání' }}</button>
         </div>
         }
     </div>
