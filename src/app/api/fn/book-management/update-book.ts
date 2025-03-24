@@ -8,14 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { CreateGenreInput } from '../../models/create-genre-input';
+import { UpdateBookInput } from '../../models/update-book-input';
 
-export interface CreateGenre$Params {
-      body?: CreateGenreInput
+export interface UpdateBook$Params {
+      body?: UpdateBookInput
 }
 
-export function createGenre(http: HttpClient, rootUrl: string, params?: CreateGenre$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, createGenre.PATH, 'post');
+export function updateBook(http: HttpClient, rootUrl: string, params?: UpdateBook$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, updateBook.PATH, 'patch');
   if (params) {
     rb.body(params.body, 'application/json');
   }
@@ -30,4 +30,4 @@ export function createGenre(http: HttpClient, rootUrl: string, params?: CreateGe
   );
 }
 
-createGenre.PATH = '/api/genre/management/genre';
+updateBook.PATH = '/api/book/management/book';

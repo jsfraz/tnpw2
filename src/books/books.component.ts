@@ -113,7 +113,6 @@ export class BooksComponent {
   createBook(): void {
     this.bookManagementService.createBook({
       body: {
-        // TODO změnit
         authorId: this.authorId.value!,
         genreIds: this.genreId.value!,
         isbn: this.isbn.value!,
