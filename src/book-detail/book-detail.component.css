@@ -79,6 +79,14 @@ h4{
     cursor: pointer;
 }
 
+.ikona {
+    width: 302px;
+    height: 500px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
 
 .nadpis {
     margin-bottom: 20px;
