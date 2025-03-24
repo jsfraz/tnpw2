@@ -9,10 +9,11 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AuthorManagementService } from '../app/api/services/author-management.service';
 import { AuthorService } from '../app/api/services/author.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-authors',
-  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule],
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.css',
   providers: [provideNativeDateAdapter()],

@@ -51,7 +51,7 @@
                 <tr>
                     <td>{{ author.firstName }}</td>
                     <td>{{ author.lastName }}</td>
-                    <td>{{ author.birth }}</td>
+                    <td>{{ author.birth | date:'dd.MM.yyyy' }}</td>
                   </tr>
                 }
             </tbody>

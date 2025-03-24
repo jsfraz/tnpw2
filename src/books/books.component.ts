@@ -11,10 +11,12 @@ import { ModelsBook, ModelsAuthor, ModelsGenre } from '../app/api/models';
 import { AuthorService } from '../app/api/services/author.service';
 import { GenreService } from '../app/api/services/genre.service';
 import { BookService } from '../app/api/services/book.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-books',
-  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule],
   providers: [provideNativeDateAdapter()],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
