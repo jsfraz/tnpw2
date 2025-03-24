@@ -16,6 +16,7 @@ import { GenreService } from './services/genre.service';
 import { GenreManagementService } from './services/genre-management.service';
 import { UserManagementService } from './services/user-management.service';
 import { UserService } from './services/user.service';
+import { WishlistService } from './services/wishlist.service';
 
 /**
  * Module that provides all services and configuration.
@@ -35,6 +36,7 @@ import { UserService } from './services/user.service';
     GenreManagementService,
     UserManagementService,
     UserService,
+    WishlistService,
     ApiConfiguration
   ],
 })

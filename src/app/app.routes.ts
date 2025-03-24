@@ -9,6 +9,7 @@ import { GenresComponent } from '../genres/genres.component';
 import { AuthGuard } from './shared/aut.guard';
 import { HomeComponent } from '../home/home.component';
 import { BookDetailComponent } from '../book-detail/book-detail.component';
+import { WishlistComponent } from '../wishlist/wishlist.component';
 
 export const routes: Routes = [
     // Přihlášení
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'kosik', component: KosikComponent, canActivate: [AuthGuard] },
     { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
     { path: 'genres', component: GenresComponent, canActivate: [AuthGuard] },
+    { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
     { path: 'book-detail', component: BookDetailComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
