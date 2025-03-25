@@ -20,6 +20,14 @@ header {
     box-shadow: 0 2px 6px #0088a9 !important;
 }
 
+footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 6px #0088a9 !important;
+}
+
 .mdc-checkbox:hover>.mdc-checkbox__native-control:not(:checked)~.mdc-checkbox__background, .mdc-checkbox:hover>.mdc-checkbox__native-control:not(:indeterminate)~.mdc-checkbox__background {
     border-color: #0088a9 !important;
 }
