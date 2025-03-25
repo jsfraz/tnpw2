@@ -22,12 +22,16 @@ h4{
 }
 
 .obrazek {
-    width: auto;
-    height: auto;
+    max-height: 540px;
     padding: 20px;
     border: 1px solid #1f4174;
     background-color: #0c192c;
     border-radius: 10px;
+}
+
+.obrazek img {
+    width: 302px;
+    height: 500px;
 }
 
 .zbytek {
