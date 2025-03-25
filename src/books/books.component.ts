@@ -182,7 +182,12 @@ export class BooksComponent {
     }).subscribe({
       next: (v) => {
         alert("Kniha aktualizována");
-        this.loadBooks();
+        // Pokud byl vybrán nový obrázek, nahraj ho
+        if (this.image) {
+          this.uploadImage(this.editingBookId!);
+        } else {
+          this.loadBooks(); // Načti knihy znovu, pokud není nový obrázek
+        }
       },
       error: (e) => {
         alert(JSON.stringify(e));
