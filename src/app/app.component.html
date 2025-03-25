@@ -16,6 +16,7 @@
       <!-- Zobrazovat košík pokud je uživatel zákazník -->
       @if (this.authService.currentUser.role == 'customer') {
       <div class="navbuttons">
+        <li class="links"><a routerLink="/wishlist">Seznam přání</a></li>
         <li class="links"><a routerLink="/kosik">Košík</a></li>
       </div>
       }

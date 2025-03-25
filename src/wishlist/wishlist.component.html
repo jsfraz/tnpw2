@@ -1,1 +1,55 @@
-<!-- TODO Seznam přání -->
+<p style="color: #070f1a;">kosik works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knihy</title>
+</head>
+
+<body>
+    <div class="stred">
+        @for (book of books; track book.id) {
+        <div class="kniha">
+            <div class="obrazekDiv" (click)="bookCardClicked(book.id)">
+                <div class="obrazek">
+                    @if (book.hasImage) {
+                    <img [src]="wishService.rootUrl + '/api/book/image/' + book.id" class="obrazek">
+                    } @else {
+                    <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
+                    }
+                </div>
+            </div>
+            <div class="nazevKnihy" (click)="bookCardClicked(book.id)">
+                <h2>{{ book.name }}</h2>
+                <br>
+                <h4 style="color:gray;">{{ book.author.firstName }} {{ book.author.lastName }}</h4>
+            </div>
+
+            <div class="cenaDiv">
+                <h2 class="cena">Cena: </h2>
+                <h2 class="cenaCislo">{{ book.price }},-</h2>
+                <button class="smazatButton" (click)="removeBook(book.id)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        } @empty {
+        @if (loading) {
+        <div class="spinner-container">
+            <mat-spinner></mat-spinner>
+        </div>
+        }
+        }
+        <hr>
+        <div class="dokoncitDiv">
+            <h3 class="celkovaCenaText">Celková cena: </h3>
+            <h3 class="celkovaCenaCislo">{{ totalPrice }},-</h3>
+            <!-- TODO změnšit tlačítko PS:tohle TODO tam bylo už od předtím nebo ti opravdu jeblo josef? -->
+            <button class="dokoncitObjednavku" routerLink="/home">Zpět na obchod s knihami</button>
+        </div>
+    </div>
+</body>
+
+</html>
