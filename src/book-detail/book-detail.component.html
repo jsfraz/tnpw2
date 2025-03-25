@@ -47,7 +47,7 @@
                 <h4> ISBN: {{ book.isbn }} </h4>
             </div>
             <div class="datum">
-                <h4> Datum vydání: {{book.published}}</h4>
+                <h4> Datum vydání: {{book.published | date:'dd.MM.yyyy' }}</h4>
             </div>
             <hr>
             <div class="cena">

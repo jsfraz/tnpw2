@@ -6,10 +6,11 @@ import { CartService } from '../app/api/services/cart.service';
 import { AuthService } from '../app/shared/auth.service';
 import { RouterLink } from '@angular/router';
 import { WishlistService } from '../app/api/services/wishlist.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-book-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.css'
 })
@@ -88,12 +89,6 @@ export class BookDetailComponent implements OnInit {
       complete: () => { },
     });
   }
-
-
-
-
-
-
 
   // Načtení zda je kniha v košíku
   isInWishLoad() {
