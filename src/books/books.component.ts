@@ -139,18 +139,14 @@ export class BooksComponent {
     }).subscribe({
       next: (v) => {
         // Reset formuláře
-        this.bookName.reset();
-        this.authorId.reset();
-        this.genreId.reset();
-        this.price.reset();
-        this.published.reset();
-        this.summary.reset();
-        this.isbn.reset();
+        this.resetForm();
         // Pokud je nahrán obrázek
         if (this.image != null) {
           this.uploadImage(v.id);
         } else {
           this.loadBooks();
+          this.resetForm();
+          this.showForm = false;
         }
       },
       error: (e) => {
@@ -175,6 +171,7 @@ export class BooksComponent {
         console.error(e);
         alert(JSON.stringify(e));
         this.loadBooks();
+        this.showForm = false;
       },
       complete: () => {
         this.loadBooks();
@@ -228,6 +225,7 @@ export class BooksComponent {
         }
       },
       error: (e) => {
+        console.error(e);
         alert(JSON.stringify(e));
       },
       complete: () => {
