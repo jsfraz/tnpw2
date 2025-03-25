@@ -28,6 +28,7 @@ export class BooksComponent {
   books: ModelsBook[] = [];
   authors: ModelsAuthor[] = [];
   genres: ModelsGenre[] = [];
+  editingBookId: number | null = null;
 
   bookName = new FormControl<string>('', [Validators.required]);
   authorId = new FormControl<number | null>(null, [Validators.required]);
@@ -164,5 +165,73 @@ export class BooksComponent {
       },
       complete: () => { }
     });
+  }
+
+  updateBook(): void {
+    this.bookManagementService.updateBook({
+      body: {
+        id: this.editingBookId!,
+        authorId: this.authorId.value!,
+        genreIds: this.genreId.value!,
+        isbn: this.isbn.value!,
+        name: this.bookName.value!,
+        price: this.price.value!,
+        published: this.published.value!.toISOString(),
+        summary: this.summary.value!
+      }
+    }).subscribe({
+      next: (v) => {
+        alert("Kniha aktualizována");
+        this.loadBooks();
+      },
+      error: (e) => {
+        alert(JSON.stringify(e));
+      },
+      complete: () => {
+        this.resetForm();
+      }
+    });
+  }
+
+  // Rozhoduje, zda se má kniha vytvořit nebo aktualizovat.
+  saveBook(): void {
+    if (this.editingBookId) {
+      // Aktualizace stávající knihy
+      this.updateBook();
+    } else {
+      // Vytvoření nové knihy
+      this.createBook();
+    }
+  }
+
+  resetForm(): void {
+    this.bookName.reset();
+    this.authorId.reset();
+    this.genreId.reset();
+    this.price.reset();
+    this.published.reset();
+    this.summary.reset();
+    this.isbn.reset();
+    this.showForm = false;
+    this.editingBookId = null;
+    this.imageUrl = null; // Vymažte náhled obrázku
+    this.loadBooks();
+  }
+
+  editBook(book: ModelsBook): void {
+    this.showForm = true;
+    this.editingBookId = book.id;
+
+    this.bookName.setValue(book.name);
+    this.authorId.setValue(book.author.id);
+    // Převeď pole žánrů na pole ID žánrů
+    this.genreId.setValue(book.genres.map(genre => genre.id)); // Získáme pole ID žánrů
+    this.price.setValue(book.price);
+    this.published.setValue(new Date(book.published));
+    this.summary.setValue(book.summary);
+    this.isbn.setValue(book.isbn);
+
+    // Vždy nastav URL obrázku s timestampem
+    this.imageUrl = this.bookService.rootUrl + '/api/book/image/' + book.id + '?timestamp=' + Date.now();
   }
 }

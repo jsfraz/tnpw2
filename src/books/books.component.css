@@ -26,6 +26,18 @@ th {
 tr:hover {
   background-color: rgba(79, 195, 220, 0.2);
 }
+
+.edit-btn {
+  width: 50px; 
+  height: 50px; 
+  background-color: #0c192c; 
+  border: 1px solid #0c192c;
+} 
+
+.edit-btn:hover {
+  background-color: rgba(79, 195, 220, 0.2);
+  border: 1px solid rgba(79, 195, 220, 0.2);
+} 
   
   img {
     display: block;
@@ -135,6 +147,7 @@ tr:hover {
     margin-bottom: 5px;
     font-weight: bold;
   }
+
   
   /*.form-group input,
   .form-group select {

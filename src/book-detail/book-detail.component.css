@@ -46,15 +46,17 @@ h4{
     border-radius: 10px;
     display: flex;
     padding: 70px;
+    min-width: 688px;
 }
 
 .pridatCartCudl {
     border: #0088a9 1px solid;
     border-radius: 5px;
-    padding: 7px;
+    padding: 12px;
     background-color: #0088a9;
     color: #fafafa;
     margin-right: 5%;
+    font-size: 17px;
 }
 
 .pridatCartCudl:hover {
@@ -67,10 +69,11 @@ h4{
 .pridatWishCudl {
     border: #00ccff 1px solid;
     border-radius: 5px;
-    padding: 7px;
+    padding: 12px;
     background-color: #0c192c;
     color: #fafafa;
     margin-right: 5%;
+    font-size: 17px;
 }
 
 .pridatWishCudl:hover {

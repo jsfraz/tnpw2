@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -75,7 +76,7 @@
         </mat-form-field>
 
         <div class="form-buttons">
-          <button class="submit-btn" (click)="createBook()">Přidat</button>
+          <button class="submit-btn" (click)="saveBook()">Uložit</button>
           <button class="cancel-btn" (click)="showForm = false">Zrušit</button>
         </div>
       </div>
@@ -94,6 +95,7 @@
           <th>Cena</th>
           <th>Datum vydání</th>
           <th>Obsah</th>
+          <th>Akce</th>
         </tr>
       </thead>
       <tbody>
@@ -101,7 +103,7 @@
         <tr>
           <td>
             @if (book.hasImage) {
-            <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" alt="Obrázek knihy" style="width: 100px; height: auto;">
+            <img [src]="bookService.rootUrl + '/api/book/image/' + book.id + '?timestamp='" alt="Obrázek knihy" style="width: 100px; height: auto;">
             }
           </td>
           <td>{{ book.name }}</td>
@@ -114,11 +116,11 @@
           <td>{{ book.price }} Kč</td>
           <td>{{ book.published | date:'dd.MM.yyyy' }}</td>
           <td>{{ book.summary }}</td>
+          <td><button class="edit-btn" (click)="editBook(book)"><i class="fas fa-edit ikona" style="font-size: 25px; color: #4fc3dc;"></i></button></td>
         </tr>
         }
       </tbody>
     </table>
   </div>
 </body>
-
 </html>
