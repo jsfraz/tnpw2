@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModelsUser } from '../api/models';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Inject } from '@angular/core';
 
 // Autor: Josef Ráž
 
@@ -19,7 +18,7 @@ export class AuthService {
     logout(): void {
         this.currentUser = null;
         this.deleteToken();
-        // this.router.navigate(['']);
+        this.router.navigate(['/home']);
     }
 
     // Vrátí token

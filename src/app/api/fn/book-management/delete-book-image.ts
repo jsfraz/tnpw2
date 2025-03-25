@@ -6,16 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { UpdateBookInput } from '../../models/update-book-input';
 
-export interface UpdateBook$Params {
-      body?: UpdateBookInput
+export interface DeleteBookImage$Params {
+  id: number;
 }
 
-export function updateBook(http: HttpClient, rootUrl: string, params?: UpdateBook$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, updateBook.PATH, 'patch');
+export function deleteBookImage(http: HttpClient, rootUrl: string, params: DeleteBookImage$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, deleteBookImage.PATH, 'delete');
   if (params) {
-    rb.body(params.body, 'application/json');
+    rb.query('id', params.id, {});
   }
 
   return http.request(
@@ -28,4 +27,4 @@ export function updateBook(http: HttpClient, rootUrl: string, params?: UpdateBoo
   );
 }
 
-updateBook.PATH = '/api/book/management/book';
+deleteBookImage.PATH = '/api/book/management/bookImage';

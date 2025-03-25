@@ -77,6 +77,7 @@ export class BooksComponent {
 
   // Načtení knih
   loadBooks() {
+    this.books = [];
     this.bookService.getAllBooks().subscribe({
       next: (v) => {
         this.books = v;
@@ -114,6 +115,17 @@ export class BooksComponent {
 
   // Vytvoření knihy
   createBook(): void {
+    if (this.bookName.value == '' || this.authorId.value == null || this.genreId.value == null || this.isbn.value == '' || this.price.value == 0 || this.published.value == null || this.summary.value == '') {
+      alert('Vyplňte všechna pole');
+      this.bookName.markAsTouched();
+      this.authorId.markAsTouched();
+      this.genreId.markAsTouched();
+      this.isbn.markAsTouched();
+      this.price.markAsTouched();
+      this.published.markAsTouched();
+      this.summary.markAsTouched();
+      return;
+    }
     this.bookManagementService.createBook({
       body: {
         authorId: this.authorId.value!,
@@ -158,16 +170,30 @@ export class BooksComponent {
         // Reset obrázku
         this.image = null;
         this.imageUrl = null;
-        this.loadBooks();
       },
       error: (e) => {
+        console.error(e);
         alert(JSON.stringify(e));
+        this.loadBooks();
       },
-      complete: () => { }
+      complete: () => {
+        this.loadBooks();
+      }
     });
   }
 
   updateBook(): void {
+    if (this.bookName.value == '' || this.authorId.value == null || this.genreId.value == null || this.isbn.value == '' || this.price.value == 0 || this.published.value == null || this.summary.value == '') {
+      alert('Vyplňte všechna pole');
+      this.bookName.markAsTouched();
+      this.authorId.markAsTouched();
+      this.genreId.markAsTouched();
+      this.isbn.markAsTouched();
+      this.price.markAsTouched();
+      this.published.markAsTouched();
+      this.summary.markAsTouched();
+      return;
+    }
     this.bookManagementService.updateBook({
       body: {
         id: this.editingBookId!,
@@ -181,12 +207,24 @@ export class BooksComponent {
       }
     }).subscribe({
       next: (v) => {
-        alert("Kniha aktualizována");
+        // Odstranění obrázku
+        if (this.imageUrl == null && this.image == null) {
+          this.bookManagementService.deleteBookImage({
+            id: this.editingBookId!
+          }).subscribe({
+            next: (_) => {
+              this.loadBooks();
+            },
+            error: (e) => {
+              console.error(e);
+              alert(JSON.stringify(e));
+            },
+            complete: () => { }
+          });
+        }
         // Pokud byl vybrán nový obrázek, nahraj ho
         if (this.image) {
           this.uploadImage(this.editingBookId!);
-        } else {
-          this.loadBooks(); // Načti knihy znovu, pokud není nový obrázek
         }
       },
       error: (e) => {
@@ -236,7 +274,15 @@ export class BooksComponent {
     this.summary.setValue(book.summary);
     this.isbn.setValue(book.isbn);
 
-    // Vždy nastav URL obrázku s timestampem
-    this.imageUrl = this.bookService.rootUrl + '/api/book/image/' + book.id + '?timestamp=' + Date.now();
+    if (book.hasImage) {
+      this.imageUrl = this.bookService.rootUrl + '/api/book/image/' + book.id;
+    }
+  }
+
+  closeBookForm(): void {
+    this.showForm = false;
+    this.editingBookId = null;
+    this.imageUrl = null;
+    this.resetForm();
   }
 }
