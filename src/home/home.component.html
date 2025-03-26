@@ -28,7 +28,7 @@
                 <div class="scroller">
                     <div class="nazevFiltru">
                         Autor:
-                        <textarea class="vyhledavaniFiltru" [(ngModel)]="authorSearch"></textarea>
+                        <textarea placeholder="Frajer Novotný" class="vyhledavaniFiltru" [(ngModel)]="authorSearch"></textarea>
                     </div>
                     @for (author of getFilteredAuthors(); track author.id) {
                     <div class="checkbox">
@@ -43,7 +43,7 @@
                 <div class="scroller">
                     <div class="nazevFiltru">
                         Žánr:
-                        <textarea class="vyhledavaniFiltru" [(ngModel)]="genreSearch"></textarea>
+                        <textarea placeholder="Komedie" class="vyhledavaniFiltru" [(ngModel)]="genreSearch"></textarea>
                     </div>
                     @for (genre of getFilteredGenres(); track genre.id) {
                     <div class="checkbox">
@@ -62,7 +62,7 @@
             <div class="books-grid">
                 @for (book of books; track book.id) {
                 <div class="book-card" (click)="bookCardClicked(book.id)">
-                    <div class="book-image">
+                    <div class="book-image" [style]="{'background-image': book.hasImage ? 'url(' + bookService.rootUrl + '/api/book/image/' + book.id + ')' : 'none'}">
                         @if (book.hasImage) {
                         <img [src]="bookService.rootUrl + '/api/book/image/' + book.id" alt="{{ book.name }}">
                         } @else {

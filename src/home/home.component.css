@@ -237,20 +237,28 @@ hr {
 .book-image {
     height: 200px;
     overflow: hidden;
-    background: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     border-bottom: 1px solid #172f52;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
 .book-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    background-color: #0c192c;
     padding: 10px;
+    position: relative;
+    z-index: 1;
+    background-color: #0d17258e;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-radius: 9px;
 }
 
 .no-image {
