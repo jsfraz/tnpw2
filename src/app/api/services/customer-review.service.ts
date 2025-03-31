@@ -13,6 +13,9 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { createReview } from '../fn/customer-review/create-review';
 import { CreateReview$Params } from '../fn/customer-review/create-review';
+import { isUserReviewBeingApproved } from '../fn/customer-review/is-user-review-being-approved';
+import { IsUserReviewBeingApproved$Params } from '../fn/customer-review/is-user-review-being-approved';
+import { ModelsTrueFalse } from '../models/models-true-false';
 
 
 /**
@@ -54,6 +57,39 @@ export class CustomerReviewService extends BaseService {
   createReview(params?: CreateReview$Params, context?: HttpContext): Observable<void> {
     return this.createReview$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `isUserReviewBeingApproved()` */
+  static readonly IsUserReviewBeingApprovedPath = '/api/review/customer/isBeingApproved';
+
+  /**
+   * Zjištění zda se uživatelova recenze schvaluje.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `isUserReviewBeingApproved()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  isUserReviewBeingApproved$Response(params: IsUserReviewBeingApproved$Params, context?: HttpContext): Observable<StrictHttpResponse<ModelsTrueFalse>> {
+    return isUserReviewBeingApproved(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Zjištění zda se uživatelova recenze schvaluje.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `isUserReviewBeingApproved$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  isUserReviewBeingApproved(params: IsUserReviewBeingApproved$Params, context?: HttpContext): Observable<ModelsTrueFalse> {
+    return this.isUserReviewBeingApproved$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ModelsTrueFalse>): ModelsTrueFalse => r.body)
     );
   }
 

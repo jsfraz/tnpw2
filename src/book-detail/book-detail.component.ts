@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ReviewService } from '../app/api/services/review.service';
 import { ModelsReview } from '../app/api/models/models-review';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { CustomerReviewService } from '../app/api/services/customer-review.service';
 
 @Component({
@@ -25,10 +25,10 @@ export class BookDetailComponent implements OnInit {
   showForm: boolean = false;
   isInWish: boolean = false;
   reviews: ModelsReview[] = [];
-
   reviewRating: number = 5;
   reviewText: string = '';
-
+  // Indikuje zda recenze čeká na schválení
+  reviewWaiting: boolean = false;
 
   constructor(public bookService: BookService, private cartService: CartService, private route: ActivatedRoute, public authService: AuthService, private router: Router, private wishService: WishlistService, private reviewService: ReviewService, private customerReviewService: CustomerReviewService) { }
 
@@ -46,6 +46,7 @@ export class BookDetailComponent implements OnInit {
               if (this.authService.currentUser.role == 'customer') {
                 this.isInCartLoad();
                 this.isInWishLoad();
+                this.loadIsReviewWaiting();
               }
             }
             this.loadReviews();
@@ -210,37 +211,53 @@ export class BookDetailComponent implements OnInit {
   }
 
   // Odeslání recenze ke schválení
- submitReview() {
-  if (!this.book || !this.authService.currentUser) {
-    return;
-  }
+  submitReview() {
+    // Převod reviewRating z řetězce na číslo
+    const rating = Number(this.reviewRating); // Používáme Number() pro převod
 
-  // Převod reviewRating z řetězce na číslo
-  const rating = Number(this.reviewRating); // Používáme Number() pro převod
-
-  if (isNaN(rating) || rating < 1 || rating > 5) {
-    alert('Hodnocení musí být číslo od 1 do 5.');
-    return;
-  }
-
-  const newReview = {
-    bookId: this.book.id,
-    userId: this.authService.currentUser.id,
-    text: this.reviewText,
-    stars: rating,
-    approved: false
-  };
-
-  this.customerReviewService.createReview({ body: newReview }).subscribe({
-    next: () => {
-      alert('Recenze byla odeslána ke schválení.');
-      this.reviewText = '';
-      this.reviewRating = 5;
-    },
-    error: (e) => {
-      console.error('Chyba při odesílání recenze:', e);
-      alert(JSON.stringify(e));
+    if (isNaN(rating) || rating < 1 || rating > 5) {
+      alert('Hodnocení musí být číslo od 1 do 5.');
+      return;
     }
-  });
-}
+
+    const newReview = {
+      bookId: this.book!.id,
+      userId: this.authService.currentUser!.id,
+      text: this.reviewText,
+      stars: rating,
+      approved: false
+    };
+
+    this.customerReviewService.createReview({ body: newReview }).subscribe({
+      next: () => {
+        this.reviewText = '';
+        this.reviewRating = 5;
+      },
+      error: (e) => {
+        console.error(e);
+        alert(JSON.stringify(e));
+      },
+      complete: () => {
+        this.reviewWaiting = true;
+      }
+    });
+  }
+
+  // Vrátí zda užuživatel knihu zrecenzoval
+  hasReview() {
+    return this.reviews.some(review => review.user.id == this.authService.currentUser!.id);
+  }
+
+  loadIsReviewWaiting() {
+    this.customerReviewService.isUserReviewBeingApproved({ id: this.book!.id }).subscribe({
+      next: (v) => {
+        this.reviewWaiting = v.value;
+      },
+      error: (e) => {
+        console.error('Chyba při odesílání recenze:', e);
+        alert(JSON.stringify(e));
+      },
+      complete: () => { },
+    });
+  }
 }

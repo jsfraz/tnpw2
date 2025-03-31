@@ -14,8 +14,8 @@
 </div>
 }
 <div class="container">
-        <div class="ohraniceni">
-            <div class="kniha-container">
+    <div class="ohraniceni">
+        <div class="kniha-container">
             @if (book) {
             <div class="obrazek">
                 @if (book.hasImage) {
@@ -64,48 +64,68 @@
                     isInWish ? 'Odebrat ze seznamu přání' : 'Přidat do Seznamu přání' }}</button>
             </div>
             }
+        </div>
+        <hr>
+        <!-- Sekce pro recenze -->
+        <div class="reviews-section">
+            <h2>Recenze</h2>
+
+            <!-- Formulář pro přidání recenze -->
+            <div class="review-form">
+                <h3>Přidat recenci</h3>
+                <!-- Recenze pouzte pro přihlášeného uživatele -->
+                @if (this.authService.currentUser != null) {
+                <!-- Kontrola zda recenze čeká na schválení -->
+                @if (reviewWaiting) {
+                <p>Vaše recenze čeká na schválení.</p>
+                } @else {
+                <!-- Kontrola zda uživatel už udělil recenzi -->
+                @if (hasReview()) {
+                <p>Už jste udělil recenzi k této knize.</p>
+                } @else {
+                <div class="rating-input">
+                    <span>Hodnocení:</span>
+                    <select [(ngModel)]="reviewRating">
+                        <option value="1">1 hvězdička</option>
+                        <option value="2">2 hvězdičky</option>
+                        <option value="3">3 hvězdičky</option>
+                        <option value="4">4 hvězdičky</option>
+                        <option value="5">5 hvězdiček</option>
+                    </select>
+                </div>
+                <textarea placeholder="Napište svoji recenzi..." class="review-textarea" [(ngModel)]="reviewText"
+                    maxlength="500"></textarea>
+                <button class="submit-review" (click)="submitReview()">Odeslat recenzi</button>
+                }
+                }
+                } @else {
+                <p style="color: white; text-decoration: underline; cursor: pointer;" (click)="cartButtonRedirect()">Pro
+                    přidání recenze se musíte přihlásit</p>
+                }
             </div>
-            <hr>
-            <!-- Sekce pro recenze -->
-            <div class="reviews-section">
-                <h2>Recenze</h2>
 
-                <!-- Formulář pro přidání recenze -->
-                <div class="review-form">
-                    <h3>Přidat recenci</h3>
-                    <div class="rating-input">
-                        <span>Hodnocení:</span>
-                        <select [(ngModel)]="reviewRating">
-                            <option value="1">1 hvězdička</option>
-                            <option value="2">2 hvězdičky</option>
-                            <option value="3">3 hvězdičky</option>
-                            <option value="4">4 hvězdičky</option>
-                            <option value="5">5 hvězdiček</option>
-                        </select>
+            <!-- Seznam existujících recenzí -->
+            <div class="reviews-list">
+                <h3>Všechny recenze</h3>
+                <br>
+                @for (review of reviews; track review.id) {
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-author">{{ review.user.firstName }} {{ review.user.lastName }}</span>
+                        <span class="review-rating">{{ review.stars }}/5</span>
+                        @if (this.authService.currentUser != null) {
+                        @if (this.authService.currentUser.id == review.user.id) {
+                        <!-- TODO fancy tlačítko-->
+                        <button>Upravit</button>
+                        }}
                     </div>
-                    <textarea placeholder="Napište svoji recenzi..." class="review-textarea" [(ngModel)]="reviewText" maxlength="500"></textarea>
-                    <button class="submit-review" (click)="submitReview()">Odeslat recenzi</button>
+                    <hr>
+                    <p class="review-text">{{ review.text }}</p>
                 </div>
-
-                <!-- Seznam existujících recenzí -->
-                <div class="reviews-list">
-                    <h3>Všechny recenze</h3>
-                    <br>
-                    @for (review of reviews; track review.id) {
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="review-author">{{ review.user.firstName }} {{ review.user.lastName }}</span>
-                            <span class="review-rating">{{ review.stars }}/5</span>
-                            @if (this.authService.currentUser != null) {
-                            @if (this.authService.currentUser.id == review.userId) {
-                                <button>Upravit</button>
-                            }}
-                        </div>
-                        <hr>
-                        <p class="review-text">{{ review.text }}</p>
-                    </div>
-                    }
-                </div>
+                } @empty {
+                <p>Zatím tu nejsou žádné recenze :(</p>
+                }
             </div>
         </div>
+    </div>
 </div>
