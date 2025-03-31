@@ -83,7 +83,7 @@
                             <option value="5">5 hvězdiček</option>
                         </select>
                     </div>
-                    <textarea placeholder="Napište svoji recenzi..." class="review-textarea" [(ngModel)]="reviewText"></textarea>
+                    <textarea placeholder="Napište svoji recenzi..." class="review-textarea" [(ngModel)]="reviewText" maxlength="500"></textarea>
                     <button class="submit-review" (click)="submitReview()">Odeslat recenzi</button>
                 </div>
 
@@ -96,6 +96,10 @@
                         <div class="review-header">
                             <span class="review-author">{{ review.user.firstName }} {{ review.user.lastName }}</span>
                             <span class="review-rating">{{ review.stars }}/5</span>
+                            @if (this.authService.currentUser != null) {
+                            @if (this.authService.currentUser.id == review.userId) {
+                                <button>Upravit</button>
+                            }}
                         </div>
                         <hr>
                         <p class="review-text">{{ review.text }}</p>

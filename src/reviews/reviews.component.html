@@ -5,9 +5,12 @@
   <div class="review-item">
     <div class="review-content">
       <p><strong>{{ review.user?.firstName }} {{ review.user?.lastName }}</strong></p>
+      <hr>
       <p>Hodnocení: {{ review.stars }}/5</p>
+      <hr>
       <p>{{ review.text }}</p>
     </div>
+    <hr>
     <div class="review-actions">
       <button class="approve-btn" (click)="approveReview(review.id)">Schválit</button>
       <button class="reject-btn" (click)="rejectReview(review.id)">Zamítnout</button>
