@@ -75,7 +75,7 @@
                     <h3>Přidat recenci</h3>
                     <div class="rating-input">
                         <span>Hodnocení:</span>
-                        <select>
+                        <select [(ngModel)]="reviewRating">
                             <option value="1">1 hvězdička</option>
                             <option value="2">2 hvězdičky</option>
                             <option value="3">3 hvězdičky</option>
@@ -83,8 +83,8 @@
                             <option value="5">5 hvězdiček</option>
                         </select>
                     </div>
-                    <textarea placeholder="Napište svoji recenzi..." class="review-textarea"></textarea>
-                    <button class="submit-review">Odeslat recenzi</button>
+                    <textarea placeholder="Napište svoji recenzi..." class="review-textarea" [(ngModel)]="reviewText"></textarea>
+                    <button class="submit-review" (click)="submitReview()">Odeslat recenzi</button>
                 </div>
 
                 <!-- Seznam existujících recenzí -->

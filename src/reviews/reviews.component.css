@@ -1,0 +1,56 @@
+.admin-reviews {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .admin-reviews h2{
+    color: #fafafa;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .review-item {
+    background-color: #0c192c;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #1f4174;
+    margin: 30px;
+    width: calc(33.33% - 60px); 
+  }
+  
+  .review-content {
+    color: #fafafa; 
+  }
+  
+  .review-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .approve-btn, .reject-btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .approve-btn {
+    background-color: #00ccff;
+    color: #ffffff;
+  }
+  
+  .reject-btn {
+    background-color: #ff3333;
+    color: #ffffff;
+  }
+  
