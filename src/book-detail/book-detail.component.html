@@ -90,12 +90,14 @@
                 <!-- Seznam existujících recenzí -->
                 <div class="reviews-list">
                     <h3>Všechny recenze</h3>
+                    <br>
                     @for (review of reviews; track review.id) {
                     <div class="review-item">
                         <div class="review-header">
                             <span class="review-author">{{ review.user.firstName }} {{ review.user.lastName }}</span>
                             <span class="review-rating">{{ review.stars }}/5</span>
                         </div>
+                        <hr>
                         <p class="review-text">{{ review.text }}</p>
                     </div>
                     }
