@@ -41,6 +41,7 @@ export class BookDetailComponent implements OnInit {
                 this.isInWishLoad();
               }
             }
+            this.loadReviews();
           },
           error: (e) => {
             console.error(e);
@@ -195,6 +196,7 @@ export class BookDetailComponent implements OnInit {
       },
       error: (e) => {
         console.error(e);
+        alert(JSON.stringify(e));
       },
       complete: () => { },
     });
