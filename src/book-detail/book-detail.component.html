@@ -72,7 +72,6 @@
 
             <!-- Formulář pro přidání recenze -->
             <div class="review-form">
-                <h3>Přidat recenci</h3>
                 <!-- Recenze pouzte pro přihlášeného uživatele -->
                 @if (this.authService.currentUser != null) {
                 <!-- Kontrola zda recenze čeká na schválení -->
@@ -83,6 +82,7 @@
                 @if (hasReview()) {
                 <p>Už jste udělil recenzi k této knize.</p>
                 } @else {
+                <h3>Přidat recenzi</h3>
                 <div class="rating-input">
                     <span>Hodnocení:</span>
                     <select [(ngModel)]="reviewRating">
