@@ -28,6 +28,7 @@
       <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Žánry</a></li>
       <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
       }
+      <!-- TODO komponent pro schvalování recenzí -->
       <div>
         <li class="user-name">
           <i class="fas {{this.authService.currentUser.role == 'admin' ? 'fa-cog' : 'fa-user'}}"

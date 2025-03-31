@@ -22,7 +22,7 @@
             <img [src]="imageUrl" style="width: 100px; height: 100px; margin-left: 20px;">
           </div>
           } @else {
-          <!-- TODO placeholder obrázek -->
+          <!-- TODO placeholder ikona -->
           }
           <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept=".jpg" />
           <button mat-raised-button class="upload-btn" (click)="fileInput.click()">Vybrat obrázek</button>

@@ -7,6 +7,8 @@ import { AuthService } from '../app/shared/auth.service';
 import { RouterLink } from '@angular/router';
 import { WishlistService } from '../app/api/services/wishlist.service';
 import { CommonModule } from '@angular/common';
+import { ReviewService } from '../app/api/services/review.service';
+import { ModelsReview } from '../app/api/models/models-review';
 
 @Component({
   selector: 'app-book-detail',
@@ -19,8 +21,9 @@ export class BookDetailComponent implements OnInit {
   isInCart: boolean = false;
   showForm: boolean = false;
   isInWish: boolean = false;
+  reviews: ModelsReview[] = [];
 
-  constructor(public bookService: BookService, private cartService: CartService, private route: ActivatedRoute, public authService: AuthService, private router: Router, private wishService: WishlistService) { }
+  constructor(public bookService: BookService, private cartService: CartService, private route: ActivatedRoute, public authService: AuthService, private router: Router, private wishService: WishlistService, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
     // Načtení knihy podle ID z URL
@@ -153,12 +156,6 @@ export class BookDetailComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
   // Zjištění, zda je tlačítko zakázáno
   isCartButtonDisabled() {
     if (this.authService.currentUser == null) {
@@ -186,5 +183,20 @@ export class BookDetailComponent implements OnInit {
     } else {
       this.cartButtonRedirect();
     }
+  }
+
+  // Načtení hodnocení knihy
+  loadReviews(): void {
+    this.reviewService.getApprovedReviewsByBookId({
+      id: this.book!.id
+    }).subscribe({
+      next: (v) => {
+        this.reviews = v;
+      },
+      error: (e) => {
+        console.error(e);
+      },
+      complete: () => { },
+    });
   }
 }
