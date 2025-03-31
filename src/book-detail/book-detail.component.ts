@@ -29,6 +29,8 @@ export class BookDetailComponent implements OnInit {
   reviewText: string = '';
   // Indikuje zda recenze čeká na schválení
   reviewWaiting: boolean = false;
+  // Uživatelova recenze
+  userReview: ModelsReview | null = null;
 
   constructor(public bookService: BookService, private cartService: CartService, private route: ActivatedRoute, public authService: AuthService, private router: Router, private wishService: WishlistService, private reviewService: ReviewService, private customerReviewService: CustomerReviewService) { }
 
@@ -201,6 +203,7 @@ export class BookDetailComponent implements OnInit {
     }).subscribe({
       next: (v) => {
         this.reviews = v;
+        this.userReview = this.reviews.find(review => review.user.id == this.authService.currentUser!.id) || null;
       },
       error: (e) => {
         console.error(e);
@@ -243,11 +246,7 @@ export class BookDetailComponent implements OnInit {
     });
   }
 
-  // Vrátí zda užuživatel knihu zrecenzoval
-  hasReview() {
-    return this.reviews.some(review => review.user.id == this.authService.currentUser!.id);
-  }
-
+  // Načtení zda je recenze čekající na schválení
   loadIsReviewWaiting() {
     this.customerReviewService.isUserReviewBeingApproved({ id: this.book!.id }).subscribe({
       next: (v) => {

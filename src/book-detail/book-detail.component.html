@@ -79,8 +79,24 @@
                 <p>Vaše recenze čeká na schválení.</p>
                 } @else {
                 <!-- Kontrola zda uživatel už udělil recenzi -->
-                @if (hasReview()) {
-                <p>Už jste udělil recenzi k této knize.</p>
+                @if (userReview != null) {
+                <p>Vaše recenze:</p>
+                <div class="review-item" style="margin-top: 15px;">
+                    <div class="review-header">
+                        <span class="review-author">{{ userReview.user.firstName }} {{ userReview.user.lastName }}</span>
+                        <span class="review-rating">{{ userReview.stars }}/5</span>
+                        @if (this.authService.currentUser != null) {
+                        @if (this.authService.currentUser.id == userReview.user.id) {
+                        <!-- TODO fancy tlačítka -->
+                        <span>
+                            <button>Upravit</button>
+                            <button>Smazat</button>
+                        </span>
+                        }}
+                    </div>
+                    <hr>
+                    <p class="review-text">{{ userReview.text }}</p>
+                </div>
                 } @else {
                 <h3>Přidat recenzi</h3>
                 <div class="rating-input">
@@ -113,11 +129,6 @@
                     <div class="review-header">
                         <span class="review-author">{{ review.user.firstName }} {{ review.user.lastName }}</span>
                         <span class="review-rating">{{ review.stars }}/5</span>
-                        @if (this.authService.currentUser != null) {
-                        @if (this.authService.currentUser.id == review.user.id) {
-                        <!-- TODO fancy tlačítko-->
-                        <button>Upravit</button>
-                        }}
                     </div>
                     <hr>
                     <p class="review-text">{{ review.text }}</p>
