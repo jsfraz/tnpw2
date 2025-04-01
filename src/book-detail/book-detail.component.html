@@ -83,7 +83,8 @@
                 <p>Vaše recenze:</p>
                 <div class="review-item" style="margin-top: 15px;">
                     <div class="review-header">
-                        <span class="review-author">{{ userReview.user.firstName }} {{ userReview.user.lastName }}</span>
+                        <span class="review-author">{{ userReview.user.firstName }} {{ userReview.user.lastName
+                            }}</span>
                         <span class="review-rating">{{ userReview.stars }}/5</span>
                         @if (this.authService.currentUser != null) {
                         @if (this.authService.currentUser.id == userReview.user.id) {
@@ -98,6 +99,8 @@
                     <p class="review-text">{{ userReview.text }}</p>
                 </div>
                 } @else {
+                <!-- Recenzi může psát pouze zákazník -->
+                @if (this.authService.currentUser.role == 'customer') {
                 <h3>Přidat recenzi</h3>
                 <div class="rating-input">
                     <span>Hodnocení:</span>
@@ -112,6 +115,9 @@
                 <textarea placeholder="Napište svoji recenzi..." class="review-textarea" [(ngModel)]="reviewText"
                     maxlength="500"></textarea>
                 <button class="submit-review" (click)="submitReview()">Odeslat recenzi</button>
+                } @else {
+                <p>Nelze přidat recenzi.</p>
+                }
                 }
                 }
                 } @else {
