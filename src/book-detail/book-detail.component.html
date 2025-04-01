@@ -104,13 +104,11 @@
                 <h3>Přidat recenzi</h3>
                 <div class="rating-input">
                     <span>Hodnocení:</span>
-                    <select [(ngModel)]="reviewRating">
-                        <option value="1">1 hvězdička</option>
-                        <option value="2">2 hvězdičky</option>
-                        <option value="3">3 hvězdičky</option>
-                        <option value="4">4 hvězdičky</option>
-                        <option value="5">5 hvězdiček</option>
-                    </select>
+                    <div class="rating-stars">
+                        @for (star of [1, 2, 3, 4, 5]; track star) {
+                          <i class="fas fa-star" [class.checked]="star <= reviewRating" (click)="setRating(star)"></i>
+                        }
+                      </div>
                 </div>
                 <textarea placeholder="Napište svoji recenzi..." class="review-textarea" [(ngModel)]="reviewText"
                     maxlength="500"></textarea>

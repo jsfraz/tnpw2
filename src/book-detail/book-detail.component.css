@@ -19,6 +19,21 @@ h4{
    display: flex;
 }
 
+.rating-stars {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .rating-stars i {
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .rating-stars i.checked {
+    color: #00ccff
+  }
+
 .obrazek {
     max-height: 540px;
     padding: 20px;

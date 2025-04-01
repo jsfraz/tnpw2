@@ -213,6 +213,10 @@ export class BookDetailComponent implements OnInit {
     });
   }
 
+  setRating(rating: number) {
+    this.reviewRating = rating;
+  }
+
   // Odeslání recenze ke schválení
   submitReview() {
     // Převod reviewRating z řetězce na číslo
