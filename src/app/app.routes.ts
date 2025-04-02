@@ -11,6 +11,7 @@ import { HomeComponent } from '../home/home.component';
 import { BookDetailComponent } from '../book-detail/book-detail.component';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ReviewsComponent } from '../reviews/reviews.component';
+import { KonecComponent } from '../konec/konec.component';
 
 export const routes: Routes = [
     // Přihlášení
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
     { path: 'book-detail', component: BookDetailComponent },
     { path: 'reviews', component: ReviewsComponent },
+    { path: 'konec', component: KonecComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

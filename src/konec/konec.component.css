@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 80%;
+    width: 80%;
+    margin: 100px;
+}
+
+.items {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    border: 1px solid #1f4174;
+    padding: 10px;
+    color: #fafafa;
+    margin-left: 300px;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-group {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+.form-next {
+    display: flex;
+    flex-direction: row;
+} 
+
+.kniha {
+    color: #fafafa;
+    width: 90%;
+    height: 25%;
+    background-color: #0e1d33;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: 1px solid #172f52;
+    padding: 1%;
+    box-shadow: 0 2px 4px rgb(5, 5, 5);
+    display: flex;
+    cursor: pointer;
+}
+
+.obrazek {
+    width: 85%;
+    height: 100%;
+    align-items: center; 
+    justify-content: center;
+    display: flex;
+}
+
+.obrazekDiv {
+    width: 8%;
+    height: 100%;
+}
+
+.cenaDiv {
+    width: 30%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.nazevKnihy {
+    width: 60%;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+    display: table-column;
+    font-size: 15px;
+}
