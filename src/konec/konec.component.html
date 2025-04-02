@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="forms"> 
+    <div class="content-wrapper">
+        <div class="forms"> 
           <div class="form-next">
             <mat-form-field class="form-group">
                 <mat-label>Křestní jméno</mat-label>
@@ -45,41 +46,42 @@
                 <input matInput placeholder="Zadejte PSČ" [formControl]="psc">
             </mat-form-field>
           </div>
-    </div>
+        </div>
 
-    <div class="items">
-        Váš košík
-        @for (book of books; track book.id) {
-            <div class="kniha">
-                <div class="obrazekDiv" (click)="bookCardClicked(book.id)">
-                    <div class="obrazek">
-                        @if (book.hasImage) {
-                        <img [src]="cartService.rootUrl + '/api/book/image/' + book.id" class="obrazek">
-                        } @else {
-                        <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
-                        }
+        <div class="items">
+            Váš košík
+            @for (book of books; track book.id) {
+                <div class="kniha">
+                    <div class="obrazekDiv" (click)="bookCardClicked(book.id)">
+                        <div class="obrazek">
+                            @if (book.hasImage) {
+                            <img [src]="cartService.rootUrl + '/api/book/image/' + book.id" class="obrazek">
+                            } @else {
+                            <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
+                            }
+                        </div>
+                    </div>
+                    <div class="nazevKnihy" (click)="bookCardClicked(book.id)">
+                        <h2>{{ book.name }}</h2>
+                        <br>
+                        <h4 style="color:gray;">{{ book.author.firstName }} {{ book.author.lastName }}</h4>
+                    </div>
+        
+                    <div class="cenaDiv">
+                        <h2 class="cena">Cena: </h2>
+                        <h2 class="cenaCislo">{{ book.price }},-</h2>
+                        <button class="smazatButton" (click)="removeBook(book.id)">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="nazevKnihy" (click)="bookCardClicked(book.id)">
-                    <h2>{{ book.name }}</h2>
-                    <br>
-                    <h4 style="color:gray;">{{ book.author.firstName }} {{ book.author.lastName }}</h4>
+                } @empty {
+                @if (loading) {
+                <div class="spinner-container">
+                    <mat-spinner></mat-spinner>
                 </div>
-    
-                <div class="cenaDiv">
-                    <h2 class="cena">Cena: </h2>
-                    <h2 class="cenaCislo">{{ book.price }},-</h2>
-                    <button class="smazatButton" (click)="removeBook(book.id)">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-            } @empty {
-            @if (loading) {
-            <div class="spinner-container">
-                <mat-spinner></mat-spinner>
-            </div>
-            }
-            }
+                }
+                }
+        </div>
     </div>
 </div>

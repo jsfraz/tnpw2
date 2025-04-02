@@ -1,31 +1,44 @@
 .container {
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    height: 80%;
-    width: 80%;
-    margin: 100px;
+    width: 100%;
+    padding: 20px;
+    margin-top: 100px;
 }
 
-.items {
+.content-wrapper {
     display: flex;
-    justify-items: center;
-    flex-direction: column;
-    border: 1px solid #1f4174;
-    padding: 10px;
-    color: #fafafa;
-    margin-left: 300px;
+    width: 100%;
+    gap: 20px;
 }
 
 .forms {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding: 20px;
+    background-color: #0e1d33;
+    border-radius: 10px;
+    max-height: 500px;
+    border: 1px solid #172f52;
+}
+
+.items {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #0e1d33;
+    border-radius: 10px;
+    border: 1px solid #172f52;
+    color: #fafafa;
 }
 
 .form-group {
     margin-top: 10px;
     width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
 .form-next {
@@ -50,7 +63,8 @@
 }
 
 .obrazek {
-    width: 85%;
+    width: 90%;
+    min-width: 55px;
     height: 100%;
     align-items: center; 
     justify-content: center;
@@ -78,4 +92,16 @@
     align-items: center;
     display: table-column;
     font-size: 15px;
+}
+
+.smazatButton {
+    width: 15%;
+    height: 35%;
+    border-radius: 15px;
+    border: #0e1d33 1px solid;
+    background-color: #0e1d33;
+    margin-left: 20%;
+    margin-right: 5%;
+    color: #fafafa;
+    font-size: 25px;
 }
