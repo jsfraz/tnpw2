@@ -12,6 +12,7 @@ import { AuthorManagementService } from './services/author-management.service';
 import { BookService } from './services/book.service';
 import { BookManagementService } from './services/book-management.service';
 import { CartService } from './services/cart.service';
+import { DashboardService } from './services/dashboard.service';
 import { GenreService } from './services/genre.service';
 import { GenreManagementService } from './services/genre-management.service';
 import { ReviewService } from './services/review.service';
@@ -35,6 +36,7 @@ import { WishlistService } from './services/wishlist.service';
     BookService,
     BookManagementService,
     CartService,
+    DashboardService,
     GenreService,
     GenreManagementService,
     ReviewService,

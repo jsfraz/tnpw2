@@ -8,6 +8,7 @@ export type { AuthorManagementService } from './services/author-management.servi
 export type { BookService } from './services/book.service';
 export type { BookManagementService } from './services/book-management.service';
 export type { CartService } from './services/cart.service';
+export type { DashboardService } from './services/dashboard.service';
 export type { GenreService } from './services/genre.service';
 export type { GenreManagementService } from './services/genre-management.service';
 export type { ReviewService } from './services/review.service';

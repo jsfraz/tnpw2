@@ -6,7 +6,7 @@ import { KosikComponent } from '../kosik/kosik.component';
 import { UsersComponent } from '../users/users.component';
 import { AuthorsComponent } from '../authors/authors.component';
 import { GenresComponent } from '../genres/genres.component';
-import { AuthGuard } from './shared/aut.guard';
+import { AuthGuard } from './shared/auth.guard';
 import { HomeComponent } from '../home/home.component';
 import { BookDetailComponent } from '../book-detail/book-detail.component';
 import { WishlistComponent } from '../wishlist/wishlist.component';
@@ -25,8 +25,8 @@ export const routes: Routes = [
     { path: 'genres', component: GenresComponent, canActivate: [AuthGuard] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
     { path: 'book-detail', component: BookDetailComponent },
-    { path: 'reviews', component: ReviewsComponent },
-    { path: 'konec', component: KonecComponent },
+    { path: 'reviews', component: ReviewsComponent, canActivate: [AuthGuard] },
+    { path: 'konec', component: KonecComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
