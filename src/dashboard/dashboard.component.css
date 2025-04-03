@@ -11,6 +11,30 @@
   flex-wrap: wrap;
 }
 
+.Cudl {
+  border: #00ccff 1px solid;
+  border-radius: 5px;
+  padding: 12px;
+  background-color: #0c192c;
+  color: #fafafa;
+  margin-right: 5%;
+  font-size: 17px;
+}
+
+hr {
+  background-color: #0087a93a;
+  height: 1px;
+  border: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.Cudl:hover {
+  border: #0088a9 1px solid;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
 mat-card {
   margin: 20px 0;
 }

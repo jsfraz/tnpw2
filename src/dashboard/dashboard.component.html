@@ -1,18 +1,20 @@
 <div class="dashboard-container">
   <h1>Admin Dashboard</h1>
+<hr>
 
   <!-- Tlačítka pro načítání dat -->
   <div class="controls">
-    <button mat-raised-button color="primary" (click)="showView('bookStats')">Statistiky knih</button>
-    <button mat-raised-button color="accent" (click)="showView('popularityStats')">Popularita knih</button>
-    <button mat-raised-button color="warn" (click)="showView('customerActivity')">Aktivita zákazníků</button>
+    <button class="Cudl" mat-raised-button color="primary" (click)="showView('bookStats')">Statistiky knih</button>
+    <button class="Cudl" mat-raised-button color="accent" (click)="showView('popularityStats')">Popularita knih</button>
+    <button class="Cudl" mat-raised-button color="warn" (click)="showView('customerActivity')">Aktivita zákazníků</button>
   </div>
 
   <!-- Statistiky knih -->
   @if (activeView === 'bookStats' && bookStats.length > 0) {
     <div class="card">
       <div class="card-header">
-        <h3>Statistiky knih</h3>
+        <h2>Statistiky knih</h2>
+        <hr>
       </div>
       <div class="card-body">
         <table class="table table-striped">
@@ -43,7 +45,8 @@
   @if (activeView === 'popularityStats' && popularityStats.length > 0) {
     <div class="card">
       <div class="card-header">
-        <h3>Popularita knih</h3>
+        <h2>Popularita knih</h2>
+        <hr>
       </div>
       <div class="card-body">
         <table class="table table-striped">
@@ -74,7 +77,8 @@
   @if (activeView === 'customerActivity' && customerActivities.length > 0) {
     <div class="card">
       <div class="card-header">
-        <h3>Aktivita zákazníků</h3>
+        <h2>Aktivita zákazníků</h2>
+        <hr>
       </div>
       <div class="card-body">
         <table class="table table-striped">
