@@ -1,1 +1,103 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <h1>Admin Dashboard</h1>
+
+  <!-- Tlačítka pro načítání dat -->
+  <div class="controls">
+    <button mat-raised-button color="primary" (click)="showView('bookStats')">Statistiky knih</button>
+    <button mat-raised-button color="accent" (click)="showView('popularityStats')">Popularita knih</button>
+    <button mat-raised-button color="warn" (click)="showView('customerActivity')">Aktivita zákazníků</button>
+  </div>
+
+  <!-- Statistiky knih -->
+  @if (activeView === 'bookStats' && bookStats.length > 0) {
+    <div class="card">
+      <div class="card-header">
+        <h3>Statistiky knih</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Autor</th>
+              <th>Kniha</th>
+              <th>Prodaných kusů</th>
+              <th>Celkový výnos</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (stat of bookStats; track stat.bookId) {
+              <tr>
+                <td>{{ stat.authorName }}</td>
+                <td>{{ stat.bookName }}</td>
+                <td>{{ stat.totalSales }}</td>
+                <td>{{ stat.totalRevenue }} Kč</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+
+  <!-- Popularita knih -->
+  @if (activeView === 'popularityStats' && popularityStats.length > 0) {
+    <div class="card">
+      <div class="card-header">
+        <h3>Popularita knih</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Kniha</th>
+              <th>Žánr</th>
+              <th>Počet recenzí</th>
+              <th>Průměrné hodnocení</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (stat of popularityStats; track stat.book_id) {
+              <tr>
+                <td>{{ stat.book_name }}</td>
+                <td>{{ stat.genre_name }}</td>
+                <td>{{ stat.total_reviews }}</td>
+                <td>{{ stat.average_rating }}/5</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+
+  <!-- Aktivita zákazníků -->
+  @if (activeView === 'customerActivity' && customerActivities.length > 0) {
+    <div class="card">
+      <div class="card-header">
+        <h3>Aktivita zákazníků</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Jméno</th>
+              <th>E-mail</th>
+              <th>Celkové objednávky</th>
+              <th>Celkem utraceno</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (activity of customerActivities; track activity.userId) {
+              <tr>
+                <td>{{ activity.fullName }}</td>
+                <td>{{ activity.email }}</td>
+                <td>{{ activity.totalOrders }}</td>
+                <td>{{ activity.totalSpent }} Kč</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+</div>

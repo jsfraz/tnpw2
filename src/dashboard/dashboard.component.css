@@ -1,0 +1,57 @@
+.dashboard-container {
+  padding: 20px;
+  margin: 55px;
+  color: #fafafa;
+}
+
+.controls {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+mat-card {
+  margin: 20px 0;
+}
+
+.error-card {
+  background-color: #ffebee;
+  color: #b71c1c;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  background: #0c192c;
+  color: #edf0f1;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+td {
+  border: 1px solid #30798a;
+  padding: 10px;
+  text-align: left;
+  font-weight: 400;
+}
+
+tr:hover {
+  background-color: rgba(79, 195, 220, 0.2);
+}
+
+th {
+  border: 1px solid #4fc3dc;
+  font-weight: 400;
+  font-style: italic;
+}

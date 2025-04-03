@@ -12,6 +12,7 @@ import { BookDetailComponent } from '../book-detail/book-detail.component';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ReviewsComponent } from '../reviews/reviews.component';
 import { KonecComponent } from '../konec/konec.component';
+import { DashboardComponent } from '../dashboard/dashboard.component'; 
 
 export const routes: Routes = [
     // Přihlášení
@@ -27,6 +28,7 @@ export const routes: Routes = [
     { path: 'book-detail', component: BookDetailComponent },
     { path: 'reviews', component: ReviewsComponent, canActivate: [AuthGuard] },
     { path: 'konec', component: KonecComponent, canActivate: [AuthGuard] },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
