@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 import { AuthService } from './shared/auth.service';
 import { UserService } from './api/services/user.service';
@@ -10,6 +10,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from './api/services/cart.service';
+import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive, MatIconModule, MatDividerModule, MatButtonModule, MatBadgeModule],
@@ -20,7 +22,15 @@ export class AppComponent implements OnInit {
   title = 'DBS2_Frontend';
   cartItemCount = 0;
 
-  constructor(public authService: AuthService, private userService: UserService, public router: Router, private cartService: CartService) { }
+  constructor(public authService: AuthService, private userService: UserService, public router: Router, private cartService: CartService) {
+    // Sledování změn routy a aktualizace počtu položek v košíku
+    // Kontrola změny by mohla probíhat i v jiných komponentech, avšak implementace by byla náročnější
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.loadCartItemCount();
+    });
+  }
 
   ngOnInit(): void {
     // Načtení kdo jsem
