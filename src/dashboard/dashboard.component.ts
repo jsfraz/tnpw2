@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { DashboardService } from '../app/api/services/dashboard.service';
-import { finalize } from 'rxjs/operators';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -9,7 +7,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { ModelsBookPopularityStat, ModelsBookStat, ModelsCustomerActivity } from '../app/api/models';
 @Component({
   selector: 'app-dashboard',
-  imports: [MatProgressSpinner, MatCardModule, MatListModule, MatDatepickerModule],
+  imports: [MatCardModule, MatListModule, MatDatepickerModule],
   providers: [provideNativeDateAdapter()],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -18,16 +16,16 @@ export class DashboardComponent {
   isLoading = false;
   error = '';
   activeView: string = '';
-  
+
   bookStats: ModelsBookStat[] = [];
   popularityStats: ModelsBookPopularityStat[] = [];
   customerActivities: ModelsCustomerActivity[] = [];
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService) { }
 
   showView(view: string) {
     this.activeView = view;
-    this.error = ''; 
+    this.error = '';
     this.isLoading = true;
 
     switch (view) {

@@ -3,15 +3,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModelsBook } from '../app/api/models/models-book';
-import { BookService } from '../app/api/services/book.service';
 import { CartService } from '../app/api/services/cart.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
-import { RouterLinkActive } from '@angular/router';
 @Component({
     selector: 'app-books',
-    imports: [RouterLink, RouterLinkActive, MatSliderModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule],
+    imports: [RouterLink, MatSliderModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule],
     templateUrl: './kosik.component.html',
     styleUrl: './kosik.component.css'
 })

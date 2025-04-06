@@ -15,9 +15,12 @@ import { addBookToCart } from '../fn/cart/add-book-to-cart';
 import { AddBookToCart$Params } from '../fn/cart/add-book-to-cart';
 import { getAllBooksInCart } from '../fn/cart/get-all-books-in-cart';
 import { GetAllBooksInCart$Params } from '../fn/cart/get-all-books-in-cart';
+import { getCartCount } from '../fn/cart/get-cart-count';
+import { GetCartCount$Params } from '../fn/cart/get-cart-count';
 import { isBookInCart } from '../fn/cart/is-book-in-cart';
 import { IsBookInCart$Params } from '../fn/cart/is-book-in-cart';
 import { ModelsBook } from '../models/models-book';
+import { ModelsCount } from '../models/models-count';
 import { ModelsTrueFalse } from '../models/models-true-false';
 import { removeBookFromCart } from '../fn/cart/remove-book-from-cart';
 import { RemoveBookFromCart$Params } from '../fn/cart/remove-book-from-cart';
@@ -128,6 +131,39 @@ export class CartService extends BaseService {
   getAllBooksInCart(params?: GetAllBooksInCart$Params, context?: HttpContext): Observable<Array<ModelsBook>> {
     return this.getAllBooksInCart$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<ModelsBook>>): Array<ModelsBook> => r.body)
+    );
+  }
+
+  /** Path part for operation `getCartCount()` */
+  static readonly GetCartCountPath = '/api/cart/count';
+
+  /**
+   * Vrátí počet knih v košíku.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getCartCount()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCartCount$Response(params?: GetCartCount$Params, context?: HttpContext): Observable<StrictHttpResponse<ModelsCount>> {
+    return getCartCount(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Vrátí počet knih v košíku.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getCartCount$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCartCount(params?: GetCartCount$Params, context?: HttpContext): Observable<ModelsCount> {
+    return this.getCartCount$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ModelsCount>): ModelsCount => r.body)
     );
   }
 

@@ -13,6 +13,7 @@ export type { ModelsAuthor } from './models/models-author';
 export type { ModelsBook } from './models/models-book';
 export type { ModelsBookPopularityStat } from './models/models-book-popularity-stat';
 export type { ModelsBookStat } from './models/models-book-stat';
+export type { ModelsCount } from './models/models-count';
 export type { ModelsCustomerActivity } from './models/models-customer-activity';
 export type { ModelsGenre } from './models/models-genre';
 export type { ModelsLoginResponse } from './models/models-login-response';
