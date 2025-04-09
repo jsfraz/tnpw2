@@ -5,7 +5,7 @@
             <h1>Filtry</h1>
 
             <hr>
-            <textarea class="vyhledavaniKnih" placeholder="Název Knihy" [(ngModel)]="bookSearch"></textarea>
+            <input class="vyhledavaniKnih" placeholder="Název Knihy" [(ngModel)]="bookSearch">
             <hr>
             <div class="price">
                 <div class="price-slider">
@@ -28,7 +28,7 @@
                 <div class="scroller">
                     <div class="nazevFiltru">
                         Autor:
-                        <textarea placeholder="Frajer Novotný" class="vyhledavaniFiltru" [(ngModel)]="authorSearch"></textarea>
+                        <input placeholder="Frajer Novotný" class="vyhledavaniFiltru" [(ngModel)]="authorSearch">
                     </div>
                     @for (author of getFilteredAuthors(); track author.id) {
                     <div class="checkbox">
@@ -43,7 +43,7 @@
                 <div class="scroller">
                     <div class="nazevFiltru">
                         Žánr:
-                        <textarea placeholder="Komedie" class="vyhledavaniFiltru" [(ngModel)]="genreSearch"></textarea>
+                        <input placeholder="Komedie" class="vyhledavaniFiltru" [(ngModel)]="genreSearch">
                     </div>
                     @for (genre of getFilteredGenres(); track genre.id) {
                     <div class="checkbox">
