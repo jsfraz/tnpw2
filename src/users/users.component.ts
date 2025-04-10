@@ -106,6 +106,4 @@ export class UsersComponent implements OnInit {
       this.role.markAsTouched();
     } 
   }
-
-  // TODO stejným způsobem aktualizace a mazání uživatelů je-li to třeba
 }

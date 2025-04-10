@@ -6,6 +6,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { AddressService } from './services/address.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthorService } from './services/author.service';
 import { AuthorManagementService } from './services/author-management.service';
@@ -13,8 +14,10 @@ import { BookService } from './services/book.service';
 import { BookManagementService } from './services/book-management.service';
 import { CartService } from './services/cart.service';
 import { DashboardService } from './services/dashboard.service';
+import { DiscountService } from './services/discount.service';
 import { GenreService } from './services/genre.service';
 import { GenreManagementService } from './services/genre-management.service';
+import { OrderService } from './services/order.service';
 import { ReviewService } from './services/review.service';
 import { CustomerReviewService } from './services/customer-review.service';
 import { ReviewManagementService } from './services/review-management.service';
@@ -30,6 +33,7 @@ import { WishlistService } from './services/wishlist.service';
   exports: [],
   declarations: [],
   providers: [
+    AddressService,
     AuthenticationService,
     AuthorService,
     AuthorManagementService,
@@ -37,8 +41,10 @@ import { WishlistService } from './services/wishlist.service';
     BookManagementService,
     CartService,
     DashboardService,
+    DiscountService,
     GenreService,
     GenreManagementService,
+    OrderService,
     ReviewService,
     CustomerReviewService,
     ReviewManagementService,

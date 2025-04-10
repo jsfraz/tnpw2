@@ -44,7 +44,6 @@
                     <p> {{ book.summary }} </p>
                 </div>
                 <hr>
-                <!-- TODO průměrné hodnocení knihy -->
                 <h4>Dodatečné Informace: </h4>
                 <div class="dodatecneinfo">
                     <h4>Průměrné hodnocení: {{book.averageRating}}</h4>
@@ -88,11 +87,11 @@
                         <span class="review-rating">{{ userReview.stars }}/5</span>
                         @if (this.authService.currentUser != null) {
                         @if (this.authService.currentUser.id == userReview.user.id) {
-                        <!-- TODO fancy tlačítka -->
+                        <!--
                         <span>
-                            <button>Upravit</button>
                             <button>Smazat</button>
                         </span>
+                        -->
                         }}
                     </div>
                     <hr>

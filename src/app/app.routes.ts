@@ -15,20 +15,31 @@ import { KonecComponent } from '../konec/konec.component';
 import { DashboardComponent } from '../dashboard/dashboard.component'; 
 
 export const routes: Routes = [
-    // Přihlášení
+    // Přihlášení nebo registrace (stránka pro nepřihlášeného uživatele)
     { path: 'login', component: LoginComponent },
-    // TODO popsat
+    // Domovská stránka s knihami (stránka pro všechny včetně nepřihlášeného uživatele)
     { path: 'home', component: HomeComponent },
+    // Knihy (stránka pro admina a db managera)
     { path: 'books', component: BooksComponent, canActivate: [AuthGuard] },
+    // Uživatelé (stránka pro admina a db managera)
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+    // Košík (stránka pro zákazníka)
     { path: 'kosik', component: KosikComponent, canActivate: [AuthGuard] },
+    // Autoři (stránka pro admina a db managera)
     { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
+    // Žánry (stránka pro admina a db managera)
     { path: 'genres', component: GenresComponent, canActivate: [AuthGuard] },
+    // Seznam přání (stránka pro zákazníka)
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
+    // Detail knihy (stránka pro všechny včetně nepřihlášeného uživatele)
     { path: 'book-detail', component: BookDetailComponent },
+    // Recenze (stránka pro admina a db managera)
     { path: 'reviews', component: ReviewsComponent, canActivate: [AuthGuard] },
+    // Objednávka (stránka pro zákazníka)
     { path: 'konec', component: KonecComponent, canActivate: [AuthGuard] },
+    // Dashboard (stránka pro admina)
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    // Redirect
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

@@ -25,13 +25,15 @@ export class AppComponent implements OnInit {
   constructor(public authService: AuthService, private userService: UserService, public router: Router, private cartService: CartService) {
     // Sledování změn routy a aktualizace počtu položek v košíku
     // Kontrola změny by mohla probíhat i v jiných komponentech, avšak implementace by byla náročnější
-    if (this.authService.currentUser != null) {
-      this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd)
-      ).subscribe(() => {
-        this.loadCartItemCount();
-      });
-    }
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      if (this.authService.currentUser != null) {
+        if (this.authService.currentUser.role == 'customer') {
+          this.loadCartItemCount();
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -41,7 +43,9 @@ export class AppComponent implements OnInit {
         {
           next: (v) => {
             this.authService.currentUser = v;
-            this.loadCartItemCount();
+            if (this.authService.currentUser.role == 'customer') {
+              this.loadCartItemCount();
+            }
           },
           error: (e) => {
             this.authService.logout();
