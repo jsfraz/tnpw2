@@ -17,24 +17,25 @@
       @if (this.authService.currentUser.role == 'customer') {
       <div class="navbuttons">
         <li class="links"><a routerLink="/wishlist" class="wishlist-link">
-            Seznam přání&nbsp;<i class="fas fa-heart"></i>
+            Seznam přání
         </a></li>
         <li class="links">
-          <a routerLink="/kosik" class="cart-link">
-            Košík&nbsp;<i class="fas fa-shopping-cart" [matBadge]="cartItemCount" matBadgeColor="warn" [matBadgeHidden]="cartItemCount == 0"></i>
+          <a [matBadge]="cartItemCount" matBadgeColor="warn" [matBadgeHidden]="cartItemCount == 0" routerLink="/kosik" class="cart-link">
+            Košík
           </a>
         </li>
       </div>
       }
-      <!-- Zobrazit pokud je uživatel není zákazník -->
-      @else {
-      <!-- TODO dořešení zobrazování rolím -->
-      <li class="links"><a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
-      </li>
+      @if (this.authService.currentUser.role == 'admin') {
+      <li class="links"><a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a></li>
+      }
+      @if (this.authService.currentUser.role == 'admin' || this.authService.currentUser.role =='databaseManager') {
       <li class="links"><a routerLink="/users">Uživatelé</a></li>
       <li class="links"><a routerLink="/authors" routerLinkActive="active" ariaCurrentWhenActive="page">Autoři</a></li>
-      <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Žánry</a></li>
       <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
+      <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Žánry</a></li>
+      }
+      @if (this.authService.currentUser.role == 'admin' || this.authService.currentUser.role =='reviewApprover') {
       <li class="links"><a routerLink="/reviews" routerLinkActive="active" ariaCurrentWhenActive="page">Recenze</a></li>
       }
       <div>
@@ -47,8 +48,7 @@
         <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
       </div>
       } @else {
-      <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit
-          se</a></li>
+      <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit se</a></li>
       }
     </ul>
   </nav>

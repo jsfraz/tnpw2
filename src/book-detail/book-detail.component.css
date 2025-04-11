@@ -156,17 +156,31 @@ h4{
 
 .overlay {
     height: 15%;
+    min-height: 180px;
     width: 20%;
     background-color: #0c192c;
     border: #1f4174 1px solid;
     border-radius: 10px;
-    min-height: 142px;
 }
 
 .text {
     padding: 5px;
     color: #fafafa;
     text-align: center;
+}
+
+.zavrit {
+    border: #1f4174 1px solid;
+    border-radius: 6px;
+    padding: 7px;
+    background-color: #0c192c;
+    color: #fafafa;
+}
+
+.zavrit:hover {
+    border: #00ccff 1px solid;
+    transition: 0.1s;
+    cursor: pointer;
 }
 
 .pokracovat {
