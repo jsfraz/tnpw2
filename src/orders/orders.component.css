@@ -10,17 +10,42 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
   }
   
+  /* Nastavení šířek sloupců */
+  th:nth-child(1) { /* ID Objednávky */
+    width: 8%;
+  }
+  
+  th:nth-child(2) { /* Uživatel */
+    width: 20%;
+  }
+  
+  th:nth-child(3) { /* Cena */
+    width: 10%;
+  }
+  
+  th:nth-child(4) { /* Status */
+    width: 12%;
+  }
+  
+  th:nth-child(5) { /* Adresa */
+    width: 30%;
+  }
+  
+  th:nth-child(6) { /* Knihy */
+    width: 20%;
+  }
+  
   td {
     border: 1px solid #30798a;
-    padding: 10px;
-    text-align: left;
     font-weight: 400;
     font-style: italic;
+    padding: 3px;
   }
   
   th {
     border: 1px solid #4fc3dc;
     font-weight: 550;
+    padding: 3px;
   }
   
   tr:hover {
@@ -81,11 +106,6 @@ body {
   .form-group {
     margin-bottom: 10px;
     width: 100%;
-  }
-
-  td {
-    display: flex;
-    justify-content: center;
   }
   
   .form-group label {

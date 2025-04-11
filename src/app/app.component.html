@@ -34,6 +34,7 @@
       <li class="links"><a routerLink="/authors" routerLinkActive="active" ariaCurrentWhenActive="page">Autoři</a></li>
       <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
       <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Žánry</a></li>
+      <li class="links"><a routerLink="/orders" routerLinkActive="active" ariaCurrentWhenActive="page">Objednávky</a></li>
       }
       @if (this.authService.currentUser.role == 'admin' || this.authService.currentUser.role =='reviewApprover') {
       <li class="links"><a routerLink="/reviews" routerLinkActive="active" ariaCurrentWhenActive="page">Recenze</a></li>

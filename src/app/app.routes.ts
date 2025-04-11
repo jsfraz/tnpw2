@@ -13,6 +13,7 @@ import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ReviewsComponent } from '../reviews/reviews.component';
 import { KonecComponent } from '../konec/konec.component';
 import { DashboardComponent } from '../dashboard/dashboard.component'; 
+import { OrdersComponent } from '../orders/orders.component';
 
 export const routes: Routes = [
     // Přihlášení nebo registrace (stránka pro nepřihlášeného uživatele)
@@ -39,6 +40,8 @@ export const routes: Routes = [
     { path: 'konec', component: KonecComponent, canActivate: [AuthGuard] },
     // Dashboard (stránka pro admina)
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    // objednavky pro kanarky
+    { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
     // Redirect
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

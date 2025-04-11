@@ -15,12 +15,12 @@ td {
   padding: 10px;
   text-align: left;
   font-weight: 400;
+  font-style: italic;
 }
 
 th {
   border: 1px solid #4fc3dc;
-  font-weight: 400;
-  font-style: italic;
+  font-weight: 550;
 }
 
 tr:hover {
