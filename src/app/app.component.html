@@ -24,6 +24,11 @@
             Košík
           </a>
         </li>
+        <li class="links">
+          <a routerLink="/orders" class="cart-link">
+            Moje objednávky
+          </a>
+        </li>
       </div>
       }
       @if (this.authService.currentUser.role == 'admin') {
@@ -45,6 +50,10 @@
             style="margin-right: 10px;"></i>
           {{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' +
           this.authService.currentUser.lastName }}
+          @if (this.authService.currentUser.role == 'customer') {
+            <!-- TODO lepší/hezčí zobrazení počtu bodů pokud chcete :) -->
+            <span>({{this.authService.currentUser.points}} bodů)</span>
+          }
         </li>
         <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
       </div>

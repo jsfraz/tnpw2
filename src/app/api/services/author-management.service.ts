@@ -13,6 +13,8 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { createAuthor } from '../fn/author-management/create-author';
 import { CreateAuthor$Params } from '../fn/author-management/create-author';
+import { deleteAuthor } from '../fn/author-management/delete-author';
+import { DeleteAuthor$Params } from '../fn/author-management/delete-author';
 
 
 /**
@@ -53,6 +55,39 @@ export class AuthorManagementService extends BaseService {
    */
   createAuthor(params?: CreateAuthor$Params, context?: HttpContext): Observable<void> {
     return this.createAuthor$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `deleteAuthor()` */
+  static readonly DeleteAuthorPath = '/api/author/management/author';
+
+  /**
+   * Odstarnění autora.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteAuthor()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteAuthor$Response(params: DeleteAuthor$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return deleteAuthor(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Odstarnění autora.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `deleteAuthor$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteAuthor(params: DeleteAuthor$Params, context?: HttpContext): Observable<void> {
+    return this.deleteAuthor$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

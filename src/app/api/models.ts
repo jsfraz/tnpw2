@@ -22,6 +22,7 @@ export type { ModelsCustomerActivity } from './models/models-customer-activity';
 export type { ModelsDiscount } from './models/models-discount';
 export type { ModelsGenre } from './models/models-genre';
 export type { ModelsLoginResponse } from './models/models-login-response';
+export type { ModelsOrder } from './models/models-order';
 export type { ModelsReview } from './models/models-review';
 export type { ModelsTrueFalse } from './models/models-true-false';
 export type { ModelsUser } from './models/models-user';

@@ -13,8 +13,8 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { createUser } from '../fn/user-management/create-user';
 import { CreateUser$Params } from '../fn/user-management/create-user';
-import { deleteUsers } from '../fn/user-management/delete-users';
-import { DeleteUsers$Params } from '../fn/user-management/delete-users';
+import { deleteUser } from '../fn/user-management/delete-user';
+import { DeleteUser$Params } from '../fn/user-management/delete-user';
 import { getUsersByRoles } from '../fn/user-management/get-users-by-roles';
 import { GetUsersByRoles$Params } from '../fn/user-management/get-users-by-roles';
 import { ModelsUser } from '../models/models-user';
@@ -97,6 +97,39 @@ export class UserManagementService extends BaseService {
     );
   }
 
+  /** Path part for operation `deleteUser()` */
+  static readonly DeleteUserPath = '/api/user/management/user';
+
+  /**
+   * Mazání uživatele.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteUser()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteUser$Response(params: DeleteUser$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return deleteUser(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Mazání uživatele.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `deleteUser$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteUser(params: DeleteUser$Params, context?: HttpContext): Observable<void> {
+    return this.deleteUser$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
   /** Path part for operation `updateUser()` */
   static readonly UpdateUserPath = '/api/user/management/user';
 
@@ -126,39 +159,6 @@ export class UserManagementService extends BaseService {
    */
   updateUser(params?: UpdateUser$Params, context?: HttpContext): Observable<void> {
     return this.updateUser$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `deleteUsers()` */
-  static readonly DeleteUsersPath = '/api/user/management/users';
-
-  /**
-   * Mazání uživatelů.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `deleteUsers()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  deleteUsers$Response(params: DeleteUsers$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return deleteUsers(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * Mazání uživatelů.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `deleteUsers$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  deleteUsers(params: DeleteUsers$Params, context?: HttpContext): Observable<void> {
-    return this.deleteUsers$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

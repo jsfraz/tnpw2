@@ -31,6 +31,9 @@ export class AppComponent implements OnInit {
       if (this.authService.currentUser != null) {
         if (this.authService.currentUser.role == 'customer') {
           this.loadCartItemCount();
+          this.userService.whoAmI().subscribe((v) => {
+            this.authService.currentUser = v;
+          });
         }
       }
     });

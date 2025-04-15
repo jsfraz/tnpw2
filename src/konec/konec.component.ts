@@ -84,7 +84,7 @@ export class KonecComponent implements OnInit {
     // Odstraní knihu z košíku
     removeBook(bookId: number) {
         this.cartService.removeBookFromCart({ id: bookId }).subscribe({
-            next: () => {},
+            next: () => { },
             error: (e) => {
                 alert(JSON.stringify(e));
                 console.error(e);
@@ -204,8 +204,9 @@ export class KonecComponent implements OnInit {
                 }
             }).subscribe({
                 next: () => {
-                    // TODO udělat pohled na dokončení objednávky nebo tak něco
-                    this.router.navigate(['/order-success']);
+                    // TODO udělat pohled na dokončení objednávky nebo tak něco, zatím neřešit
+                    // this.router.navigate(['/order-success']);
+                    this.router.navigate(['/']);
                 },
                 error: (e) => {
                     alert(JSON.stringify(e));
@@ -220,7 +221,7 @@ export class KonecComponent implements OnInit {
 
     useDiscountChanged(): void {
         if (this.useDiscount) {
-            this.selectedDiscount = this.discounts[this.discounts.length - 1]; 
+            this.selectedDiscount = this.discounts[this.discounts.length - 1];
         } else {
             this.selectedDiscount = '';
         }
