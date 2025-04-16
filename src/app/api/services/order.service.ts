@@ -13,6 +13,9 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { createOrder } from '../fn/order/create-order';
 import { CreateOrder$Params } from '../fn/order/create-order';
+import { getAllOrders } from '../fn/order/get-all-orders';
+import { GetAllOrders$Params } from '../fn/order/get-all-orders';
+import { ModelsOrder } from '../models/models-order';
 
 
 /**
@@ -54,6 +57,39 @@ export class OrderService extends BaseService {
   createOrder(params?: CreateOrder$Params, context?: HttpContext): Observable<void> {
     return this.createOrder$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `getAllOrders()` */
+  static readonly GetAllOrdersPath = '/api/order/all';
+
+  /**
+   * Vrátí všechny objednávky uživatele.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllOrders()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllOrders$Response(params?: GetAllOrders$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ModelsOrder>>> {
+    return getAllOrders(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Vrátí všechny objednávky uživatele.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllOrders$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllOrders(params?: GetAllOrders$Params, context?: HttpContext): Observable<Array<ModelsOrder>> {
+    return this.getAllOrders$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ModelsOrder>>): Array<ModelsOrder> => r.body)
     );
   }
 

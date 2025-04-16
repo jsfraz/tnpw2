@@ -6,12 +6,14 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- TODO pěkný nadpis -->
+    <h1>Moje objednávky</h1>
     <div class="center">
+        <!-- TODO zhezčení tabulky-->
         <table>
             <thead>
                 <tr>
                     <th>ID Objednávky</th>
-                    <th>Uživatel</th>
                     <th>Cena</th>
                     <th>Status</th>
                     <th>Adresa</th>
@@ -19,22 +21,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Jan Novák</td>
-                    <td>999 Kč</td>
-                    <td>Doručeno</td>
-                    <td>Hlavní 123, Praha</td>
-                    <td>Kniha 1, Kniha 2</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Petr Svoboda</td>
-                    <td>499 Kč</td>
-                    <td>Zpracovává se</td>
-                    <td>Náměstí 45, Brno</td>
-                    <td>Kniha 3</td>
-                </tr>
+                @for (order of orders; track order.id) {
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>{{order.totalPrice}} Kč</td>
+                        <td>{{order.status}}</td>
+                        <td>{{order.address.street}}, {{order.address.city}}</td>
+                        <td>
+                            @for (book of order.orderedBooks; track book.id) {
+                                {{book.name}}
+                            }
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
