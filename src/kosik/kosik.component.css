@@ -51,8 +51,8 @@ button:active {
     width: 16%;
     height: 40%;
     border-radius: 15px;
-    background-color: #00ccff;
-    border: #00ccff 1px solid;
+    background-color: #0088a9;
+    border: #0088a9 1px solid;
     margin-left: 79%;
     margin-top: 1%;
     margin-bottom: 1%;
@@ -63,8 +63,8 @@ button:active {
 }
 
 .dokoncitObjednavku:hover {
-    background-color: #0088a9;
-    border: #0088a9 1px solid;
+    background-color: #006e86;
+    border: #006e86 1px solid;
 }
 
 .dokoncitDiv {
