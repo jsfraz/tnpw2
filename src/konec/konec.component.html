@@ -69,6 +69,7 @@
             </div>
 
             <div class="forms">
+                <!-- TODO zhezčit!!! -->
                 <mat-checkbox [(ngModel)]="useDiscount" (change)="useDiscountChanged()">Použiju slevu</mat-checkbox>
                 @if (useDiscount) {
                 @if (discounts.length != 0) {
@@ -87,7 +88,7 @@
                     ZATÍM BYCH TO NECHAL TAKHLE A NEŘEŠIL TO
                 -->
                 <label>{{minDiscountPoints}} bodů</label>
-                <mat-slider [max]="authService.currentUser!.points" [min]="minDiscountPoints" [step]="1" showTickMarks
+                <mat-slider [max]="authService.currentUser!.points" [min]="minDiscountPoints" [step]="10" showTickMarks
                     discrete>
                     <input matSliderThumb [(ngModel)]="discountPointValue">
                 </mat-slider>

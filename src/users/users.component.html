@@ -33,7 +33,7 @@
                 </mat-form-field>
                            
                 <mat-form-field>
-                  <mat-label>Select</mat-label>
+                  <mat-label>Role uživatele</mat-label>
                   <mat-select [formControl]="role">
                     @for (option of roleOptions; track option.value) {
                       <mat-option [value]="option.value">{{option.viewValue}}</mat-option>

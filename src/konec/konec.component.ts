@@ -231,7 +231,11 @@ export class KonecComponent implements OnInit {
     calculateTotalPrice(): void {
         this.totalPrice = this.books.reduce((x, book) => x + book.price, 0);
         if (this.selectedDiscount != '') {
-            this.totalPrice -= this.selectedDiscount.price;
+            if (this.selectedDiscount.price > this.totalPrice) {
+                this.totalPrice = 0;
+            } else {
+                this.totalPrice -= this.selectedDiscount.price;
+            }
         }
     }
 }
