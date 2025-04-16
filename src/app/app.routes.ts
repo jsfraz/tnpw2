@@ -14,6 +14,7 @@ import { ReviewsComponent } from '../reviews/reviews.component';
 import { KonecComponent } from '../konec/konec.component';
 import { DashboardComponent } from '../dashboard/dashboard.component'; 
 import { OrdersComponent } from '../orders/orders.component';
+import { OrderSuccessComponent } from '../order-success/order-success.component';
 
 export const routes: Routes = [
     // Přihlášení nebo registrace (stránka pro nepřihlášeného uživatele)
@@ -40,8 +41,10 @@ export const routes: Routes = [
     { path: 'konec', component: KonecComponent, canActivate: [AuthGuard] },
     // Dashboard (stránka pro admina)
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-    // objednavky pro kanarky
+    // Objednávky (stránka pro admina)
     { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+    // Úspěšná objednávka (stránka pro zákazníka)
+    { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
     // Redirect
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

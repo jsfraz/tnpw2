@@ -14,6 +14,7 @@ import { DiscountService } from '../app/api/services/discount.service';
 import { AuthService } from '../app/shared/auth.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { OrderService } from '../app/api/services/order.service';
+
 @Component({
     selector: 'app-konec',
     imports: [
@@ -25,7 +26,7 @@ import { OrderService } from '../app/api/services/order.service';
         MatProgressSpinnerModule,
         MatSelectModule,
         MatCheckboxModule,
-        MatSliderModule
+        MatSliderModule,
     ],
     templateUrl: './konec.component.html',
     styleUrl: './konec.component.css'
@@ -204,9 +205,7 @@ export class KonecComponent implements OnInit {
                 }
             }).subscribe({
                 next: () => {
-                    // TODO udělat pohled na dokončení objednávky nebo tak něco, zatím neřešit
-                    // this.router.navigate(['/order-success']);
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/order-success']);
                 },
                 error: (e) => {
                     alert(JSON.stringify(e));

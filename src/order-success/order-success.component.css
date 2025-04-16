@@ -1,0 +1,63 @@
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 71px;
+    background-color: #0c192c;
+}
+
+hr {
+    background-color: #0087a93a;
+    height: 1px;
+    border: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    transition: 0.1s;
+    border: #0c192c 1px solid;
+}
+
+.zpet {
+    width: 16%;
+    height: 40%;
+    border-radius: 15px;
+    background-color: #0088a9;
+    border: #0088a9 1px solid;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: #fafafa;
+    font-size: 18px;
+    box-shadow: 0 3px 5px black; 
+    padding: 10px;
+}
+
+.zpet:hover {
+    background-color: #006e86;
+    border: #006e86 1px solid;
+}
+
+.nadpis {
+    color: #fafafa;
+}
+
+.stred {
+    color: #fafafa;
+    width: 75%;
+    height: 100%;
+    background-color: #0e1d33;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: 1px solid #172f52;
+    padding: 1%;
+    box-shadow: 0 2px 4px rgb(5, 5, 5);
+}

@@ -16,16 +16,6 @@ hr {
     margin-top: 15px;
 }
 
-input {
-    height: 40px;
-    width: 60px;
-    background-color: #0c192c;
-    border-radius: 10px;
-    border: 1px solid #0088a9;
-    color: #fafafa;
-    font-size: large;
-    resize: none;
-}
 
 button:hover {
     cursor: pointer;
@@ -34,17 +24,6 @@ button:hover {
 button:active {
     transition: 0.1s;
     border: #0c192c 1px solid;
-}
-
-.cena {
-    margin-left: auto;
-    margin-right: 2%;
-    font-size: 20px;
-}
-
-.cenaCislo {
-    color: #00ccff;
-    font-size: 20px;
 }
 
 .dokoncitObjednavku {
