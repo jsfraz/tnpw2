@@ -116,8 +116,10 @@
           <td>{{ book.price }} Kč</td>
           <td>{{ book.published | date:'dd.MM.yyyy' }}</td>
           <td>{{ book.summary }}</td>
-          <td><button class="edit-btn" (click)="editBook(book)"><i class="fas fa-edit ikona" style="font-size: 25px; color: #4fc3dc;"></i></button></td>
-          <!-- TODO smazání -->
+          <td>
+            <button class="edit-btn" (click)="editBook(book)"><i class="fas fa-edit ikona" style="font-size: 25px; color: #4fc3dc;"></i></button>
+            <button class="submit-btn" (click)="deleteBook(book.id)">Smazat</button>
+          </td>
         </tr>
         }
       </tbody>

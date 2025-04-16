@@ -283,4 +283,17 @@ export class BooksComponent {
     this.imageUrl = null;
     this.resetForm();
   }
+
+  deleteBook(id: number): void {  // Přidána metoda pro mazání
+      this.bookManagementService.deleteBook({ id }).subscribe({   // Změna předávání argumentu
+        next: () => {
+          this.loadBooks();  // Obnov seznam knih
+          alert('Kniha byla úspěšně smazána.');
+        },
+        error: (e) => {
+          console.error(e);
+          alert(JSON.stringify(e));
+        }
+      });
+  }
 }

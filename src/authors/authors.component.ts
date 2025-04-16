@@ -21,13 +21,14 @@ import { CommonModule } from '@angular/common';
 export class AuthorsComponent implements OnInit {
   authors: ModelsAuthor[] = [];
   showAuthorForm = false;
+  editingAuthorId: number | null = null;
 
   //input pro autora
   birth = new FormControl('', [Validators.required]);
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
   
-  constructor(private authorManagementSerice: AuthorManagementService, private authorService: AuthorService) { }
+  constructor(private authorManagementService: AuthorManagementService, private authorService: AuthorService) { }
   
   ngOnInit(): void {
     this.loadAuthors();
@@ -56,7 +57,7 @@ export class AuthorsComponent implements OnInit {
 
   // Vytvoření autora
   createAuthor() {
-    this.authorManagementSerice.createAuthor({ body: {
+    this.authorManagementService.createAuthor({ body: {
       birth: this.birth.value!,
       firstName: this.firstName.value!,
       lastName: this.lastName.value!
@@ -74,4 +75,7 @@ export class AuthorsComponent implements OnInit {
       }
     });
   }
+
+  
+  
 }
