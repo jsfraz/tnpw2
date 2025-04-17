@@ -57,6 +57,7 @@
                 <th>Přijmení</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Akce</th>
               </tr>
             </thead>
             <tbody>
@@ -67,6 +68,10 @@
                     <td>{{ user.mail }}</td>
                     <td>{{ getRoleDisplayName(user.role) }}</td>
                     <!-- TODO smazání -->
+                    <td>
+                      <button class="submit-btn" (click)="deleteUser(user.id)">Smazat</button>
+                    </td>
+                    
                   </tr>
                 }
             </tbody>

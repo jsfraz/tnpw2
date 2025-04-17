@@ -76,6 +76,16 @@ export class AuthorsComponent implements OnInit {
     });
   }
 
-  
-  
+  deleteAuthor(authorId: number) {
+    if (!confirm('Opravdu chceš autora smazat?')) return;
+      this.authorManagementService.deleteAuthor({ id: authorId }).subscribe({
+        next: () => {
+          this.loadAuthors(); // Aktualizuj seznam
+        },
+        error: (e) => {
+          console.error(e);
+          alert('Chyba při mazání autora.');
+        }
+      });
+  }
 }

@@ -284,15 +284,15 @@ export class BooksComponent {
     this.resetForm();
   }
 
-  deleteBook(id: number): void {  // Přidána metoda pro mazání
-      this.bookManagementService.deleteBook({ id }).subscribe({   // Změna předávání argumentu
+  deleteBook(bookId: number) {
+    if (!confirm('Opravdu chceš autora smazat?')) return;
+      this.bookManagementService.deleteBook({ id: bookId }).subscribe({
         next: () => {
-          this.loadBooks();  // Obnov seznam knih
-          alert('Kniha byla úspěšně smazána.');
+          this.loadBooks(); // Aktualizuj seznam
         },
         error: (e) => {
           console.error(e);
-          alert(JSON.stringify(e));
+          alert('Chyba při mazání knihy.');
         }
       });
   }

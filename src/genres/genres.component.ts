@@ -73,5 +73,4 @@ export class GenresComponent {
     this.genreName.markAsTouched();
   }
  } 
-    
 }

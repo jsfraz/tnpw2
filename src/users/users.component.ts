@@ -4,10 +4,11 @@ import { ModelsUser } from '../app/api/models/models-user';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-users',
-  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatSelectModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatSelectModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
@@ -105,5 +106,18 @@ export class UsersComponent implements OnInit {
       this.password.markAsTouched();
       this.role.markAsTouched();
     } 
+  }
+
+  deleteUser(userId: number) {
+    if (!confirm('Opravdu chceš uživatele smazat?')) return;
+      this.userManagementService.deleteUser({ id: userId }).subscribe({
+        next: () => {
+          this.loadUsers(); // Aktualizuj seznam
+        },
+        error: (e) => {
+          console.error(e);
+          alert('Chyba při mazání uživatele.');
+        }
+      });
   }
 }
