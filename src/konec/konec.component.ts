@@ -48,7 +48,6 @@ export class KonecComponent implements OnInit {
     // phoneNumber = new FormControl<string>('', [Validators.required]);
     // email = new FormControl<string>('', [Validators.required]);
 
-    // TODO vymyslet nějaké podmínky a validaci slev slevy
     useDiscount: boolean = false;
     discounts: ModelsDiscount[] = [];
     selectedDiscount: ModelsDiscount | '' = '';
