@@ -64,11 +64,13 @@ footer {
 .user-logout {
     color: darkgray;
     background-color: #ffffff00;
-    margin-top: -3%;
+} 
+
+.bodyalogout {
     margin-left: auto;
     border: none;
     display: flex;
-} 
+}
 
 .user-list {
     color: darkgray;

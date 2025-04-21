@@ -33,29 +33,29 @@
       }
       @if (this.authService.currentUser.role == 'admin') {
       <li class="links"><a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a></li>
+      <li class="links"><a routerLink="/users">Uživatelé</a></li>
       }
       @if (this.authService.currentUser.role == 'admin' || this.authService.currentUser.role =='databaseManager') {
-      <li class="links"><a routerLink="/users">Uživatelé</a></li>
       <li class="links"><a routerLink="/authors" routerLinkActive="active" ariaCurrentWhenActive="page">Autoři</a></li>
       <li class="links"><a routerLink="/books" routerLinkActive="active" ariaCurrentWhenActive="page">Knihy</a></li>
       <li class="links"><a routerLink="/genres" routerLinkActive="active" ariaCurrentWhenActive="page">Žánry</a></li>
-      <li class="links"><a routerLink="/orders" routerLinkActive="active" ariaCurrentWhenActive="page">Objednávky</a></li>
       }
       @if (this.authService.currentUser.role == 'admin' || this.authService.currentUser.role =='reviewApprover') {
       <li class="links"><a routerLink="/reviews" routerLinkActive="active" ariaCurrentWhenActive="page">Recenze</a></li>
       }
-      <div>
+      <div style="min-width: 200px;">
         <li class="user-name">
           <i class="fas {{this.authService.currentUser.role == 'admin' ? 'fa-cog' : 'fa-user'}}"
             style="margin-right: 10px;"></i>
           {{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' +
           this.authService.currentUser.lastName }}
-          @if (this.authService.currentUser.role == 'customer') {
-            <!-- TODO lepší/hezčí zobrazení počtu bodů pokud chcete :) -->
-            <span>({{this.authService.currentUser.points}} bodů)</span>
-          }
         </li>
+        <div>
+        @if (this.authService.currentUser.role == 'customer') {
+        <span>({{this.authService.currentUser.points}} bodů)</span>
+        }
         <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
+        </div>
       </div>
       } @else {
       <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit se</a></li>
