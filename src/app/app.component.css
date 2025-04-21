@@ -64,12 +64,17 @@ footer {
 .user-logout {
     color: darkgray;
     background-color: #ffffff00;
-} 
+    border: #0c192c 1px solid;
+}
 
 .bodyalogout {
-    margin-left: auto;
-    border: none;
-    display: flex;
+    margin-top: -3%;
+}
+
+.userbox {
+    border-radius: 10px;
+    min-width: 200px;
+    padding: 10px;
 }
 
 .user-list {
@@ -143,6 +148,7 @@ button:hover {
     margin-bottom: auto;
     color: #fafafa;
     font-size: 18px;
+    text-align: center;
 }
 
 .navbuttons {

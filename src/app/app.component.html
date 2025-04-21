@@ -43,16 +43,16 @@
       @if (this.authService.currentUser.role == 'admin' || this.authService.currentUser.role =='reviewApprover') {
       <li class="links"><a routerLink="/reviews" routerLinkActive="active" ariaCurrentWhenActive="page">Recenze</a></li>
       }
-      <div style="min-width: 200px;">
+      <div class="userbox">
         <li class="user-name">
           <i class="fas {{this.authService.currentUser.role == 'admin' ? 'fa-cog' : 'fa-user'}}"
             style="margin-right: 10px;"></i>
           {{ this.authService.isAdmin ? 'Admin' : this.authService.currentUser.firstName + ' ' +
           this.authService.currentUser.lastName }}
         </li>
-        <div>
+        <div class="bodyalogout">
         @if (this.authService.currentUser.role == 'customer') {
-        <span>({{this.authService.currentUser.points}} bodů)</span>
+        <span style="color: #fafafa;">Počet bodů: {{this.authService.currentUser.points}} bodů</span>
         }
         <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
         </div>

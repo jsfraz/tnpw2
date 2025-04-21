@@ -17,6 +17,30 @@ hr {
     margin-top: 100px;
 }
 
+.bila {
+    color: #fafafa;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pridatSlevuCudl {
+    border: #00ccff 1px solid;
+    border-radius: 5px;
+    padding: 12px;
+    background-color: #0c192c;
+    color: #fafafa;
+    margin-right: 5%;
+    font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pridatSlevuCudl:hover {
+    border: #0088a9 1px solid;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
 .dokoncitCudl {
     border: #0088a9 1px solid;
     border-radius: 15px;

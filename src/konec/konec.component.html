@@ -69,11 +69,9 @@
             </div>
 
             <div class="forms">
-                <!-- TODO zhezčit!!! -->
                 <mat-checkbox [(ngModel)]="useDiscount" (change)="useDiscountChanged()">Použiju slevu</mat-checkbox>
                 @if (useDiscount) {
                 @if (discounts.length != 0) {
-                <mat-label>Vyberte slevu</mat-label>
                 <mat-select [(ngModel)]="selectedDiscount">
                     @for (discount of discounts; track discount.id) {
                     <mat-option [value]="discount">{{discount.price}} Kč - {{ discount.code }}</mat-option>
@@ -87,14 +85,14 @@
 
                     ZATÍM BYCH TO NECHAL TAKHLE A NEŘEŠIL TO
                 -->
-                <label>{{minDiscountPoints}} bodů</label>
-                <mat-slider [max]="authService.currentUser!.points" [min]="minDiscountPoints" [step]="10" showTickMarks
-                    discrete>
+                <hr>
+                <label class="bila" style="margin-top: 15px;"> Minimum: {{minDiscountPoints}} bodů</label>
+                <mat-slider [max]="authService.currentUser!.points" [min]="minDiscountPoints" [step]="10" showTickMarksdiscrete>
                     <input matSliderThumb [(ngModel)]="discountPointValue">
                 </mat-slider>
-                <label>{{authService.currentUser!.points}} bodů</label>
-                <label>{{discountPointValue}} Kč</label>
-                <button (click)="createDiscount()">Použít body</button>
+                <label class="bila">Máte: {{authService.currentUser!.points}} bodů</label>
+                <label class="bila">Sleva: {{discountPointValue}} Kč</label>
+                <button class="pridatSlevuCudl" (click)="createDiscount()">Použít body</button>
                 } @else {
                 <p>Zatím nemáte dostatek bodů na slevu.</p>
                 }

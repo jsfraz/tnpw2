@@ -46,7 +46,7 @@
         <div class="dokoncitDiv">
             <h3 class="celkovaCenaText">Celková cena: </h3>
             <h3 class="celkovaCenaCislo">{{ totalPrice }},-</h3>
-            <button class="dokoncitObjednavku" routerLink="/konec">Dokončit objednávku</button>
+            <button [disabled]="books.length == 0" class="dokoncitObjednavku" routerLink="/konec">Dokončit objednávku</button>
         </div>
     </div>
 </body>

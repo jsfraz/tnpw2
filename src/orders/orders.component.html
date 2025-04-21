@@ -6,10 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- TODO pěkný nadpis -->
     <h1 style="color: #fafafa; margin: 20px;">Moje objednávky</h1>
     <div class="center">
-        <!-- TODO zhezčení tabulky-->
         <table>
             <thead>
                 <tr>
@@ -25,11 +23,16 @@
                     <tr>
                         <td>{{order.id}}</td>
                         <td>{{order.totalPrice}} Kč</td>
-                        <td>{{order.status}}</td>
+                        <td>
+                            @if (order.status == 'done') {
+                                Hotovo
+                            }
+                            @else {Probíha vyřizování}
+                        </td>
                         <td>{{order.address.street}}, {{order.address.city}}</td>
                         <td>
                             @for (book of order.orderedBooks; track book.id) {
-                                {{book.name}}
+                                {{book.name}}{{!$last ? ', ' : ''}}
                             }
                         </td>
                     </tr>
