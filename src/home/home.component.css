@@ -2,11 +2,14 @@
     width: 100%;
     height: 80%;
     padding-top: 90px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .filter-container {
     float: left;
     display: flex;
+    flex-direction: column;
     border: 1px solid #172f52;
     box-shadow: 0 2px 4px black;
     border-radius: 20px;
@@ -14,9 +17,9 @@
     padding: 30px;
     margin-left: 25px;
     padding-top: 20px;
-    flex-direction: column;
     background-color: #0e1d33;
     color: #fafafa;
+    flex-shrink: 0;
 }
 
 .filter-text {
@@ -48,20 +51,15 @@
 .price-slider {
     display: flex;
     flex-direction: column;
-    /* Stacked elements */
     align-items: center;
-    /* Centered horizontally */
     width: 100%;
-    /* Make sure it spans full width */
 }
 
 .slider {
     display: flex;
     align-items: center;
     width: 90%;
-    /* Increase width to 90% of parent */
     margin-top: 25px;
-    /* Less margin for better spacing */
 }
 
 .slider-value {
@@ -69,12 +67,10 @@
     flex-direction: row;
     gap: 20px;
     justify-content: space-between;
-    /* Pro lepší zarovnání mezi hodnotami */
 }
 
 .value {
     width: 80px;
-    /* Nastavit šířku pro inputy tak, aby se vešly */
     height: 40px;
     display: flex;
     align-items: center;
@@ -163,12 +159,10 @@
 
 mat-form-field {
     width: 100%;
-    /* Zajistí, že formátování bude vyplňovat celou šířku .value */
 }
 
 mat-slider {
     width: 100%;
-    /* Ensure the slider spans full width */
 }
 
 hr {
@@ -212,7 +206,6 @@ hr {
 .books-grid-container {
     flex: 1;
     padding: 20px;
-    padding-left: 350px !important; 
 }
 
 .books-grid {
@@ -322,9 +315,67 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Zajistí, že spinner bude uprostřed celé výšky */
-    width: 100%; /* Zajistí, že spinner bude uprostřed celé šířky */
-    position: absolute; /* Umožní umístit spinner do středu */
-    top: 0; /* Umístí spinner na vrchol kontejneru */
-    left: 0; /* Umístí spinner na začátek kontejneru */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; 
+}
+
+@media (max-width: 1024px) {
+    .filter-container {
+        width: 25%;
+    }
+
+    .books-grid-container {
+        padding-left: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .filter-container {
+        width: 100%; 
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .books-grid-container {
+        width: 100%; 
+        padding-left: 0;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    }
+
+    .book-card {
+        font-size: 14px;
+    }
+
+    .book-info h3 {
+        font-size: 14px;
+    }
+
+    .book-info p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .books-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .book-card {
+        font-size: 12px; 
+    }
 }

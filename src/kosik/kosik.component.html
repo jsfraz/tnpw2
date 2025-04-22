@@ -9,29 +9,33 @@
 </head>
 
 <body>
-    <div class="stred">
+    <div class="total">
+        <div class="price-text">Celková cena: </div>
+        <div class="price-number">{{ totalPrice }},-</div>
+        <button [disabled]="books.length == 0" class="finish-order-button" routerLink="/konec">Dokončit objednávku</button>
+    </div>
+
+    <div class="cart-container">
         @for (book of books; track book.id) {
-        <div class="kniha">
-            <div class="obrazekDiv" (click)="bookCardClicked(book.id)">
-                <div class="obrazek">
+        <div class="cart-item">
+            <div class="cart-image" (click)="bookCardClicked(book.id)">
+                <div class="cart-image-content">
                     @if (book.hasImage) {
-                    <img [src]="cartService.rootUrl + '/api/book/image/' + book.id" class="obrazek">
+                    <img [src]="cartService.rootUrl + '/api/book/image/' + book.id" class="cart-image">
                     } @else {
                     <i class="fas fa-book" style="font-size: 48px; color: #999;"></i>
                     }
                 </div>
             </div>
-            <div class="nazevKnihy" (click)="bookCardClicked(book.id)">
+            <div class="cart-details" (click)="bookCardClicked(book.id)">
                 <h2>{{ book.name }}</h2>
-                <br>
                 <h4 style="color:gray;">{{ book.author.firstName }} {{ book.author.lastName }}</h4>
-            </div>
-
-            <div class="cenaDiv">
-                <h2 class="cena">Cena: </h2>
-                <h2 class="cenaCislo">{{ book.price }},-</h2>
-                <button class="smazatButton" (click)="removeBook(book.id)">
-                    <i class="fas fa-trash"></i>
+                <div class="cart-price">
+                    <h2 class="price-text">Cena: </h2>
+                    <h2 class="price-number">{{ book.price }},-</h2>
+                </div>
+                <button class="remove-button" (click)="removeBook(book.id)">
+                    <i class="fas fa-trash"></i> Odstranit
                 </button>
             </div>
         </div>
@@ -42,12 +46,6 @@
         </div>
         }
         }
-        <hr>
-        <div class="dokoncitDiv">
-            <h3 class="celkovaCenaText">Celková cena: </h3>
-            <h3 class="celkovaCenaCislo">{{ totalPrice }},-</h3>
-            <button [disabled]="books.length == 0" class="dokoncitObjednavku" routerLink="/konec">Dokončit objednávku</button>
-        </div>
     </div>
 </body>
 
