@@ -31,7 +31,7 @@
               <tr>
                 <td>{{ stat.authorName }}</td>
                 <td>{{ stat.bookName }}</td>
-                <td>{{ stat.totalSales }}</td>
+                <td>{{ "Počet prodejů: " + stat.totalSales }}</td>
                 <td>{{ stat.totalRevenue }} Kč</td>
               </tr>
             }
@@ -63,7 +63,7 @@
               <tr>
                 <td>{{ stat.book_name }}</td>
                 <td>{{ stat.genre_name }}</td>
-                <td>{{ stat.total_reviews }}</td>
+                <td>{{ "počet recenzí: " + stat.total_reviews}}</td>
                 <td>{{ stat.average_rating }}/5</td>
               </tr>
             }
@@ -95,7 +95,7 @@
               <tr>
                 <td>{{ activity.fullName }}</td>
                 <td>{{ activity.email }}</td>
-                <td>{{ activity.totalOrders }}</td>
+                <td>{{ "počet objednávek: " + activity.totalOrders }}</td>
                 <td>{{ activity.totalSpent }} Kč</td>
               </tr>
             }

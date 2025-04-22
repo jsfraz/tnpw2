@@ -62,3 +62,24 @@ hr {
     color: #ffffff;
   }
   
+@media (max-width: 1024px) {
+  .review-item {
+    width: calc(50% - 60px);
+  }
+}
+
+@media (max-width: 768px) {
+  .review-item {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .review-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .approve-btn, .reject-btn {
+    width: 100%;
+  }
+}

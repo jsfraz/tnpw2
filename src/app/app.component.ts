@@ -21,6 +21,7 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   title = 'DBS2_Frontend';
   cartItemCount = 0;
+  menuOpen = false;
 
   constructor(public authService: AuthService, private userService: UserService, public router: Router, private cartService: CartService) {
     // Sledování změn routy a aktualizace počtu položek v košíku
@@ -37,6 +38,10 @@ export class AppComponent implements OnInit {
         }
       }
     });
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 
   ngOnInit(): void {

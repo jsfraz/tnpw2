@@ -2,13 +2,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
-<header>
+<header class="main-header">
   <!-- Logo -->
-  <a class="logo" routerLink="/home">Ninja
-    Books</a>
+  <a class="logo" routerLink="/home">Ninja Books</a>
 
   <!-- Navigace -->
-  <nav>
+  <nav [class.open]="menuOpen">
     <ul class="nav__links">
       <!-- Zobrazit pokud je uživatel přihlášen -->
       @if (this.authService.currentUser != null) {
@@ -62,6 +61,9 @@
       }
     </ul>
   </nav>
+  <button class="menu-toggle" (click)="toggleMenu()" aria-label="Menu">
+    <i class="fas fa-bars"></i>
+  </button>
 </header>
 
 <main>
