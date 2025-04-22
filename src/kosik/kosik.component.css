@@ -17,12 +17,19 @@ hr {
 }
 
 .finish-order-button {
+    margin-top: 20px;
     color: #fafafa;
-    background-color: #00ccff;
+    background-color: #0088a9;
+    border: #0088a9 1px solid;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: medium;
 } 
 
 button:hover {
     cursor: pointer;
+    background-color: #006e86;
+    border: #006e86 1px solid;
 }
 
 button:active {
@@ -105,8 +112,10 @@ button:active {
 }
 
 .total {
-    margin-left: 25px;
+    margin-right: 25px;
     padding: 10px;
+    justify-content: right;
+    display: grid;
 } 
 
 .remove-button {
