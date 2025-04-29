@@ -17,9 +17,10 @@
       <div class="navbuttons">
         <li class="links"><a routerLink="/wishlist" class="wishlist-link">
             Seznam přání
-        </a></li>
+          </a></li>
         <li class="links">
-          <a [matBadge]="cartItemCount" matBadgeColor="warn" [matBadgeHidden]="cartItemCount == 0" routerLink="/kosik" class="cart-link">
+          <a [matBadge]="cartItemCount" matBadgeColor="warn" [matBadgeHidden]="cartItemCount == 0" routerLink="/kosik"
+            class="cart-link">
             Košík
           </a>
         </li>
@@ -31,7 +32,8 @@
       </div>
       }
       @if (this.authService.currentUser.role == 'admin') {
-      <li class="links"><a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a></li>
+      <li class="links"><a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
+      </li>
       <li class="links"><a routerLink="/users">Uživatelé</a></li>
       }
       @if (this.authService.currentUser.role == 'admin' || this.authService.currentUser.role =='databaseManager') {
@@ -50,14 +52,15 @@
           this.authService.currentUser.lastName }}
         </li>
         <div class="bodyalogout">
-        @if (this.authService.currentUser.role == 'customer') {
-        <span style="color: #fafafa;">Počet bodů: {{this.authService.currentUser.points}} bodů</span>
-        }
-        <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
+          @if (this.authService.currentUser.role == 'customer') {
+          <span style="color: #fafafa;">Počet bodů: {{this.authService.currentUser.points}} bodů</span>
+          }
+          <button (click)="this.authService.logout()" class="user-logout">Odhlásit se</button>
         </div>
       </div>
       } @else {
-      <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit se</a></li>
+      <li class="links-pre"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Přihlásit
+          se</a></li>
       }
     </ul>
   </nav>
@@ -71,27 +74,27 @@
 </main>
 
 <footer>
-  takže tady je nějakej ten požadovanej text že ,,heeeej tady ty obrázky a tak jsme si vypůjčili z knihy dobrovský". Ale
-  v klidu je to jen školní projekt takže by to mělo bejt cajk. Taky myslím že je tady tenhle znak uplně zbytečnej, ale
-  přijde mi vtipný ho sem přesně z tohohle důdovu dát, takže tady je ©
+  Studentský zápočtový projekt na předmět KIKM/DBS2 a KIT/TNPW2
+  <br>
+  &copy; 2025
 </footer>
 
 <style>
-.cart-link {
+  .cart-link {
     position: relative;
     display: flex;
     align-items: center;
-}
+  }
 
-.fa-shopping-cart {
+  .fa-shopping-cart {
     font-size: 20px;
-}
+  }
 
-/* Úprava pozice badge */
-::ng-deep .mat-badge-content {
+  /* Úprava pozice badge */
+  ::ng-deep .mat-badge-content {
     font-size: 12px;
     height: 18px !important;
     width: 18px !important;
     line-height: 18px !important;
-}
+  }
 </style>

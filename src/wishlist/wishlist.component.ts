@@ -3,14 +3,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModelsBook } from '../app/api/models/models-book';
-import { RouterLink } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { WishlistService } from '../app/api/services/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
-  imports: [MatSliderModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, RouterLink],
+  imports: [MatSliderModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule],
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.css'
 })
