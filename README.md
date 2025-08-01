@@ -6,6 +6,10 @@ Frontend pro projekt pro KIKM/DBS2 a KIT/TNPW2.
 
 Tento projekt byl vytvořen pomocí [Angular CLI](https://github.com/angular/angular-cli) verze 19.2.0.
 
+![1](1.PNG "2")
+
+![2](2.PNG "2")
+
 ## Vývojový server
 
 Chcete-li spustit místní vývojový server, spusťte:
